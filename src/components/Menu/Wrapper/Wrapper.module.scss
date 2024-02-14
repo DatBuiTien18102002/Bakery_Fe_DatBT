@@ -1,0 +1,43 @@
+.wrapper {
+  --background-color: rgba(255, 255, 255);
+  //   width: 100%;
+  min-height: 100px;
+  background-color: var(--background-color);
+  box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+  border-radius: 8px;
+  padding-top: 8px;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &.arrow {
+    overflow-y: unset;
+  }
+
+  &.arrow::before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-width: 14px;
+    border-style: solid;
+    border-color: transparent transparent var(--background-color) transparent;
+  }
+
+  &.left.arrow::before {
+    top: -26px;
+    right: 13px;
+  }
+  &.center.arrow::before {
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+@media screen and (max-width: 566px) {
+  .wrapper {
+    &.arrow::before {
+      display: none;
+    }
+  }
+}
