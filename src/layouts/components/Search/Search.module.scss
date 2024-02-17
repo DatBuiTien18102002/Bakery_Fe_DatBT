@@ -1,0 +1,137 @@
+.search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search {
+  & + div[data-tippy-root] {
+    width: 100%;
+  }
+}
+
+.search {
+  position: relative;
+  display: flex;
+
+  height: 46px;
+  margin: 0 20px;
+  padding-left: 16px;
+
+  background-color: rgba(22, 24, 35, 0.06);
+  border-radius: var(--search-border-radius);
+  border: 1.5px solid transparent;
+
+  input {
+    flex: 1;
+    height: 100%;
+    padding: 12px 40px 12px 0;
+
+    color: var(--black);
+    font-size: 1rem;
+    background-color: transparent;
+    caret-color: var(--primary);
+  }
+
+  input:not(:placeholder-shown) ~ .search-btn {
+    color: rgba(22, 24, 35, 0.75);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: var(--width-btn-search);
+    transform: translateY(-50%);
+
+    width: 1px;
+    height: 28px;
+    background-color: rgba(22, 24, 35, 0.12);
+  }
+
+  &:focus-within {
+    border-color: rgba(22, 24, 35, 0.2);
+  }
+}
+
+.search-tittle {
+  padding: 5px 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(22, 24, 35, 0.5);
+}
+
+.clear,
+.loading {
+  position: absolute;
+  top: 50%;
+  right: calc(var(--width-btn-search) + 16px);
+  transform: translateY(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(22, 24, 35, 0.34);
+}
+
+.loading-icon {
+  width: 1em !important;
+  height: 1em !important;
+  color: rgba(22, 24, 35, 0.34) !important;
+}
+
+// .loading {
+//   animation: spinner 1s linear infinite;
+// }
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--width-btn-search);
+  height: 100%;
+
+  border-top-right-radius: var(--search-border-radius);
+  border-bottom-right-radius: var(--search-border-radius);
+  color: rgba(22, 24, 35, 0.34);
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+    cursor: pointer;
+  }
+  &:active {
+    background-color: rgba(22, 24, 35, 0.06);
+  }
+
+  .search-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1018px) {
+  .search {
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 476px) {
+  .search {
+    input {
+      max-width: 120px;
+      padding-right: 0px;
+    }
+  }
+  .search-btn {
+    margin-left: auto;
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: translateY(-50%) rotate(0);
+  }
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}

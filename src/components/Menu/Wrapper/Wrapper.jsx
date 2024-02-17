@@ -8,7 +8,7 @@ function Wrapper({
   children,
   className,
   arrow = false,
-  arrowPosition = "center",
+  arrowPosition = "right",
 }) {
   const classes = cx("wrapper", {
     arrow,

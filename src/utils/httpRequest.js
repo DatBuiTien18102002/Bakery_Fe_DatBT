@@ -20,7 +20,7 @@ const axiosClient = handleCreateAxios();
 
 const axiosAuthClient = handleCreateAxios();
 
-axiosAuthClient.axiosJWT.interceptors.request.use(
+axiosAuthClient.interceptors.request.use(
     async function (config) {
         // Do something before request is sent
         const currentTime = new Date();

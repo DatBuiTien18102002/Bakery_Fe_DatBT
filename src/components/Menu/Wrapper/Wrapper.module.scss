@@ -24,9 +24,9 @@
     border-color: transparent transparent var(--background-color) transparent;
   }
 
-  &.left.arrow::before {
+  &.right.arrow::before {
     top: -26px;
-    right: 13px;
+    right: 20px;
   }
   &.center.arrow::before {
     top: -28px;

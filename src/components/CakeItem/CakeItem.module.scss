@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+
+  padding: 6px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.price {
+  font-size: 0.875rem;
+  color: rgba(22, 24, 35, 0.5);
+}

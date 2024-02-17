@@ -24,6 +24,7 @@
     "formik": "^2.4.5",
     "jwt-decode": "^4.0.0",
     "modern-normalize": "^2.0.0",
+    "query-string": "^8.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-file-base64": "^1.0.3",

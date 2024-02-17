@@ -1,0 +1,17 @@
+.menu-item {
+  justify-content: flex-start !important;
+
+  margin-left: 0;
+  padding: 11px 16px !important;
+  width: 100%;
+  line-height: 1.8rem;
+  font-weight: 600 !important;
+
+  &.separate {
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+  }
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}

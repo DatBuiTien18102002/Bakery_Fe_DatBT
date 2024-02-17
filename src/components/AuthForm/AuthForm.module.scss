@@ -1,0 +1,168 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+
+  animation: fadeIn linear 0.1s;
+  z-index: 10000000;
+}
+
+.modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body {
+  --growth-From: 0.7s;
+  --grow-To: 1s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  // z-index: 1;
+  width: 500px;
+  max-width: 100%;
+}
+
+.auth-form {
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.auth-form__container {
+  padding: 10px 32px;
+}
+
+.auth-form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.auth-form__heading {
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.auth-form__switch-btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.auth-form__aside {
+  margin-top: 20px;
+}
+
+.auth-form__policy-text {
+  padding: 0 12px;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.auth-form__policy-link {
+  color: var(--primary);
+}
+
+.auth-form__help {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.auth-form__separate {
+  display: block;
+  margin: 0 16px;
+  height: 22px;
+  border-left: 1px solid #eaeaea;
+}
+
+.auth-form__forgot {
+  color: var(--primary);
+}
+
+.auth-form__link {
+  font-size: 0.875rem;
+  color: #939393;
+}
+
+.auth-form_controls {
+  display: flex;
+  justify-content: end;
+  margin-top: 40px;
+}
+
+.btn-back {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.auth-form__socials--link {
+  padding: 13px;
+}
+
+.auth-form__socials {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 32px;
+  padding: 16px 36px;
+
+  background-color: #f5f5f5;
+}
+
+.auth-form__socials--wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.auth-form__socials-icon {
+  margin-right: 10px;
+}
+
+.auth-form__socials-tittle {
+  display: inline-block;
+  padding-top: 4px;
+}
+
+.auth-form__socials--fb {
+  display: inline-block;
+  color: white;
+  background-color: #3a5a98;
+  border-radius: 5px;
+}
+
+.auth-form__socials--gg {
+  display: inline-block;
+  color: #666;
+  border-radius: 5px;
+  background-color: white;
+}
+
+@media screen and (max-width: 575px) {
+  .auth-form__socials {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .auth-form__socials--wrapper {
+    justify-content: center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

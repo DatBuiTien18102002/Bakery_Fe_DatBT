@@ -18,12 +18,12 @@
   box-sizing: border-box;
 }
 
-html {
+/* html {
   font-size: 62.5%;
-}
+} */
 
 body {
-  font-size: 1.4rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
   color: var(--text-color);
@@ -31,14 +31,14 @@ body {
 }
 
 .App {
-  max-width: 160rem;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
 .container {
-  max-width: 1250px;
   padding: 0 var(--default-spacing);
-  width: 100%;
+  max-width: var(--header-container-width);
+  height: 100%;
 }
 
 /* ::-webkit-scrollbar {
