@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import handleDecoded from "./jwtDecode";
 import { Navigate } from "react-router-dom";
 import userApi from "@/services/userApi";
+import message from "@/utils/message";
 
 const handleCreateAxios = () => {
     return axios.create({
@@ -40,8 +41,10 @@ axiosAuthClient.interceptors.request.use(
                 config.headers["token"] = `Bearer ${data?.newAccess_Token}`;
             } catch (error) {
                 localStorage.removeItem("access_token");
+                message("error", "Refresh Token hết hạn");
+                message("info", "Bạn cần đăng nhập lại");
                 // window.location.href = "/sign-in";
-                Navigate("/sign-in");
+                Navigate("/");
             }
         }
 

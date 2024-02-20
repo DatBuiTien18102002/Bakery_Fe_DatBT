@@ -30,8 +30,6 @@ function InputField(props) {
 
   const showError = errors[name] && touched[name];
 
-  console.log("error Mesage", errors[name]);
-
   return (
     <div className={cx("wrapper")} style={{ fontSize: "16px !important" }}>
       <FormControl sx={{ width: "100%" }}>

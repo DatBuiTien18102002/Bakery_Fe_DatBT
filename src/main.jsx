@@ -8,6 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { QueryProvider } from "@/react-query/QueryProvider.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const theme = createTheme({
   palette: {
@@ -29,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Provider>
       </BrowserRouter>
     </ThemeProvider>
+    <ToastContainer />
   </QueryProvider>
   // </React.StrictMode>
 );

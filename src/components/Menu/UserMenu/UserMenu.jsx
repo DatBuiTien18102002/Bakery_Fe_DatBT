@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./UserMenu.module.scss";
 import HeadlessTippy from "@tippyjs/react/headless";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Wrapper from "../Wrapper/Wrapper";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import MenuItem from "../MenuItem/MenuItem";
@@ -17,6 +17,10 @@ function UserMenu({
   hideOnClick = false,
 }) {
   const [history, setHistory] = useState([{ data: items }]);
+
+  useEffect(() => {
+    setHistory([{ data: items }]);
+  }, [items]);
 
   const current = history[history.length - 1];
 

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import config from "@/config";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -13,18 +13,30 @@ import { Wrapper } from "@/components/Menu";
 import HeadlessTippy from "@tippyjs/react/headless";
 import { sectionMenu } from "@/constants";
 import Search from "../Search/Search";
-import CardItem from "./components/CardItem";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
-import AuthForm from "@/components/AuthForm";
+
 import { UserMenu } from "@/components/Menu";
+import { AuthForm } from "@/forms";
+import { useDispatch, useSelector } from "react-redux";
+import images from "@/assets/images";
+import { useLogout } from "@/react-query/userQuery";
+import { resetUser } from "@/redux/slice/userSlice";
 
 const cx = classNames.bind(styles);
 const Header = ({ isHomePage = false }) => {
   const inputMobile = useRef();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const currentUser = useSelector((state) => state.user);
+
+  // console.log(currentUser);
 
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+
+  const { mutate: logoutUser } = useLogout();
 
   const MENU_ITEMS = [
     {
@@ -62,6 +74,43 @@ const Header = ({ isHomePage = false }) => {
     },
   ];
 
+  //Lọc item null hoặc undefined
+  const USER_MENU = [
+    currentUser.isAdmin && {
+      tittle: "Quản lý hệ thống",
+      to: "/system/admin",
+    },
+    {
+      tittle: "View profile",
+      to: "/@datt",
+    },
+    {
+      tittle: "Settings",
+      to: "/settings",
+    },
+    {
+      tittle: "English",
+      children: {
+        tittle: "Language",
+        data: [
+          {
+            code: "en",
+            tittle: "Engligh",
+          },
+          {
+            code: "vi",
+            tittle: "Tiếng việt",
+          },
+        ],
+      },
+    },
+    {
+      tittle: "Đăng xuất",
+      onClick: handleLogOut,
+      separate: true,
+    },
+  ].filter((item) => item);
+
   function showSignInForm(value = true) {
     setShowSignIn(value);
   }
@@ -70,12 +119,19 @@ const Header = ({ isHomePage = false }) => {
     setShowSignUp(value);
   }
 
+  function handleLogOut() {
+    logoutUser();
+    dispatch(resetUser());
+    localStorage.removeItem("access_token");
+    navigate("/");
+  }
+
   return (
     <header className={cx("header")}>
       <div className={cx("container", "wrapper")}>
         {showSignIn ? (
           <AuthForm
-            signIn
+            form="signIn"
             showSignInForm={showSignInForm}
             showSignUpForm={showSignUpForm}
           />
@@ -84,7 +140,7 @@ const Header = ({ isHomePage = false }) => {
         )}
         {showSignUp ? (
           <AuthForm
-            signUp
+            form="signUp"
             showSignInForm={showSignInForm}
             showSignUpForm={showSignUpForm}
           />
@@ -243,10 +299,24 @@ const Header = ({ isHomePage = false }) => {
             <ShoppingCartIcon sx={{ fontSize: 27 }} />
           </button>
 
-          <UserMenu arrow items={MENU_ITEMS}>
-            <div className={cx("user-icon")}>
-              <PersonIcon sx={{ fontSize: 35 }} />
-            </div>
+          <UserMenu arrow items={currentUser.email ? USER_MENU : MENU_ITEMS}>
+            {currentUser.email ? (
+              <div className={cx("user-avatar")}>
+                <img
+                  src={
+                    currentUser.avatar
+                      ? currentUser.avatar
+                      : images.avatarDefault
+                  }
+                  alt="avatar user"
+                  className={cx("user-img")}
+                />
+              </div>
+            ) : (
+              <div className={cx("user-icon")}>
+                <PersonIcon sx={{ fontSize: 35 }} />
+              </div>
+            )}
           </UserMenu>
         </div>
       </div>

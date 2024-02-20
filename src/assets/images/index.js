@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 import productImg from '@/assets/images/product_img_default.jpg'
+import avatar from '@/assets/images/avatar.jpg'
 
 const images = {
     productImgDefault: productImg,
+    avatarDefault: productImg,
     // logo: require('@/assets/images/logo.png'),
     // defaultImage: require('@/assets/images/avatar.jpg'),
     // bgImage: require('@/assets/images/bgcake1.jpg'),

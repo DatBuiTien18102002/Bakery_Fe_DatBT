@@ -21,4 +21,8 @@ const publicRouters = [
     // { path: config.routes.cart, page: Cart },
 ];
 
-export { publicRouters };
+const privateRouters = [
+
+]
+
+export { publicRouters, privateRouters };
