@@ -38,10 +38,10 @@ function Button({
     [className]: className,
     disable,
   });
-
   if (to) {
     props.to = to;
     Comp = Link;
+    props.onClick = () => {};
   } else if (href) {
     props.href = href;
     Comp = "a";

@@ -2,7 +2,7 @@
   --header-height: 60px;
   --header-container-width: 1250px;
   --default-spacing: 24px;
-  --section-height: 100vh;
+  --section-height: calc(100vh - var(--header-height));
   --search-border-radius: 92px;
   --width-btn-search: 52px;
 

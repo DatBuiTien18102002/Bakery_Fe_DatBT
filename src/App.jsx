@@ -14,14 +14,11 @@ function App() {
   const currentUser = useSelector((state) => state.user);
 
   const { storageData, decoded } = handleDecoded();
-  console.log(storageData, decoded);
 
   const { data: detailUser } = useGetDetailUser({
     id: decoded.payload?.id,
     token: storageData,
   });
-
-  console.log(detailUser);
 
   useEffect(() => {
     if (decoded.payload?.id && detailUser?.data) {
@@ -58,9 +55,9 @@ function App() {
       <Routes>
         <Route path="/home" element={<Navigate to="/" />} />
 
-        {handleRenderRoute(publicRouters)}
+        {[...handleRenderRoute(publicRouters)]}
 
-        {currentUser.email && handleRenderRoute(privateRouters)}
+        {currentUser.email && [...handleRenderRoute(privateRouters)]}
 
         {currentUser.isAdmin && (
           <Route
