@@ -1,11 +1,49 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 import { userKeys } from "./queryKeys"
 import userApi from "../services/userApi"
+import handleDecoded from "@/utils/jwtDecode";
 
 export const useCreateUser = () => {
+    const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (data) => userApi.createUser(data)
+        mutationFn: (data) => userApi.createUser(data),
+        onSuccess: () => {
+            const { storageData } = handleDecoded();
+            queryClient.invalidateQueries({
+                queryKey: [userKeys.GET_ALL_USER, storageData]
+            })
+        }
+    })
+}
+
+export const useUpdateUser = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (data) => {
+            return userApi.updateUser(data)
+        },
+        onSuccess: () => {
+            const { storageData } = handleDecoded();
+            queryClient.invalidateQueries({
+                queryKey: [userKeys.GET_ALL_USER, storageData]
+            })
+        }
+    })
+}
+
+export const useDeleteUser = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (data) => {
+            return userApi.deleteUser(data)
+        },
+        onSuccess: () => {
+            const { storageData } = handleDecoded();
+            queryClient.invalidateQueries({
+                queryKey: [userKeys.GET_ALL_USER, storageData]
+            })
+        }
     })
 }
 
@@ -28,6 +66,17 @@ export const useGetDetailUser = (data) => {
             return userApi.getDetailUser(data.id, data.token)
         },
         enabled: !!data?.id && !!data?.token,
+    });
+}
+
+export const useGetAllUser = () => {
+    const { storageData } = handleDecoded();
+    return useQuery({
+        queryKey: [userKeys.GET_ALL_USER, storageData],
+        queryFn: () => {
+            return userApi.getAllUser(storageData)
+        },
+        enabled: !!storageData,
     });
 }
 

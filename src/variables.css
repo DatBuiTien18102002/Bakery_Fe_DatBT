@@ -10,6 +10,7 @@
   --primary: rgb(193, 153, 119);
   --primary-darker: #8b4513;
   --text-color: #161823;
+  --gray-color: rgba(0, 0, 0, 0.12);
   --black: #000;
   --white: #fff;
   --hover-color: rgba(22, 24, 35, 0.03);

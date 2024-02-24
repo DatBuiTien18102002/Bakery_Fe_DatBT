@@ -7,7 +7,7 @@
 
 .sidebar {
   width: 20%;
-  border-right: 4px solid rgba(0, 0, 0, 0.12);
+  border-right: 4px solid var(--gray-color);
 }
 
 .sidebar-button {
@@ -32,4 +32,107 @@
 
 .content {
   width: 80%;
+}
+
+.content-wrapper {
+  padding: 26px var(--default-spacing) 0 var(--default-spacing);
+}
+
+.menu-mobile-btn {
+  display: none;
+
+  margin-bottom: 20px;
+  padding: 3px;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+
+  background-color: transparent;
+  cursor: pointer;
+
+  .menu-icon {
+    font-size: 1.375rem;
+    color: var(--primary);
+  }
+}
+
+.admin__overplay {
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+//--------------SideBar Mobile--------------
+
+.sidebar-mobile {
+  position: fixed;
+  top: calc(var(--header-height) + 10px);
+  left: 0;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  padding-top: 30px;
+  width: 100%;
+  max-width: 300px;
+
+  background-color: #fff;
+  z-index: 1;
+}
+
+.sidebar-button-mobile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 10px 10px 10px 20px;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary);
+    background-color: var(--hover-color);
+  }
+}
+
+.heading-sidebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  color: var(--gray-color);
+
+  .sidebar-logo {
+    margin-left: 20px;
+    color: var(--primary);
+    font-family: "MsMadi";
+    font-size: 2.5rem;
+  }
+
+  .close-btn {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .menu-mobile-btn {
+    display: flex;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+  }
 }
