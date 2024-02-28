@@ -25,6 +25,7 @@ export const userSlice = createSlice({
             state.id = _id ? _id : '';
             state.access_token = access_token ? access_token : '';
             state.isAdmin = isAdmin ? isAdmin : false;
+
         },
         resetUser: (state) => {
             state.name = '';

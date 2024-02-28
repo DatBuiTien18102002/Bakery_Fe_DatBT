@@ -4,16 +4,9 @@ import classNames from "classnames/bind";
 import styles from "./FileFiled.module.scss";
 import FileBase from "react-file-base64";
 
-import { Button, FormControl, FormHelperText, TextField } from "@mui/material";
+import { Button, FormControl, FormHelperText } from "@mui/material";
 
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-
-const styleFile = () => ({
-  "& .MuiInputBase-input": {
-    borderRadius: 1,
-    fontSize: 14,
-  },
-});
 
 FileField.defaultProps = {
   type: "text",
@@ -25,7 +18,7 @@ FileField.defaultProps = {
 const cx = classNames.bind(styles);
 
 function FileField(props) {
-  const { field, form, type, label, changeAvatar } = props;
+  const { field, form, type, label, changeImg } = props;
 
   const { name } = field;
 
@@ -49,7 +42,7 @@ function FileField(props) {
             name={name}
             multiple={false}
             onDone={({ base64 }) => {
-              changeAvatar(base64);
+              changeImg(base64);
             }}
             {...field}
             type={type}
@@ -82,7 +75,7 @@ FileField.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  changeAvatar: PropTypes.func,
+  changeImg: PropTypes.func,
 };
 
 export default FileField;

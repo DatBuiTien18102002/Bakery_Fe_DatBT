@@ -13,7 +13,13 @@ import message from "@/utils/message.js";
 import handleDecoded from "@/utils/jwtDecode";
 
 const cx = classNames.bind(styles);
-const UserForm = ({ action, userEdit, setOpenCreate, setOpenEdit }) => {
+const UserForm = ({
+  action,
+  userEdit,
+  setOpenCreate,
+  setOpenEdit,
+  setUserIdEdit,
+}) => {
   const [avatar, setAvatar] = useState(images.avatarDefault);
 
   const { mutateAsync: createUser, isPending: loadingCreate } = useCreateUser();
@@ -71,6 +77,8 @@ const UserForm = ({ action, userEdit, setOpenCreate, setOpenEdit }) => {
         id: userEdit?.data?._id,
         token: storageData,
       });
+
+      setUserIdEdit("");
     }
     if (res.status !== "200") {
       message("error", res?.message);
@@ -151,7 +159,7 @@ const UserForm = ({ action, userEdit, setOpenCreate, setOpenEdit }) => {
                             component={FileField}
                             label="Avatar"
                             type="file"
-                            changeAvatar={setAvatar}
+                            changeImg={setAvatar}
                           />
 
                           <div className={cx("auth-form_controls")}>
@@ -169,7 +177,7 @@ const UserForm = ({ action, userEdit, setOpenCreate, setOpenEdit }) => {
                             <Button
                               type="submit"
                               primary
-                              disable={loadingCreate}
+                              disable={loadingCreate || loadingUpdate}
                             >
                               {loadingCreate || loadingUpdate
                                 ? "Loading..."
@@ -195,6 +203,7 @@ UserForm.propTypes = {
   userEdit: PropTypes.object,
   setOpenCreate: PropTypes.func,
   setOpenEdit: PropTypes.func,
+  setUserIdEdit: PropTypes.func,
 };
 
 export default UserForm;

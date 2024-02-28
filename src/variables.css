@@ -2,9 +2,10 @@
   --header-height: 60px;
   --header-container-width: 1250px;
   --default-spacing: 24px;
-  --section-height: calc(100vh - var(--header-height));
+  --section-height: 568px;
   --search-border-radius: 92px;
   --width-btn-search: 52px;
+  --font-signature: "MsMadi";
 
   /* Color */
   --primary: rgb(193, 153, 119);

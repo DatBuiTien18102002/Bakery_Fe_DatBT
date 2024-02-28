@@ -1,5 +1,8 @@
 export const productKeys = {
     GET_PRODUCT_BY_NAME: "getProductByName",
+    GET_All_PRODUCT: "getAllProduct",
+    GET_DETAIL_PRODUCT: "getDetailProduct",
+    GET_ALL_TYPE: "getAllType",
 }
 
 export const userKeys = {

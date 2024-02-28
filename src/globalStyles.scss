@@ -2,7 +2,7 @@
 @import "variables.css";
 
 :root {
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -28,6 +28,7 @@ body {
   text-rendering: optimizeSpeed;
   color: var(--text-color);
   overflow-y: overlay;
+  overflow-x: hidden;
 }
 
 .App {
@@ -39,16 +40,42 @@ body {
   padding: 0 var(--default-spacing);
   max-width: var(--header-container-width);
   height: 100%;
+  margin: 0 auto;
 }
+.tittle {
+  position: relative;
+  padding-top: 70px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: var(--primary);
+  h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
 
-/* ::-webkit-scrollbar {
-  width: 8px;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+
+    display: block;
+    width: 160px;
+    border-bottom: 1px solid var(--primary);
+  }
+
+  .diamond-icon {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+
+    width: 16px;
+    height: 16px;
+    z-index: 1;
+  }
 }
-
-::-webkit-scrollbar-thumb {
-  border-radius: 9999px;
-  background-color: rgba(0, 0, 0, 0.15);
-} */
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -86,6 +113,10 @@ ol {
 
 button {
   cursor: pointer;
+}
+
+.page {
+  margin-top: var(--header-height);
 }
 
 section {

@@ -39,14 +39,18 @@ const AdminUser = () => {
     useDeleteUser();
 
   useEffect(() => {
-    if (userDetail) {
+    if (userDetail && userIdEdit) {
       setIsOpenEditForm(true);
       setUserEdit(userDetail);
     }
   }, [userDetail]);
 
   const handleEdit = (id) => {
-    setUserIdEdit(id);
+    if (userIdEdit === id) {
+      setIsOpenEditForm(true);
+    } else {
+      setUserIdEdit(id);
+    }
   };
 
   const handleDelete = async (id) => {
@@ -56,8 +60,9 @@ const AdminUser = () => {
         message("error", res?.message);
       } else {
         message("success", res?.message);
+        setHasDeleteUser(false);
+        setUserIdEdit("");
       }
-      setHasDeleteUser(false);
     }
   };
 
@@ -183,6 +188,7 @@ const AdminUser = () => {
           action="Edit"
           setOpenCreate={setIsOpenCreateForm}
           setOpenEdit={setIsOpenEditForm}
+          setUserIdEdit={setUserIdEdit}
           userEdit={userEdit}
         />
       )}

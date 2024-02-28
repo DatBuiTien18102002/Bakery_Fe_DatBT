@@ -47,9 +47,9 @@
 }
 
 .auth-form__avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -66,6 +66,6 @@
 
 .auth-form_controls {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   margin-top: 40px;
 }

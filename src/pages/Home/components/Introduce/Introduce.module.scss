@@ -1,0 +1,108 @@
+.introduce {
+  --introduce-height: 500px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--introduce-height);
+  padding: 25px 0;
+}
+
+.introduce-wrapper {
+  display: flex;
+  gap: 50px;
+  min-height: var(--introduce-height);
+}
+
+.introduce-bg {
+  width: 60%;
+}
+
+.bg-image {
+  position: relative;
+  min-height: var(--introduce-height);
+}
+
+.bg-front,
+.bg-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  transition: 2s;
+  backface-visibility: hidden;
+}
+
+.bg-front {
+  transform: perspective(1000px) rotateY(0deg);
+  z-index: 2;
+}
+.bg-back {
+  transform: perspective(1000px) rotateY(180deg);
+  z-index: 1;
+}
+
+.bg-image:hover .bg-front {
+  transform: perspective(1000px) rotateY(-180deg);
+  z-index: 2;
+}
+.bg-image:hover .bg-back {
+  transform: perspective(1000px) rotateY(0deg);
+  z-index: 1;
+}
+
+.introduce-img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.5);
+}
+
+.introduce-description {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 40%;
+}
+
+.introduce-name {
+  color: var(--primary);
+  font-size: 1.875rem;
+  font-family: var(--font-signature);
+}
+
+.introduce-tittle {
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+
+.introduce-separate {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  color: var(--primary);
+}
+.introduce-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.introduce-line {
+  width: 30%;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+@media screen and (max-width: 767px) {
+  .introduce-wrapper {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .introduce-bg {
+    width: 100%;
+  }
+  .introduce-description {
+    width: 100%;
+  }
+}

@@ -10,6 +10,7 @@ import config from '@/config';
 // import ProductDetail from '@/pages/ProductDetail';
 import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout';
 import { HomePage } from '@/pages';
+import ProfileForm from '@/forms/ProfileForm/ProfileForm';
 
 const publicRouters = [
     { path: config.routes.home, page: HomePage, layout: DefaultLayout },
@@ -22,7 +23,7 @@ const publicRouters = [
 ];
 
 const privateRouters = [
-
+    { path: config.routes.profile, page: ProfileForm, layout: DefaultLayout },
 ]
 
 export { publicRouters, privateRouters };

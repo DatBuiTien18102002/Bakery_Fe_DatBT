@@ -8,7 +8,7 @@ import config from "@/config";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Wrapper } from "@/components/Menu";
 import HeadlessTippy from "@tippyjs/react/headless";
 import { sectionMenu } from "@/constants";
@@ -31,12 +31,29 @@ const Header = ({ isHomePage = false }) => {
 
   const currentUser = useSelector((state) => state.user);
 
-  // console.log(currentUser);
-
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
 
   const { mutate: logoutUser } = useLogout();
+
+  useEffect(() => {
+    inputMobile.current.checked = false;
+  });
+
+  const handleScroll = () => {
+    // Xử lý  khi trang được cuộn
+    inputMobile.current.checked = false;
+  };
+
+  useEffect(() => {
+    // Gắn hàm xử lý sự kiện cuộn khi component mount
+    window.addEventListener("scroll", handleScroll);
+
+    // Gỡ bỏ hàm xử lý sự kiện khi component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const MENU_ITEMS = [
     {
@@ -77,12 +94,12 @@ const Header = ({ isHomePage = false }) => {
   //Lọc item null hoặc undefined
   const USER_MENU = [
     currentUser.isAdmin && {
-      tittle: "Quản lý hệ thống",
+      tittle: "Manage System",
       to: "/system/admin",
     },
-    {
+    currentUser.email && {
       tittle: "View profile",
-      to: "/@datt",
+      to: "/profile",
     },
     {
       tittle: "Settings",
@@ -105,7 +122,7 @@ const Header = ({ isHomePage = false }) => {
       },
     },
     {
-      tittle: "Đăng xuất",
+      tittle: "Log out",
       onClick: handleLogOut,
       separate: true,
     },

@@ -24,10 +24,14 @@ export const useUpdateUser = () => {
             return userApi.updateUser(data)
         },
         onSuccess: () => {
-            const { storageData } = handleDecoded();
+            const { decoded, storageData } = handleDecoded();
             queryClient.invalidateQueries({
                 queryKey: [userKeys.GET_ALL_USER, storageData]
             })
+            queryClient.invalidateQueries({
+                queryKey: [userKeys.GET_USER_DETAIL, { id: decoded?.payload?.id, token: storageData }]
+            })
+
         }
     })
 }

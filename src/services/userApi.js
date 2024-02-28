@@ -8,9 +8,6 @@ const userApi = {
     },
     updateUser: (data) => {
         const { token, id, ...detailUser } = data;
-        console.log("User Api", token);
-        console.log("User Api", id);
-        console.log("User Api", detailUser);
 
         return axiosAuthClient.put(`${resourceName}/update-user/${id}`, detailUser, {
             headers: {

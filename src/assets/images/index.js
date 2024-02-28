@@ -1,10 +1,20 @@
 /* eslint-disable no-undef */
 import productImg from '@/assets/images/product_img_default.jpg'
 import avatar from '@/assets/images/avatar.jpg'
+import carousel1 from "@/assets/images/bgcake1.jpg"
+import carousel2 from "@/assets/images/bgcake2.jpg"
+import carousel3 from "@/assets/images/bgcake3.jpg"
+import iconBakery from "@/assets/images/icon_bakery.png"
+import imgBakeryFront from "@/assets/images/image_bakery_front.png"
+import imgBakeryBehind from "@/assets/images/image_bakery_behind.jpg"
 
 const images = {
     productImgDefault: productImg,
-    avatarDefault: productImg,
+    avatarDefault: avatar,
+    carousel: [carousel2, carousel3],
+    iconCarousel: iconBakery,
+    introduceFont: imgBakeryFront,
+    introduceBehind: imgBakeryBehind,
     // logo: require('@/assets/images/logo.png'),
     // defaultImage: require('@/assets/images/avatar.jpg'),
     // bgImage: require('@/assets/images/bgcake1.jpg'),

@@ -29,7 +29,6 @@ axiosAuthClient.interceptors.request.use(
         if (decoded?.exp < currentTime.getTime() / 1000) {
             try {
                 const data = await userApi.refreshToken();
-
                 //Check nếu refresh token hết hạn thì chuyển sang trang đăng nhập
                 if (data?.err === "jwt expired") {
                     throw new Error("Refresh Token hết hạn");
