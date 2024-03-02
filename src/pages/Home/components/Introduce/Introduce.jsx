@@ -6,7 +6,7 @@ import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
 const cx = classNames.bind(styles);
 const Introduce = () => {
   return (
-    <section className={cx("introduce")}>
+    <section id="Introduce" className={cx("introduce")}>
       <div className="container">
         <div className={cx("introduce-wrapper")}>
           <div className={cx("introduce-bg")}>

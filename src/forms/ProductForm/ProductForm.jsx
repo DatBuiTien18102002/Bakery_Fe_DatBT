@@ -55,7 +55,19 @@ const ProductForm = ({
     countInStock: Yup.number().required(
       "Count In Stock không được để trống ! "
     ),
+    type: Yup.string().required("type không được để trống ! "),
   });
+
+  if (isMoreType === true) {
+    validateSchema.fields.newType = Yup.string().required(
+      "New Type không được để trống ! "
+    );
+    validateSchema._nodes.push("newType");
+  } else {
+    delete validateSchema.fields.newType;
+  }
+
+  console.log(validateSchema);
 
   const handleProductForm = async (values) => {
     let newValue = { ...values, image: productImg };
@@ -85,66 +97,30 @@ const ProductForm = ({
   };
 
   return (
-    <div className={cx("modal")}>
-      <div className={cx("modal__overlay")}>
-        <div className={cx("modal__body")}>
-          <div className={cx("auth-form")}>
-            <div className={cx("auth-form__container")}>
-              <div className={cx("auth-form__header")}>{action} a Product</div>
-              <div className={cx("auth-form__body")}>
-                <div className={cx("auth-form__avatar")}>
-                  <img
-                    src={productEdit?.data?.image || productImg}
-                    alt="avatar"
-                  />
-                </div>
-
-                <div className={cx("auth-form__wrapper-form")}>
-                  <Formik
-                    initialValues={initialProduct}
-                    validationSchema={validateSchema}
-                    onSubmit={async (values) => await handleProductForm(values)}
-                  >
-                    {() => {
-                      return (
-                        <Form>
-                          <FastField
-                            name="name"
-                            component={InputField}
-                            label="Name"
-                          />
-                          <FastField
-                            name="type"
-                            component={SelectField}
-                            label="Type "
-                            selectList={[...typeList, "More type"]}
-                            setIsMoreType={setIsMoreType}
-                          />
-                          {isMoreType && (
-                            <FastField
-                              name="newType"
-                              component={InputField}
-                              label="New Type"
+    <Formik
+      initialValues={initialProduct}
+      validationSchema={validateSchema}
+      onSubmit={async (values) => await handleProductForm(values)}
+    >
+      {() => {
+        return (
+          <Form>
+            <div className={cx("modal")}>
+              <div className={cx("modal__overlay")}>
+                <div className={cx("modal__body")}>
+                  <div className={cx("auth-form")}>
+                    <div className={cx("auth-form__container")}>
+                      <div className={cx("auth-form__header")}>
+                        {action} a Product
+                      </div>
+                      <div className={cx("auth-form__body")}>
+                        <div className={cx("auth-form__wrapper-avatar")}>
+                          <div className={cx("auth-form__avatar")}>
+                            <img
+                              src={productEdit?.data?.image || productImg}
+                              alt="avatar"
                             />
-                          )}
-
-                          <FastField
-                            name="price"
-                            component={InputField}
-                            label="Price"
-                          />
-                          <FastField
-                            name="countInStock"
-                            component={InputField}
-                            label="In Stock"
-                          />
-                          <FastField
-                            name="description"
-                            component={InputField}
-                            label="Description"
-                            multiline
-                            rows={3}
-                          />
+                          </div>
                           <FastField
                             name="image"
                             component={FileField}
@@ -152,6 +128,48 @@ const ProductForm = ({
                             type="file"
                             changeImg={setProductImg}
                           />
+                        </div>
+
+                        <div className={cx("auth-form__wrapper-form")}>
+                          <div className={cx("auth-form__wrapper-fastFiled")}>
+                            <FastField
+                              name="name"
+                              component={InputField}
+                              label="Name"
+                            />
+                            <FastField
+                              name="type"
+                              component={SelectField}
+                              label="Type "
+                              selectList={[...typeList, "More type"]}
+                              setIsMoreType={setIsMoreType}
+                            />
+                            {isMoreType && (
+                              <FastField
+                                name="newType"
+                                component={InputField}
+                                label="New Type"
+                              />
+                            )}
+
+                            <FastField
+                              name="price"
+                              component={InputField}
+                              label="Price"
+                            />
+                            <FastField
+                              name="countInStock"
+                              component={InputField}
+                              label="In Stock"
+                            />
+                            <FastField
+                              name="description"
+                              component={InputField}
+                              label="Description"
+                              multiline
+                              rows={3}
+                            />
+                          </div>
 
                           <div className={cx("auth-form_controls")}>
                             <Button
@@ -175,17 +193,17 @@ const ProductForm = ({
                                 : action}
                             </Button>
                           </div>
-                        </Form>
-                      );
-                    }}
-                  </Formik>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 

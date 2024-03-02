@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import config from "@/config";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -24,10 +24,12 @@ import { useLogout } from "@/react-query/userQuery";
 import { resetUser } from "@/redux/slice/userSlice";
 
 const cx = classNames.bind(styles);
-const Header = ({ isHomePage = false }) => {
+const Header = () => {
   const inputMobile = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { pathname } = useLocation();
 
   const currentUser = useSelector((state) => state.user);
 
@@ -95,11 +97,11 @@ const Header = ({ isHomePage = false }) => {
   const USER_MENU = [
     currentUser.isAdmin && {
       tittle: "Manage System",
-      to: "/system/admin",
+      to: "/Admin",
     },
     currentUser.email && {
       tittle: "View profile",
-      to: "/profile",
+      to: "/Profile",
     },
     {
       tittle: "Settings",
@@ -204,7 +206,7 @@ const Header = ({ isHomePage = false }) => {
           </div>
 
           <nav className={cx("nav-list")}>
-            {isHomePage ? (
+            {pathname === "/" ? (
               <>
                 <HeadlessTippy
                   interactive
@@ -342,7 +344,7 @@ const Header = ({ isHomePage = false }) => {
 };
 
 Header.propTypes = {
-  isHomePage: PropTypes.bool,
+  // isHomePage: PropTypes.bool,
 };
 
 export default Header;

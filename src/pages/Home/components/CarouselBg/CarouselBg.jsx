@@ -50,7 +50,7 @@ const CarouselBg = ({ imgList }) => {
     appendDots: (dots) => (
       <div
         style={{
-          bottom: "25px",
+          bottom: "50px",
         }}
       >
         <ul className={cx("custom-wrapper")}> {dots} </ul>

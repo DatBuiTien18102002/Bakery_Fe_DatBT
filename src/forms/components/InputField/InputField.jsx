@@ -8,7 +8,6 @@ import { FormControl, FormHelperText, TextField } from "@mui/material";
 const styleInput = () => ({
   "& .MuiInputBase-input": {
     borderRadius: 1,
-    fontSize: 14,
   },
 });
 
@@ -31,7 +30,7 @@ function InputField(props) {
   const showError = errors[name] && touched[name];
 
   return (
-    <div className={cx("wrapper")} style={{ fontSize: "16px !important" }}>
+    <div className={cx("wrapper")}>
       <FormControl sx={{ width: "100%" }}>
         <TextField
           sx={styleInput()}

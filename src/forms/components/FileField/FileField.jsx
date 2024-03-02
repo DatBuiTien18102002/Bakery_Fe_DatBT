@@ -27,7 +27,7 @@ function FileField(props) {
   const showError = errors[name] && touched[name];
 
   return (
-    <div className={cx("wrapper")} style={{ fontSize: "16px !important" }}>
+    <div className={cx("wrapper")}>
       <FormControl sx={{ width: "100%" }}>
         <Button
           component="label"

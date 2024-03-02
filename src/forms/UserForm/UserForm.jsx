@@ -90,70 +90,33 @@ const UserForm = ({
   };
 
   return (
-    <div className={cx("modal")}>
-      <div className={cx("modal__overlay")}>
-        <div className={cx("modal__body")}>
-          <div className={cx("auth-form")}>
-            <div className={cx("auth-form__container")}>
-              <div className={cx("auth-form__header")}>{action} a User</div>
-              <div className={cx("auth-form__body")}>
-                <div className={cx("auth-form__avatar")}>
-                  <img src={userEdit?.data?.avatar || avatar} alt="avatar" />
-                </div>
+    <Formik
+      initialValues={action === "Create" ? initialCreateUser : initialEditUser}
+      validationSchema={
+        action === "Create" ? validateCreateSchema : validateEditSchema
+      }
+      onSubmit={async (values) => await handleUserForm(values)}
+    >
+      {() => {
+        return (
+          <Form>
+            <div className={cx("modal")}>
+              <div className={cx("modal__overlay")}>
+                <div className={cx("modal__body")}>
+                  <div className={cx("auth-form")}>
+                    <div className={cx("auth-form__container")}>
+                      <div className={cx("auth-form__header")}>
+                        {action} a User
+                      </div>
+                      <div className={cx("auth-form__body")}>
+                        <div className={cx("auth-form__wrapper-avatar")}>
+                          <div className={cx("auth-form__avatar")}>
+                            <img
+                              src={userEdit?.data?.avatar || avatar}
+                              alt="avatar"
+                            />
+                          </div>
 
-                <div className={cx("auth-form__wrapper-form")}>
-                  <Formik
-                    initialValues={
-                      action === "Create" ? initialCreateUser : initialEditUser
-                    }
-                    validationSchema={
-                      action === "Create"
-                        ? validateCreateSchema
-                        : validateEditSchema
-                    }
-                    onSubmit={async (values) => await handleUserForm(values)}
-                  >
-                    {() => {
-                      return (
-                        <Form>
-                          <FastField
-                            name="name"
-                            component={InputField}
-                            label="Name"
-                          />
-                          <FastField
-                            name="email"
-                            component={InputField}
-                            label="Email "
-                          />
-                          {action === "Create" ? (
-                            <>
-                              <FastField
-                                name="password"
-                                component={PassField}
-                                label="Password"
-                                type="password"
-                              />
-                              <FastField
-                                name="confirmPassword"
-                                component={PassField}
-                                label="Confirm Password"
-                                type="password"
-                              />
-                            </>
-                          ) : (
-                            <></>
-                          )}
-                          <FastField
-                            name="phone"
-                            component={InputField}
-                            label="Phone"
-                          />
-                          <FastField
-                            name="address"
-                            component={InputField}
-                            label="Address"
-                          />
                           <FastField
                             name="avatar"
                             component={FileField}
@@ -161,6 +124,49 @@ const UserForm = ({
                             type="file"
                             changeImg={setAvatar}
                           />
+                        </div>
+
+                        <div className={cx("auth-form__wrapper-form")}>
+                          <div className={cx("auth-form__wrapper-fastFiled")}>
+                            <FastField
+                              name="name"
+                              component={InputField}
+                              label="Name"
+                            />
+                            <FastField
+                              name="email"
+                              component={InputField}
+                              label="Email "
+                            />
+                            {action === "Create" ? (
+                              <>
+                                <FastField
+                                  name="password"
+                                  component={PassField}
+                                  label="Password"
+                                  type="password"
+                                />
+                                <FastField
+                                  name="confirmPassword"
+                                  component={PassField}
+                                  label="Confirm Password"
+                                  type="password"
+                                />
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            <FastField
+                              name="phone"
+                              component={InputField}
+                              label="Phone"
+                            />
+                            <FastField
+                              name="address"
+                              component={InputField}
+                              label="Address"
+                            />
+                          </div>
 
                           <div className={cx("auth-form_controls")}>
                             <Button
@@ -184,17 +190,17 @@ const UserForm = ({
                                 : action}
                             </Button>
                           </div>
-                        </Form>
-                      );
-                    }}
-                  </Formik>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 

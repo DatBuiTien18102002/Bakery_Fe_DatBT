@@ -8,6 +8,8 @@ import { useGetDetailUser } from "./react-query/userQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "@/redux/slice/userSlice";
 import Admin from "@/pages/Admin/Admin";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop.jsx";
+import config from "./config";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +44,7 @@ function App() {
           path={route.path}
           element={
             <Layout>
+              <ScrollToTop />
               <Page />
             </Layout>
           }
@@ -61,9 +64,10 @@ function App() {
 
         {currentUser.isAdmin && (
           <Route
-            path="/system/admin"
+            path={config.routes.admin}
             element={
               <DefaultLayout>
+                <ScrollToTop />
                 <Admin />
               </DefaultLayout>
             }

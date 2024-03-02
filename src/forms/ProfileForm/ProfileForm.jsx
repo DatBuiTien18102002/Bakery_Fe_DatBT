@@ -11,7 +11,6 @@ import handleDecoded from "@/utils/jwtDecode";
 import { Button } from "@/components";
 import { useState } from "react";
 import { updateUser } from "@/redux/slice/userSlice";
-import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -63,24 +62,27 @@ const ProfileForm = () => {
   // console.log("--------current User", currentUser);
 
   return (
-    <div className={cx("modal")}>
-      <div className={cx("modal__body")}>
-        <div className={cx("auth-form")}>
-          <div className={cx("auth-form__container")}>
-            <div className={cx("auth-form__header")}>User Profile</div>
-            <div className={cx("auth-form__body")}>
-              <div className={cx("auth-form__avatar")}>
-                <img src={avatar || images.avatarDefault} alt="avatar" />
-              </div>
-              <div className={cx("auth-form__wrapper-form")}>
-                <Formik
-                  initialValues={initialUser}
-                  validationSchema={validateSchema}
-                  onSubmit={async (values) => await handleUserForm(values)}
-                >
-                  {() => {
-                    return (
-                      <Form>
+    <Formik
+      initialValues={initialUser}
+      validationSchema={validateSchema}
+      onSubmit={async (values) => await handleUserForm(values)}
+    >
+      {() => {
+        return (
+          <Form>
+            <div className={cx("modal")}>
+              <div className={cx("modal__body")}>
+                <div className={cx("auth-form")}>
+                  <div className={cx("auth-form__container")}>
+                    <div className={cx("auth-form__header")}>User Profile</div>
+                    <div className={cx("auth-form__body")}>
+                      <div className={cx("auth-form__avatar")}>
+                        <img
+                          src={avatar || images.avatarDefault}
+                          alt="avatar"
+                        />
+                      </div>
+                      <div className={cx("auth-form__wrapper-form")}>
                         <FastField
                           name="name"
                           component={InputField}
@@ -118,16 +120,16 @@ const ProfileForm = () => {
                             {loadingUpdate ? "Loading..." : "Update"}
                           </Button>
                         </div>
-                      </Form>
-                    );
-                  }}
-                </Formik>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 

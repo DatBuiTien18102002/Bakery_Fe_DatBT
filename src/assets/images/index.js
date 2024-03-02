@@ -7,6 +7,28 @@ import carousel3 from "@/assets/images/bgcake3.jpg"
 import iconBakery from "@/assets/images/icon_bakery.png"
 import imgBakeryFront from "@/assets/images/image_bakery_front.png"
 import imgBakeryBehind from "@/assets/images/image_bakery_behind.jpg"
+import cupcake from "@/assets/images/discover_cake1.png"
+import fritter from "@/assets/images/discover_cake2.png"
+import pancake from "@/assets/images/discover_cake3.png"
+import tiramisu from "@/assets/images/discover_cake4.png"
+import donut from "@/assets/images/discover_cake5.png"
+import strawberryCake from "@/assets/images/discover_cake6.png"
+import imgShop1 from "@/assets/images/picture_shop_1.jpg"
+import imgShop2 from "@/assets/images/picture_shop_2.jpg"
+import imgShop3 from "@/assets/images/picture_shop_3.jpg"
+import imgShop4 from "@/assets/images/picture_shop_4.jpg"
+import logo from "@/assets/images/logo.png"
+import avatar1 from "@/assets/images/avatar1.jpg"
+import avatar2 from "@/assets/images/avatar2.jpg"
+import avatar3 from "@/assets/images/avatar3.jpg"
+import avatar4 from "@/assets/images/avatar4.jpg"
+import contactImg from "@/assets/images/contact-us-image.jpg"
+import aboutIcon1 from "@/assets/images/about-icon-1.png"
+import aboutIcon2 from "@/assets/images/about-icon-2.png"
+import aboutIcon3 from "@/assets/images/about-icon-3.png"
+import aboutIcon4 from "@/assets/images/about-icon-4.png"
+import aboutPage from "@/assets/images/aboutus.jpg"
+
 
 const images = {
     productImgDefault: productImg,
@@ -15,13 +37,43 @@ const images = {
     iconCarousel: iconBakery,
     introduceFont: imgBakeryFront,
     introduceBehind: imgBakeryBehind,
-    // logo: require('@/assets/images/logo.png'),
+    discoverCake: {
+        cupcake,
+        fritter,
+        pancake,
+        tiramisu,
+        donut,
+        strawberryCake,
+    },
+
+    imgShop: {
+        imgShop1,
+        imgShop2,
+        imgShop3,
+        imgShop4,
+    },
+    logo,
+    commentAvatar: {
+        avatar1,
+        avatar2,
+        avatar3,
+        avatar4,
+    },
+    contactImg,
+
+    aboutIcon: {
+        aboutIcon1,
+        aboutIcon2,
+        aboutIcon3,
+        aboutIcon4,
+    },
+    aboutPage,
+
     // defaultImage: require('@/assets/images/avatar.jpg'),
     // bgImage: require('@/assets/images/bgcake1.jpg'),
     // bgImage2: require('@/assets/images/bgcake2.jpg'),
     // bgImage3: require('@/assets/images/bgcake3.jpg'),
-    // contactImg: require('@/assets/images/contact-us-image.jpg'),
-    // aboutImg: require('@/assets/images/aboutus.jpg'),
+
     // noCart: require('@/assets/images/empty_cart.png'),
     // productImgDefault: require("@/assets/images/product_img_default"),
     // notFound: require('@/assets/images/PageNotFound.jpg'),
@@ -41,35 +93,6 @@ const images = {
     // imgBakeryBehind: require('@/assets/images/image_bakery_behind.jpg'),
     // menu: require('@/assets/images/menu.jpg'),
 
-    // discoverCake: {
-    //     cupcake: require('@/assets/images/discover_cake1.png'),
-    //     fritter: require('@/assets/images/discover_cake2.png'),
-    //     pancake: require('@/assets/images/discover_cake3.png'),
-    //     tiramisu: require('@/assets/images/discover_cake4.png'),
-    //     donut: require('@/assets/images/discover_cake5.png'),
-    //     strawberryCake: require('@/assets/images/discover_cake6.png'),
-    // },
-
-    // commentAvatar: {
-    //     avatar1: require('@/assets/images/avatar1.jpg'),
-    //     avatar2: require('@/assets/images/avatar2.jpg'),
-    //     avatar3: require('@/assets/images/avatar3.jpg'),
-    //     avatar4: require('@/assets/images/avatar4.jpg'),
-    // },
-
-    // imgShop: {
-    //     imgShop1: require('@/assets/images/picture_shop_1.jpg'),
-    //     imgShop2: require('@/assets/images/picture_shop_2.jpg'),
-    //     imgShop3: require('@/assets/images/picture_shop_3.jpg'),
-    //     imgShop4: require('@/assets/images/picture_shop_4.jpg'),
-    // },
-
-    // aboutIcon: {
-    //     icon1: require('@/assets/images/about-icon-1.png'),
-    //     icon2: require('@/assets/images/about-icon-2.png'),
-    //     icon3: require('@/assets/images/about-icon-3.png'),
-    //     icon4: require('@/assets/images/about-icon-4.png'),
-    // },
 };
 
 export default images;

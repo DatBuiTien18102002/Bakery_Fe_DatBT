@@ -1,0 +1,143 @@
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  background: {
+    position: center;
+    size: 100% 100%;
+    image: url("@/assets/images/menu.jpg");
+    attachment: fixed;
+    repeat: no-repeat;
+  }
+}
+
+.menu-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-tittle {
+  margin: 100px 0 50px 0;
+  text-align: center;
+  h2 {
+    color: var(--primary);
+    font-size: 2.5rem;
+  }
+
+  h6 {
+    color: var(--white);
+    font-size: 1.25rem;
+  }
+}
+
+.menu-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 100px;
+  row-gap: 30px;
+
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+
+  color: white;
+  cursor: pointer;
+}
+
+.menu-img {
+  img {
+    width: 100px;
+    max-width: unset;
+    height: 100px;
+    object-fit: unset;
+  }
+}
+
+.menu-item-info {
+  flex: 1;
+}
+
+.menu-item-title {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 7px;
+  padding-bottom: 7px;
+
+  border-bottom: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.menu-item-name-wrapper {
+  display: flex;
+  align-items: center;
+  span {
+    padding-left: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
+}
+
+.menu-item-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.menu {
+  .menu-btn {
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background-color: transparent;
+    transition: all 0.2s linear;
+
+    .menu-link {
+      color: var(--primary);
+    }
+
+    &:hover {
+      background-color: var(--primary);
+      border-color: var(--primary);
+
+      .menu-link {
+        color: white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .menu-list {
+    column-gap: 50px;
+  }
+  .menu-img {
+    img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+}
+
+@media screen and (max-width: 842px) {
+  .menu-list {
+    column-gap: 100px;
+    row-gap: 20px;
+    grid-template-columns: 1fr;
+  }
+}
