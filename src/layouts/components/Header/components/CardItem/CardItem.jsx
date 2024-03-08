@@ -3,15 +3,16 @@ import classNames from "classnames/bind";
 import styles from "./CardItem.module.scss";
 import currencyFormat from "@/utils/currencyFormat";
 import { useDispatch } from "react-redux";
+import { removeOrderProduct } from "@/redux/slice/orderSlice";
 
 const cx = classNames.bind(styles);
 
-const CardItem = (cake) => {
-  //   const dispatch = useDispatch();
+const CardItem = ({ cake }) => {
+  const dispatch = useDispatch();
 
-  //   const handleDeleteCart = (id) => {
-  //     dispatch(deleteCart(id));
-  //   };
+  const handleDeleteCart = (id) => {
+    dispatch(removeOrderProduct({ idProduct: id }));
+  };
   return (
     <li className={cx("cart-item")}>
       <img className={cx("cart-img")} src={cake?.image} alt="" />
@@ -23,7 +24,7 @@ const CardItem = (cake) => {
               {currencyFormat(cake?.price)}
             </span>
             <span className={cx("cart-multiply")}>x</span>
-            <span className={cx("cart-qnt")}>{cake?.quantity}</span>
+            <span className={cx("cart-qnt")}>{cake?.amount}</span>
           </div>
         </div>
 
@@ -31,7 +32,7 @@ const CardItem = (cake) => {
           <span className={cx("cart-type")}>Phân loại: {cake?.type}</span>
           <span
             className={cx("cart-delete")}
-            // onClick={() => handleDeleteCart(cake?._id)}
+            onClick={() => handleDeleteCart(cake?._id)}
           >
             Xóa
           </span>

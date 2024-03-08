@@ -11,7 +11,7 @@ import MailIcon from "@mui/icons-material/Mail";
 const cx = classNames.bind(styles);
 const Contact = () => {
   return (
-    <section className={cx("contact")}>
+    <div className={cx("contact")}>
       <div className="container">
         <div className={cx("contact-bakery")}>Baroibeo Bakery</div>
         <div className={cx("tittle", "contact-page-tittle")}>
@@ -85,7 +85,7 @@ const Contact = () => {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-    </section>
+    </div>
   );
 };
 

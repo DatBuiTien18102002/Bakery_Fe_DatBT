@@ -5,7 +5,7 @@ const DefaultLayout = ({ children }) => {
   return (
     <>
       <Header isHomePage />
-      <div>{children}</div>
+      <div style={{ marginTop: "var(--header-height)" }}>{children}</div>
       <Footer />
     </>
   );

@@ -7,6 +7,7 @@ import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
 import currencyFormat from "@/utils/currencyFormat";
 import Button from "@/components/Button/Button";
 import config from "@/config";
+import getPriceDiscount from "@/utils/getPriceDiscount";
 
 const cx = classNames.bind(styles);
 const Discover = ({ menuDiscover }) => {
@@ -55,7 +56,11 @@ const Discover = ({ menuDiscover }) => {
                       <span>{menuItem.name}</span>
                     </div>
                     <div className={cx("menu-item-price")}>
-                      {currencyFormat(menuItem.price)}
+                      {currencyFormat(
+                        menuItem.discount
+                          ? getPriceDiscount(menuItem.price, menuItem.discount)
+                          : menuItem.price
+                      )}
                     </div>
                   </div>
 

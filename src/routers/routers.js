@@ -9,13 +9,15 @@ import config from '@/config';
 // import Product from '@/pages/Product';
 // import ProductDetail from '@/pages/ProductDetail';
 import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout';
-import { HomePage, ContactPage, AboutUsPage } from '@/pages';
+import { HomePage, ContactPage, AboutUsPage, ProductPage, ProductDetailPage } from '@/pages';
 import ProfileForm from '@/forms/ProfileForm/ProfileForm';
 
 const publicRouters = [
     { path: config.routes.home, page: HomePage, layout: DefaultLayout },
     { path: config.routes.contact, page: ContactPage, layout: DefaultLayout },
     { path: config.routes.aboutUs, page: AboutUsPage, layout: DefaultLayout },
+    { path: config.routes.product, page: ProductPage, layout: DefaultLayout },
+    { path: `${config.routes.product}/:id`, page: ProductDetailPage, layout: DefaultLayout },
     // { path: config.routes.product, page: Product },
     // { path: `${config.routes.product}/:id`, page: ProductDetail },
     // { path: config.routes.contact, page: Contact },

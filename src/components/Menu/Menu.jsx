@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
-import styles from "./UserMenu.module.scss";
+import styles from "./Menu.module.scss";
 import HeadlessTippy from "@tippyjs/react/headless";
 
 import { useEffect, useState } from "react";
-import Wrapper from "../Wrapper/Wrapper";
-import HeaderMenu from "../HeaderMenu/HeaderMenu";
-import MenuItem from "../MenuItem/MenuItem";
+import Wrapper from "./Wrapper/Wrapper";
+import HeaderMenu from "./HeaderMenu/HeaderMenu";
+import MenuItem from "./MenuItem/MenuItem";
 
 const cx = classNames.bind(styles);
 

@@ -14,6 +14,9 @@ const productApi = {
     getAllProduct: () => {
         return axiosClient.get(`${resourceName}/getProducts`)
     },
+    getProducts: (params) => {
+        return axiosClient.get(`${resourceName}/getProducts`, { params })
+    },
     getDetailProduct: (id) => {
         return axiosClient.get(`${resourceName}/get-detail/${id}`)
     },

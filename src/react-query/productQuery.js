@@ -17,6 +17,12 @@ export const useGetAllProduct = () => {
         queryFn: () => productApi.getAllProduct()
     })
 }
+export const useGetProducts = (params) => {
+    return useQuery({
+        queryKey: [productKeys.GET_PRODUCTS],
+        queryFn: () => productApi.getProducts(params)
+    })
+}
 
 export const useGetDetailProduct = (id) => {
     return useQuery({

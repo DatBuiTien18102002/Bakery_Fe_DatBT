@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import message from "@/utils/message.js"
 
 const initialState = {
     orderItems: [],
@@ -23,18 +24,19 @@ export const orderSlice = createSlice({
     initialState,
     reducers: {
         addOrderProduct: (state, action) => {
-            // const { orderItem } = action.payload
-            // const itemOrder = state?.orderItems?.find((item) => item?.productId === orderItem.productId)
-            // if (itemOrder) {
-            //     if ((itemOrder.amount + orderItem?.amount) <= itemOrder.countInStock) {
-            //         itemOrder.amount += orderItem?.amount
-            //         state.isSuccessOrder = true
-            //     } else {
-            //         state.isErrorOrder = false
-            //     }
-            // } else {
-            //     state.orderItems.push(orderItem)
-            // }
+            const { orderItem } = action.payload
+            const itemOrder = state?.orderItems?.find((item) => item?._id === orderItem._id)
+            if (itemOrder) {
+                if ((itemOrder.amount + orderItem?.amount) <= itemOrder.countInStock) {
+                    itemOrder.amount += orderItem?.amount
+                    // state.isSuccessOrder = true
+                } else {
+                    message("error", "Sản phẩm trong kho không đủ")
+                    // state.isErrorOrder = false
+                }
+            } else {
+                state.orderItems.push(orderItem)
+            }
         },
         resetOrder: (state) => {
             // state.isSuccessOrder = false
@@ -58,12 +60,12 @@ export const orderSlice = createSlice({
             // }
         },
         removeOrderProduct: (state, action) => {
-            // const { idProduct } = action.payload
+            const { idProduct } = action.payload
 
-            // const itemOrder = state?.orderItems?.filter((item) => item?.productId !== idProduct)
+            const itemOrder = state?.orderItems?.filter((item) => item?._id !== idProduct)
             // const itemOrderSelected = state?.orderItemsSelected?.filter((item) => item?.productId !== idProduct)
 
-            // state.orderItems = itemOrder;
+            state.orderItems = itemOrder;
             // state.orderItemsSelected = itemOrderSelected;
         },
         removeAllOrderProduct: (state, action) => {

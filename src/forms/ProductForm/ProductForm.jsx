@@ -67,8 +67,6 @@ const ProductForm = ({
     delete validateSchema.fields.newType;
   }
 
-  console.log(validateSchema);
-
   const handleProductForm = async (values) => {
     let newValue = { ...values, image: productImg };
     if (isMoreType) {
@@ -156,6 +154,11 @@ const ProductForm = ({
                               name="price"
                               component={InputField}
                               label="Price"
+                            />
+                            <FastField
+                              name="discount"
+                              component={InputField}
+                              label="Discount"
                             />
                             <FastField
                               name="countInStock"

@@ -1,0 +1,151 @@
+.product-detail {
+  padding: 30px 0;
+}
+
+.product-detail-row {
+  display: flex;
+  gap: 30px;
+}
+
+.product-detail-col:first-child {
+  position: relative;
+  width: 45%;
+
+  .product-sold-out {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: white;
+  }
+}
+
+.product-detail-col:last-child {
+  width: 55%;
+}
+
+.product-detail__img {
+  border-radius: 10px;
+  // max-width: 450px;
+  height: 450px;
+}
+
+.product-detail__tittle {
+  color: var(--primary);
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.product-detail__rate-num {
+  margin: 10px 0;
+  font-size: 0.875rem;
+}
+
+.product-detail__desc {
+  margin-bottom: 20px;
+}
+
+.product-detail__price {
+  margin-bottom: 5px;
+}
+
+.product-detail__label {
+  font-weight: 700;
+}
+
+.product-detail__price-num {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--primary-darker);
+}
+
+.product-detail__num-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.product-detail__quantity {
+  --wrapper-width: 150px;
+  --control-width: 40px;
+  display: flex;
+  margin: 20px 0 20px 10px;
+  height: 40px;
+  border-radius: 25px;
+  border: 1px solid #bababa;
+  overflow: hidden;
+}
+
+.product-detail__num {
+  max-width: calc(var(--wrapper-width) - var(--control-width) * 2);
+  text-align: center;
+}
+
+.product-detail__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--control-width);
+  height: 100%;
+  cursor: pointer;
+
+  &.disabled {
+    color: #bababa;
+    cursor: not-allowed;
+  }
+}
+
+.control-minus {
+  border-right: 1px solid #bababa;
+}
+
+.control-plus {
+  border-left: 1px solid #bababa;
+}
+
+.product-detail__btn {
+  padding: 10px;
+  border-radius: 999px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 767px) {
+  .product-detail-row {
+    flex-direction: column;
+  }
+
+  .product-detail-col:first-child {
+    width: 100%;
+  }
+
+  .product-detail-col:last-child {
+    width: 100%;
+  }
+
+  .product-detail__img {
+    width: 100%;
+    max-height: 500px;
+  }
+}

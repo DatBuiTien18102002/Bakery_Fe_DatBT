@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 
@@ -16,12 +15,14 @@ import Search from "../Search/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 
-import { UserMenu } from "@/components/Menu";
+import { Menu } from "@/components";
 import { AuthForm } from "@/forms";
 import { useDispatch, useSelector } from "react-redux";
 import images from "@/assets/images";
 import { useLogout } from "@/react-query/userQuery";
 import { resetUser } from "@/redux/slice/userSlice";
+import { Button } from "@/components";
+import { CardItem } from "./components";
 
 const cx = classNames.bind(styles);
 const Header = () => {
@@ -32,6 +33,7 @@ const Header = () => {
   const { pathname } = useLocation();
 
   const currentUser = useSelector((state) => state.user);
+  const { orderItems } = useSelector((state) => state.order);
 
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -271,54 +273,50 @@ const Header = () => {
         <Search />
 
         <div className={cx("action")}>
-          {/* <HeadlessTippy
-              interactive
-              placement="bottom-end"
-              offset={[3, 17]}
-              render={(attrs) => (
-                <div className={cx("cart-result")} tabIndex="-1" {...attrs}>
-                  <Wrapper arrow>
-                    {carts.length > 0 ? (
-                      <div className={cx("cart__has-cart")}>
-                        <h4 className={cx("cart-tittle")}>Sản phẩm đã thêm</h4>
-                        <ul className={cx("cart-list")}>
-                          {carts.map((cart, index) => (
-                            <CardItem key={index} cart={cart} />
-                          ))}
-                        </ul>
-                        <Button
-                          to={config.routes.cart}
-                          primary
-                          className={cx("cart-button")}
-                        >
-                          Xem giỏ hàng
-                        </Button>
-                      </div>
-                    ) : (
-                      <div className={cx("cart__no-cart")}>
-                        <img src={images.noCart} alt="" />
-                        <span>Chưa có sản phẩm</span>
-                      </div>
-                    )}
-                  </Wrapper>
-                </div>
+          <HeadlessTippy
+            interactive
+            placement="bottom-end"
+            offset={[3, 17]}
+            render={(attrs) => (
+              <div className={cx("cart-result")} tabIndex="-1" {...attrs}>
+                <Wrapper>
+                  {orderItems.length > 0 ? (
+                    <div className={cx("cart__has-cart")}>
+                      <h4 className={cx("cart-tittle")}>Sản phẩm đã thêm</h4>
+                      <ul className={cx("cart-list")}>
+                        {orderItems.map((cake, index) => (
+                          <CardItem key={index} cake={cake} />
+                        ))}
+                      </ul>
+                      <Button
+                        to={config.routes.cart}
+                        primary
+                        className={cx("cart-button")}
+                      >
+                        Xem giỏ hàng
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className={cx("cart__no-cart")}>
+                      <img src={images.noCart} alt="" />
+                      <span>Chưa có sản phẩm</span>
+                    </div>
+                  )}
+                </Wrapper>
+              </div>
+            )}
+          >
+            <button className={cx("shopping-btn")}>
+              <ShoppingCartIcon sx={{ fontSize: 27 }} />
+              {orderItems.length > 0 ? (
+                <span className={cx("cart-quality")}>{orderItems.length}</span>
+              ) : (
+                <></>
               )}
-            >
-              <button className={cx("shopping-btn")}>
-                <FontAwesomeIcon icon={faCartShopping} />
-                {carts.length > 0 ? (
-                  <span className={cx("cart-quality")}>{carts.length}</span>
-                ) : (
-                  <></>
-                )}
-              </button>
-            </HeadlessTippy> */}
+            </button>
+          </HeadlessTippy>
 
-          <button className={cx("shopping-btn")}>
-            <ShoppingCartIcon sx={{ fontSize: 27 }} />
-          </button>
-
-          <UserMenu arrow items={currentUser.email ? USER_MENU : MENU_ITEMS}>
+          <Menu arrow items={currentUser.email ? USER_MENU : MENU_ITEMS}>
             {currentUser.email ? (
               <div className={cx("user-avatar")}>
                 <img
@@ -336,7 +334,7 @@ const Header = () => {
                 <PersonIcon sx={{ fontSize: 35 }} />
               </div>
             )}
-          </UserMenu>
+          </Menu>
         </div>
       </div>
     </header>

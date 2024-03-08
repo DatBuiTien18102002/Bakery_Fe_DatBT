@@ -1,16 +1,17 @@
 .cart-item {
   display: flex;
+  gap: 12px;
 }
 
 .cart-img {
-  margin: 12px;
   width: 42px;
   height: 42px;
   border: 1px solid var(--primary);
 }
 
 .cart-info {
-  margin-right: 12px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -22,7 +23,6 @@
 
 .cart-name {
   flex: 1;
-  margin: 12px 0 1px;
 
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -38,9 +38,11 @@
   overflow: hidden;
 }
 
-// .cart-price-wrapper {
-//   display: flex;
-// }
+.cart-price-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 
 .cart-price {
   font-size: 0.875rem;
@@ -49,7 +51,6 @@
 }
 
 .cart-multiply {
-  margin: 0 4px;
   display: inline-block;
 
   font-size: 0.563rem;
@@ -64,6 +65,8 @@
 .cart-body {
   display: flex;
   justify-content: space-between;
+  margin-top: auto;
+  line-height: 1;
 }
 
 .cart-type {

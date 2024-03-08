@@ -68,7 +68,7 @@ const COMMENTS = [
 
 const Home = () => {
   return (
-    <div className="page">
+    <div>
       <CarouselBg imgList={images.carousel} />
       <Introduce />
       <Discover menuDiscover={MENU_DISCOVER} />

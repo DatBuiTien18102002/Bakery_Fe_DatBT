@@ -1,0 +1,38 @@
+.product {
+  padding-bottom: 50px;
+  padding: 3.6rem 0;
+}
+
+.product-row {
+  display: flex;
+  gap: 20px;
+}
+
+.product-col:first-child {
+  width: 20%;
+}
+
+.product-col:last-child {
+  width: 80%;
+}
+
+@media screen and (max-width: 767px) {
+  .product-col:first-child {
+    width: 0;
+    display: none;
+  }
+
+  .product-col:last-child {
+    width: 100%;
+  }
+}
+
+//////////////////////////////////
+
+//            Pagination
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
