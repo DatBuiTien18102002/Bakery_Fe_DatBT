@@ -1,0 +1,136 @@
+.cart {
+  padding: 30px 0 50px;
+}
+
+.cart-title {
+  color: #464646;
+
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.product-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.table-wrapper {
+  width: 100%;
+  margin: 20px 0;
+  height: 315px;
+}
+
+.cart-icon {
+  color: var(--primary);
+  cursor: pointer;
+
+  &.disable {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+.cart-option {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-total__wrapper {
+  --padding-wrapper: 12px;
+  display: flex;
+  margin-bottom: 10px;
+  width: 400px;
+  border: 1px solid var(--gray-color);
+}
+
+.cart-total__label {
+  width: 60%;
+  border-right: 1px solid var(--gray-color);
+  padding: var(--padding-wrapper);
+}
+
+.cart-total__price {
+  width: 40%;
+  padding: var(--padding-wrapper);
+  text-align: right;
+  color: var(--primary);
+}
+
+.cart-checkout {
+  width: 100%;
+  padding: 15px;
+}
+
+.product-detail__quantity {
+  display: flex;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #bababa;
+  overflow: hidden;
+  width: 100%;
+}
+
+.product-detail__num {
+  width: 100%;
+  text-align: center;
+}
+
+.product-detail__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 100%;
+  cursor: pointer;
+
+  &.disabled {
+    color: #bababa;
+    cursor: not-allowed;
+  }
+}
+
+.control-minus {
+  border-right: 1px solid #bababa;
+}
+
+.control-plus {
+  border-left: 1px solid #bababa;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 767px) {
+  .cart-option {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .cart-total__wrapper {
+    width: 100%;
+  }
+
+  .cart-back {
+    width: 100%;
+    margin-bottom: 30px;
+    color: var(--primary);
+    background-color: transparent;
+
+    &:hover {
+      color: white;
+      background-color: var(--primary);
+    }
+  }
+}

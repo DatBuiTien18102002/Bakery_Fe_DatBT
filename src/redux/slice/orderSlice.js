@@ -38,35 +38,39 @@ export const orderSlice = createSlice({
                 state.orderItems.push(orderItem)
             }
         },
+        updateAmount: (state, action) => {
+            const { idProduct, amountUpdate } = action.payload;
+            const orderUpdate = state.orderItems.find((item) => item._id === idProduct);
+            const orderSelectedUpdate = state.orderItemsSelected.find((item) => item._id === idProduct);
+
+            if (orderUpdate.amount) {
+                orderUpdate.amount = amountUpdate;
+            }
+            if (orderSelectedUpdate?.amount) {
+                orderSelectedUpdate.amount = amountUpdate;
+            }
+        },
         resetOrder: (state) => {
             // state.isSuccessOrder = false
         },
-        increaseAmount: (state, action) => {
-            // const { idProduct } = action.payload
-            // const itemOrder = state?.orderItems?.find((item) => item?.productId === idProduct)
-            // const itemOrderSelected = state?.orderItemsSelected?.find((item) => item?.productId === idProduct)
-            // itemOrder.amount++;
-            // if (itemOrderSelected) {
-            //     itemOrderSelected.amount++;
-            // }
-        },
-        decreaseAmount: (state, action) => {
-            // const { idProduct } = action.payload
-            // const itemOrder = state?.orderItems?.find((item) => item?.productId === idProduct)
-            // const itemOrderSelected = state?.orderItemsSelected?.find((item) => item?.Id === idProduct)
-            // itemOrder.amount--;
-            // if (itemOrderSelected) {
-            //     itemOrderSelected.amount--;
-            // }
+        selectedOrder: (state, action) => {
+            const { listChecked } = action.payload;
+            const orderItemsSelected = state.orderItems.filter((orderItem) => listChecked.includes(orderItem._id));
+
+            state.orderItemsSelected = orderItemsSelected
         },
         removeOrderProduct: (state, action) => {
             const { idProduct } = action.payload
 
             const itemOrder = state?.orderItems?.filter((item) => item?._id !== idProduct)
-            // const itemOrderSelected = state?.orderItemsSelected?.filter((item) => item?.productId !== idProduct)
-
             state.orderItems = itemOrder;
-            // state.orderItemsSelected = itemOrderSelected;
+
+            const orderItemsSelected = state?.orderItemsSelected?.find((item) => item?._id === idProduct)
+            if (orderItemsSelected?._id) {
+                const newOrderItemsSelected = state?.orderItemsSelected?.filter((item) => item?._id !== idProduct);
+                state.orderItemsSelected = newOrderItemsSelected;
+            }
+
         },
         removeAllOrderProduct: (state, action) => {
             // const { listChecked } = action.payload
@@ -77,21 +81,11 @@ export const orderSlice = createSlice({
             // state.orderItemsSelected = itemOrdersSelected
 
         },
-        selectedOrder: (state, action) => {
-            // const { listChecked } = action.payload
-            // const orderSelected = []
-            // state.orderItems.forEach((order) => {
-            //     if (listChecked.includes(order.productId)) {
-            //         orderSelected.push(order)
-            //     }
-            // });
-            // state.orderItemsSelected = orderSelected
-        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addOrderProduct, increaseAmount, decreaseAmount, removeOrderProduct, removeAllOrderProduct, selectedOrder, resetOrder } = orderSlice.actions
+export const { addOrderProduct, increaseAmount, decreaseAmount, removeOrderProduct, removeAllOrderProduct, selectedOrder, resetOrder, updateAmount } = orderSlice.actions
 
 const orderReducer = orderSlice.reducer;
 export default orderReducer

@@ -38,9 +38,6 @@ const ProductDetail = () => {
     }
     setNumProduct((prevState) => prevState + 1);
   };
-
-  console.log("Rating", productDetail?.data);
-
   const handleAddToCart = () => {
     dispatch(
       addOrderProduct({
