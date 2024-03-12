@@ -60,12 +60,13 @@ const SignUpForm = ({ authProp }) => {
 
             <div className={cx("auth-form__aside")}>
               <p className={cx("auth-form__policy-text")}>
-                Bằng việc đăng kí bạn đã đồng ý với Baroibeo bakery về
+                Bằng việc đăng kí bạn đã đồng ý với Baroibeo bakery về{" "}
                 <Link to={"/"} className={cx("auth-form__policy-link")}>
                   Điều khoản dịch vụ
-                </Link>
-                &
+                </Link>{" "}
+                &{" "}
                 <Link to={"/"} className={cx("auth-form__policy-link")}>
+                  {" "}
                   Chính sách bảo mật
                 </Link>
               </p>

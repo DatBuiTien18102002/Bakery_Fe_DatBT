@@ -10,6 +10,7 @@ import { useState } from "react";
 import images from "@/assets/images";
 import { useCreateProduct, useUpdateProduct } from "@/react-query/productQuery";
 import message from "@/utils/message.js";
+import { Modal } from "@/components";
 
 const cx = classNames.bind(styles);
 const ProductForm = ({
@@ -103,106 +104,94 @@ const ProductForm = ({
       {() => {
         return (
           <Form>
-            <div className={cx("modal")}>
-              <div className={cx("modal__overlay")}>
-                <div className={cx("modal__body")}>
-                  <div className={cx("auth-form")}>
-                    <div className={cx("auth-form__container")}>
-                      <div className={cx("auth-form__header")}>
-                        {action} a Product
-                      </div>
-                      <div className={cx("auth-form__body")}>
-                        <div className={cx("auth-form__wrapper-avatar")}>
-                          <div className={cx("auth-form__avatar")}>
-                            <img
-                              src={productEdit?.data?.image || productImg}
-                              alt="avatar"
-                            />
-                          </div>
-                          <FastField
-                            name="image"
-                            component={FileField}
-                            label="Image Product"
-                            type="file"
-                            changeImg={setProductImg}
-                          />
-                        </div>
+            <Modal>
+              <div className={cx("product-form__container")}>
+                <div className={cx("product-form__header")}>
+                  {action} a Product
+                </div>
+                <div className={cx("product-form__body")}>
+                  <div className={cx("product-form__wrapper-avatar")}>
+                    <div className={cx("product-form__avatar")}>
+                      <img
+                        src={productEdit?.data?.image || productImg}
+                        alt="avatar"
+                      />
+                    </div>
+                    <FastField
+                      name="image"
+                      component={FileField}
+                      label="Image Product"
+                      type="file"
+                      changeImg={setProductImg}
+                    />
+                  </div>
 
-                        <div className={cx("auth-form__wrapper-form")}>
-                          <div className={cx("auth-form__wrapper-fastFiled")}>
-                            <FastField
-                              name="name"
-                              component={InputField}
-                              label="Name"
-                            />
-                            <FastField
-                              name="type"
-                              component={SelectField}
-                              label="Type "
-                              selectList={[...typeList, "More type"]}
-                              setIsMoreType={setIsMoreType}
-                            />
-                            {isMoreType && (
-                              <FastField
-                                name="newType"
-                                component={InputField}
-                                label="New Type"
-                              />
-                            )}
+                  <div className={cx("product-form__wrapper-form")}>
+                    <div className={cx("product-form__wrapper-fastFiled")}>
+                      <FastField
+                        name="name"
+                        component={InputField}
+                        label="Name"
+                      />
+                      <FastField
+                        name="type"
+                        component={SelectField}
+                        label="Type "
+                        selectList={[...typeList, "More type"]}
+                        setIsMoreType={setIsMoreType}
+                      />
+                      {isMoreType && (
+                        <FastField
+                          name="newType"
+                          component={InputField}
+                          label="New Type"
+                        />
+                      )}
 
-                            <FastField
-                              name="price"
-                              component={InputField}
-                              label="Price"
-                            />
-                            <FastField
-                              name="discount"
-                              component={InputField}
-                              label="Discount"
-                            />
-                            <FastField
-                              name="countInStock"
-                              component={InputField}
-                              label="In Stock"
-                            />
-                            <FastField
-                              name="description"
-                              component={InputField}
-                              label="Description"
-                              multiline
-                              rows={3}
-                            />
-                          </div>
+                      <FastField
+                        name="price"
+                        component={InputField}
+                        label="Price"
+                      />
+                      <FastField
+                        name="discount"
+                        component={InputField}
+                        label="Discount"
+                      />
+                      <FastField
+                        name="countInStock"
+                        component={InputField}
+                        label="In Stock"
+                      />
+                      <FastField
+                        name="description"
+                        component={InputField}
+                        label="Description"
+                        multiline
+                        rows={3}
+                      />
+                    </div>
 
-                          <div className={cx("auth-form_controls")}>
-                            <Button
-                              type="button"
-                              className={cx("btn-back")}
-                              onClick={() => {
-                                setOpenCreate(false);
-                                setOpenEdit(false);
-                              }}
-                            >
-                              Back
-                            </Button>
+                    <div className={cx("product-form_controls")}>
+                      <Button
+                        type="button"
+                        className={cx("btn-back")}
+                        onClick={() => {
+                          setOpenCreate(false);
+                          setOpenEdit(false);
+                        }}
+                      >
+                        Back
+                      </Button>
 
-                            <Button
-                              type="submit"
-                              primary
-                              disable={loadingCreate}
-                            >
-                              {loadingCreate || loadingUpdate
-                                ? "Loading..."
-                                : action}
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
+                      <Button type="submit" primary disable={loadingCreate}>
+                        {loadingCreate || loadingUpdate ? "Loading..." : action}
+                      </Button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Modal>
           </Form>
         );
       }}

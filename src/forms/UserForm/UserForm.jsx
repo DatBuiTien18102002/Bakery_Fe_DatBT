@@ -11,6 +11,7 @@ import images from "@/assets/images";
 import { useCreateUser, useUpdateUser } from "@/react-query/userQuery";
 import message from "@/utils/message.js";
 import handleDecoded from "@/utils/jwtDecode";
+import { Modal } from "@/components";
 
 const cx = classNames.bind(styles);
 const UserForm = ({
@@ -100,103 +101,93 @@ const UserForm = ({
       {() => {
         return (
           <Form>
-            <div className={cx("modal")}>
-              <div className={cx("modal__overlay")}>
-                <div className={cx("modal__body")}>
-                  <div className={cx("auth-form")}>
-                    <div className={cx("auth-form__container")}>
-                      <div className={cx("auth-form__header")}>
-                        {action} a User
-                      </div>
-                      <div className={cx("auth-form__body")}>
-                        <div className={cx("auth-form__wrapper-avatar")}>
-                          <div className={cx("auth-form__avatar")}>
-                            <img
-                              src={userEdit?.data?.avatar || avatar}
-                              alt="avatar"
-                            />
-                          </div>
+            <Modal>
+              <div className={cx("auth-form__container")}>
+                <div className={cx("auth-form__header")}>{action} a User</div>
+                <div className={cx("auth-form__body")}>
+                  <div className={cx("auth-form__wrapper-avatar")}>
+                    <div className={cx("auth-form__avatar")}>
+                      <img
+                        src={userEdit?.data?.avatar || avatar}
+                        alt="avatar"
+                      />
+                    </div>
 
+                    <FastField
+                      name="avatar"
+                      component={FileField}
+                      label="Avatar"
+                      type="file"
+                      changeImg={setAvatar}
+                    />
+                  </div>
+
+                  <div className={cx("auth-form__wrapper-form")}>
+                    <div className={cx("auth-form__wrapper-fastFiled")}>
+                      <FastField
+                        name="name"
+                        component={InputField}
+                        label="Name"
+                      />
+                      <FastField
+                        name="email"
+                        component={InputField}
+                        label="Email "
+                      />
+                      {action === "Create" ? (
+                        <>
                           <FastField
-                            name="avatar"
-                            component={FileField}
-                            label="Avatar"
-                            type="file"
-                            changeImg={setAvatar}
+                            name="password"
+                            component={PassField}
+                            label="Password"
+                            type="password"
                           />
-                        </div>
+                          <FastField
+                            name="confirmPassword"
+                            component={PassField}
+                            label="Confirm Password"
+                            type="password"
+                          />
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      <FastField
+                        name="phone"
+                        component={InputField}
+                        label="Phone"
+                      />
+                      <FastField
+                        name="address"
+                        component={InputField}
+                        label="Address"
+                      />
+                    </div>
 
-                        <div className={cx("auth-form__wrapper-form")}>
-                          <div className={cx("auth-form__wrapper-fastFiled")}>
-                            <FastField
-                              name="name"
-                              component={InputField}
-                              label="Name"
-                            />
-                            <FastField
-                              name="email"
-                              component={InputField}
-                              label="Email "
-                            />
-                            {action === "Create" ? (
-                              <>
-                                <FastField
-                                  name="password"
-                                  component={PassField}
-                                  label="Password"
-                                  type="password"
-                                />
-                                <FastField
-                                  name="confirmPassword"
-                                  component={PassField}
-                                  label="Confirm Password"
-                                  type="password"
-                                />
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                            <FastField
-                              name="phone"
-                              component={InputField}
-                              label="Phone"
-                            />
-                            <FastField
-                              name="address"
-                              component={InputField}
-                              label="Address"
-                            />
-                          </div>
+                    <div className={cx("auth-form_controls")}>
+                      <Button
+                        type="button"
+                        className={cx("btn-back")}
+                        onClick={() => {
+                          setOpenCreate(false);
+                          setOpenEdit(false);
+                        }}
+                      >
+                        Back
+                      </Button>
 
-                          <div className={cx("auth-form_controls")}>
-                            <Button
-                              type="button"
-                              className={cx("btn-back")}
-                              onClick={() => {
-                                setOpenCreate(false);
-                                setOpenEdit(false);
-                              }}
-                            >
-                              Back
-                            </Button>
-
-                            <Button
-                              type="submit"
-                              primary
-                              disable={loadingCreate || loadingUpdate}
-                            >
-                              {loadingCreate || loadingUpdate
-                                ? "Loading..."
-                                : action}
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
+                      <Button
+                        type="submit"
+                        primary
+                        disable={loadingCreate || loadingUpdate}
+                      >
+                        {loadingCreate || loadingUpdate ? "Loading..." : action}
+                      </Button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Modal>
           </Form>
         );
       }}
