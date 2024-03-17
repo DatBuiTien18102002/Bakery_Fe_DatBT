@@ -21,7 +21,7 @@ InputField.defaultProps = {
 const cx = classNames.bind(styles);
 
 function InputField(props) {
-  const { field, form, type, label, multiline, rows = 1 } = props;
+  const { field, form, type, label, multiline, rows = 1, className } = props;
 
   const { name } = field;
 
@@ -30,7 +30,7 @@ function InputField(props) {
   const showError = errors[name] && touched[name];
 
   return (
-    <div className={cx("wrapper")}>
+    <div className={cx("wrapper", { [className]: className })}>
       <FormControl sx={{ width: "100%" }}>
         <TextField
           sx={styleInput()}

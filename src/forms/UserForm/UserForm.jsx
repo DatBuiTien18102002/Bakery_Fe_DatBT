@@ -21,7 +21,9 @@ const UserForm = ({
   setOpenEdit,
   setUserIdEdit,
 }) => {
-  const [avatar, setAvatar] = useState(images.avatarDefault);
+  const [avatar, setAvatar] = useState(
+    userEdit?.avatar ? userEdit?.avatar : images.avatarDefault
+  );
 
   const { mutateAsync: createUser, isPending: loadingCreate } = useCreateUser();
 
@@ -38,11 +40,11 @@ const UserForm = ({
   };
 
   const initialEditUser = {
-    name: userEdit?.data?.name ? userEdit.data?.name : "",
-    email: userEdit?.data?.email ? userEdit.data?.email : "",
-    phone: userEdit?.data?.phone ? userEdit.data?.phone : "",
-    address: userEdit?.data?.address ? userEdit.data?.address : "",
-    avatar: userEdit?.data?.avatar ? userEdit.data?.avatar : "",
+    name: userEdit?.name ? userEdit?.name : "",
+    email: userEdit?.email ? userEdit?.email : "",
+    phone: userEdit?.phone ? userEdit?.phone : "",
+    address: userEdit?.address ? userEdit?.address : "",
+    avatar: userEdit?.avatar ? userEdit?.avatar : "",
   };
 
   const validateCreateSchema = Yup.object({
@@ -75,18 +77,24 @@ const UserForm = ({
     } else {
       res = await updateUser({
         ...newValue,
-        id: userEdit?.data?._id,
+        id: userEdit?._id,
         token: storageData,
       });
-
-      setUserIdEdit("");
+      if (setUserIdEdit) {
+        setUserIdEdit("");
+      }
     }
     if (res.status !== "200") {
       message("error", res?.message);
     } else {
       message("success", res?.message);
-      setOpenCreate(false);
-      setOpenEdit(false);
+      if (setOpenCreate) {
+        setOpenCreate(false);
+      }
+
+      if (setOpenEdit) {
+        setOpenEdit(false);
+      }
     }
   };
 
@@ -107,10 +115,7 @@ const UserForm = ({
                 <div className={cx("auth-form__body")}>
                   <div className={cx("auth-form__wrapper-avatar")}>
                     <div className={cx("auth-form__avatar")}>
-                      <img
-                        src={userEdit?.data?.avatar || avatar}
-                        alt="avatar"
-                      />
+                      <img src={userEdit?.avatar || avatar} alt="avatar" />
                     </div>
 
                     <FastField
@@ -169,8 +174,13 @@ const UserForm = ({
                         type="button"
                         className={cx("btn-back")}
                         onClick={() => {
-                          setOpenCreate(false);
-                          setOpenEdit(false);
+                          if (setOpenCreate) {
+                            setOpenCreate(false);
+                          }
+
+                          if (setOpenEdit) {
+                            setOpenEdit(false);
+                          }
                         }}
                       >
                         Back

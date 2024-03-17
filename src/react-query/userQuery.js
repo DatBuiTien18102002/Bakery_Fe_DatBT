@@ -21,6 +21,7 @@ export const useUpdateUser = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (data) => {
+            console.log("query", data);
             return userApi.updateUser(data)
         },
         onSuccess: () => {

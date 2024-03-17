@@ -47,7 +47,7 @@ const ProfileForm = () => {
 
     const res = await updateProfile({
       ...newValue,
-      id: currentUser?.id,
+      id: currentUser?._id,
       token: storageData,
     });
 

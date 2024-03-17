@@ -4,7 +4,7 @@
   display: flex;
 
   animation: fadeIn linear 0.1s;
-  z-index: 10000000;
+  z-index: 1000;
 }
 
 .modal__overlay {
@@ -22,13 +22,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  margin: 0 10px;
-  max-width: 100%;
+  max-width: 95vw;
 
   border-radius: 10px;
   background-color: white;
   overflow: hidden;
 }
-// .modal__container {
-//   padding: 10px 32px;
-// }

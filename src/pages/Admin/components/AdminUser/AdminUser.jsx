@@ -189,7 +189,7 @@ const AdminUser = () => {
           setOpenCreate={setIsOpenCreateForm}
           setOpenEdit={setIsOpenEditForm}
           setUserIdEdit={setUserIdEdit}
-          userEdit={userEdit}
+          userEdit={userEdit?.data}
         />
       )}
     </>

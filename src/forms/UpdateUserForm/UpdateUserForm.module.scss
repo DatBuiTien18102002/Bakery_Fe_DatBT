@@ -1,0 +1,37 @@
+.update-user__container {
+  width: 500px;
+  padding: 32px;
+}
+
+.update-user__header {
+  font-size: 1.375rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.update-user__wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 100%;
+}
+
+.update-user__input {
+  margin-bottom: 0;
+}
+
+.update-user__reset {
+  height: 100%;
+}
+.update-user__controls {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-back {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

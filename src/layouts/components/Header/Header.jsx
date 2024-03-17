@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
+import PropTypes from "prop-types";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import config from "@/config";
@@ -25,7 +26,7 @@ import { Button } from "@/components";
 import { CardItem } from "./components";
 
 const cx = classNames.bind(styles);
-const Header = () => {
+const Header = ({ noCart = false }) => {
   const inputMobile = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -273,48 +274,54 @@ const Header = () => {
         <Search />
 
         <div className={cx("action")}>
-          <HeadlessTippy
-            interactive
-            placement="bottom-end"
-            offset={[3, 17]}
-            render={(attrs) => (
-              <div className={cx("cart-result")} tabIndex="-1" {...attrs}>
-                <Wrapper>
-                  {orderItems.length > 0 ? (
-                    <div className={cx("cart__has-cart")}>
-                      <h4 className={cx("cart-tittle")}>Sản phẩm đã thêm</h4>
-                      <ul className={cx("cart-list")}>
-                        {orderItems.map((cake, index) => (
-                          <CardItem key={index} cake={cake} />
-                        ))}
-                      </ul>
-                      <Button
-                        to={config.routes.cart}
-                        primary
-                        className={cx("cart-button")}
-                      >
-                        Xem giỏ hàng
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className={cx("cart__no-cart")}>
-                      <img src={images.noCart} alt="" />
-                      <span>Chưa có sản phẩm</span>
-                    </div>
-                  )}
-                </Wrapper>
-              </div>
-            )}
-          >
-            <button className={cx("shopping-btn")}>
-              <ShoppingCartIcon sx={{ fontSize: 27 }} />
-              {orderItems.length > 0 ? (
-                <span className={cx("cart-quality")}>{orderItems.length}</span>
-              ) : (
-                <></>
+          {!noCart ? (
+            <HeadlessTippy
+              interactive
+              placement="bottom-end"
+              offset={[3, 17]}
+              render={(attrs) => (
+                <div className={cx("cart-result")} tabIndex="-1" {...attrs}>
+                  <Wrapper>
+                    {orderItems.length > 0 ? (
+                      <div className={cx("cart__has-cart")}>
+                        <h4 className={cx("cart-tittle")}>Sản phẩm đã thêm</h4>
+                        <ul className={cx("cart-list")}>
+                          {orderItems.map((cake, index) => (
+                            <CardItem key={index} cake={cake} />
+                          ))}
+                        </ul>
+                        <Button
+                          to={config.routes.cart}
+                          primary
+                          className={cx("cart-button")}
+                        >
+                          Xem giỏ hàng
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className={cx("cart__no-cart")}>
+                        <img src={images.noCart} alt="" />
+                        <span>Chưa có sản phẩm</span>
+                      </div>
+                    )}
+                  </Wrapper>
+                </div>
               )}
-            </button>
-          </HeadlessTippy>
+            >
+              <button className={cx("shopping-btn")}>
+                <ShoppingCartIcon sx={{ fontSize: 27 }} />
+                {orderItems.length > 0 ? (
+                  <span className={cx("cart-quality")}>
+                    {orderItems.length}
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </button>
+            </HeadlessTippy>
+          ) : (
+            <></>
+          )}
 
           <Menu arrow items={currentUser.email ? USER_MENU : MENU_ITEMS}>
             {currentUser.email ? (
@@ -343,6 +350,7 @@ const Header = () => {
 
 Header.propTypes = {
   // isHomePage: PropTypes.bool,
+  noCart: PropTypes.bool,
 };
 
 export default Header;

@@ -10,19 +10,26 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@/components";
 import config from "@/config";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { selectedOrder } from "@/redux/slice/orderSlice";
+import { selectedOrderItems } from "@/redux/slice/orderSlice";
 import { useState } from "react";
 import { updateAmount } from "../../redux/slice/orderSlice";
+import message from "@/utils/message.js";
+import { useNavigate } from "react-router-dom";
+import { UserForm } from "@/forms";
 
 const cx = classNames.bind(styles);
 const Cart = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { orderItemsSelected } = useSelector((state) => state.order);
+  const currentUser = useSelector((state) => state.user);
 
   const { orderItems } = useSelector((state) => state.order);
   const [selected, setSelected] = useState(
     orderItemsSelected.map((item) => item._id)
   );
+  const [isOpenEditForm, setIsOpenEditForm] = useState(false);
+
   const newOrderItem = orderItems.map((item, index) => {
     index += 1;
     return {
@@ -30,6 +37,17 @@ const Cart = () => {
       ...item,
     };
   });
+
+  console.log("OrderItemSelected", orderItemsSelected);
+
+  const totalPrice = orderItemsSelected.reduce((result, prod) => {
+    let priceProduct = prod.price;
+    if (prod.discount) {
+      priceProduct = getPriceDiscount(prod.price, prod.discount);
+    }
+
+    return result + priceProduct * prod.amount;
+  }, 0);
 
   const handleDelete = async (id) => {
     if (selected.includes(id)) {
@@ -41,11 +59,29 @@ const Cart = () => {
 
   const handleSelected = (productSelect) => {
     setSelected(productSelect);
-    dispatch(selectedOrder({ listChecked: productSelect }));
+    dispatch(selectedOrderItems({ listChecked: productSelect }));
   };
 
   const handleChangeAmount = (idProduct, amountUpdate) => {
     dispatch(updateAmount({ idProduct, amountUpdate }));
+  };
+
+  const handleOrder = () => {
+    if (selected.length === 0) {
+      message("error", "Bạn vẫn chưa chọn sản phẩm nào để mua");
+      return;
+    }
+
+    if (!currentUser.address || !currentUser.phone) {
+      setIsOpenEditForm(true);
+
+      message(
+        "error",
+        "Cần cập nhật đầy đủ địa chỉ và số điện thoại trước khi thanh toán"
+      );
+      return;
+    }
+    navigate("/Order", { state: { totalPrice } });
   };
 
   const columns = [
@@ -174,15 +210,6 @@ const Cart = () => {
     },
   ];
 
-  const totalPrice = orderItemsSelected.reduce((result, prod) => {
-    let priceProduct = prod.price;
-    if (prod.discount) {
-      priceProduct = getPriceDiscount(prod.price, prod.discount);
-    }
-
-    return result + priceProduct * prod.amount;
-  }, 0);
-
   return (
     <div className={cx("cart")}>
       <div className="container">
@@ -234,12 +261,24 @@ const Cart = () => {
               </div>
             </div>
 
-            <Button primary className={cx("cart-checkout")}>
+            <Button
+              primary
+              className={cx("cart-checkout")}
+              onClick={handleOrder}
+            >
               Tiến hành thanh toán
             </Button>
           </div>
         </div>
       </div>
+
+      {isOpenEditForm && (
+        <UserForm
+          action="Edit"
+          setOpenEdit={setIsOpenEditForm}
+          userEdit={currentUser}
+        />
+      )}
     </div>
   );
 };

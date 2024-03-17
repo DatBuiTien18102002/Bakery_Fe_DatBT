@@ -1,6 +1,6 @@
 import { Bounce, toast } from "react-toastify";
 
-const message = (type, title, autoClose = 1000, position = "top-center") => {
+const message = (type, title, autoClose = 2000, position = "top-center") => {
     toast[type](title, {
         position,
         autoClose,

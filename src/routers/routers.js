@@ -8,9 +8,10 @@ import config from '@/config';
 // import PageNotFound from '@/pages/PageNotFound/PageNotFound';
 // import Product from '@/pages/Product';
 // import ProductDetail from '@/pages/ProductDetail';
-import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout';
-import { HomePage, ContactPage, AboutUsPage, ProductPage, ProductDetailPage, CartPage } from '@/pages';
+// import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout';
+import { HomePage, ContactPage, AboutUsPage, ProductPage, ProductDetailPage, CartPage, OrderPage } from '@/pages';
 import ProfileForm from '@/forms/ProfileForm/ProfileForm';
+import { NoCartIconLayout, DefaultLayout } from '@/layouts';
 
 const publicRouters = [
     { path: config.routes.home, page: HomePage, layout: DefaultLayout },
@@ -18,7 +19,7 @@ const publicRouters = [
     { path: config.routes.aboutUs, page: AboutUsPage, layout: DefaultLayout },
     { path: config.routes.product, page: ProductPage, layout: DefaultLayout },
     { path: `${config.routes.product}/:id`, page: ProductDetailPage, layout: DefaultLayout },
-    { path: config.routes.cart, page: CartPage, layout: DefaultLayout },
+    { path: config.routes.cart, page: CartPage, layout: NoCartIconLayout },
     // { path: config.routes.product, page: Product },
     // { path: `${config.routes.product}/:id`, page: ProductDetail },
     // { path: config.routes.contact, page: Contact },
@@ -29,6 +30,7 @@ const publicRouters = [
 
 const privateRouters = [
     { path: config.routes.profile, page: ProfileForm, layout: DefaultLayout },
+    { path: config.routes.order, page: OrderPage, layout: NoCartIconLayout },
 ]
 
 export { publicRouters, privateRouters };

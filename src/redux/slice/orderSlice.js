@@ -24,18 +24,19 @@ export const orderSlice = createSlice({
     initialState,
     reducers: {
         addOrderProduct: (state, action) => {
-            const { orderItem } = action.payload
-            const itemOrder = state?.orderItems?.find((item) => item?._id === orderItem._id)
-            if (itemOrder) {
-                if ((itemOrder.amount + orderItem?.amount) <= itemOrder.countInStock) {
-                    itemOrder.amount += orderItem?.amount
+            const { orderItem } = action.payload;
+            const productOrder = state?.orderItems?.find((item) => item?._id === orderItem._id)
+            if (productOrder) {
+                if ((productOrder.amount + orderItem?.amount) <= productOrder.countInStock) {
+                    productOrder.amount += orderItem?.amount
                     // state.isSuccessOrder = true
                 } else {
                     message("error", "Sản phẩm trong kho không đủ")
                     // state.isErrorOrder = false
                 }
             } else {
-                state.orderItems.push(orderItem)
+                const { name, amount, image, price, rating, _id, type, discount, countInStock } = orderItem;
+                state.orderItems.push({ name, amount, image, price, rating, _id, type, discount, countInStock })
             }
         },
         updateAmount: (state, action) => {
@@ -53,11 +54,23 @@ export const orderSlice = createSlice({
         resetOrder: (state) => {
             // state.isSuccessOrder = false
         },
-        selectedOrder: (state, action) => {
+        selectedOrderItems: (state, action) => {
             const { listChecked } = action.payload;
             const orderItemsSelected = state.orderItems.filter((orderItem) => listChecked.includes(orderItem._id));
 
             state.orderItemsSelected = orderItemsSelected
+        },
+        selectedOrderItem: (state, action) => {
+            const { orderItem } = action.payload;
+            const orderCart = state.orderItems.find((item) => item._id === orderItem._id);
+            const orderCardSelected = state.orderItemsSelected.find((item) => item._id === orderItem._id);
+
+            if (orderCardSelected) {
+                orderCardSelected.amount += orderItem.amount
+            } else {
+                state.orderItemsSelected.push(orderCart);
+            }
+
         },
         removeOrderProduct: (state, action) => {
             const { idProduct } = action.payload
@@ -75,7 +88,7 @@ export const orderSlice = createSlice({
         removeAllOrderProduct: (state, action) => {
             // const { listChecked } = action.payload
 
-            // const itemOrders = state?.orderItems?.filter((item) => !listChecked.includes(item.productId))
+            // const itemOrders = state?.orderItems?.filter((item) => !listChecked.includes(item._id))
             // const itemOrdersSelected = state?.orderItems?.filter((item) => !listChecked.includes(item.Id))
             // state.orderItems = itemOrders
             // state.orderItemsSelected = itemOrdersSelected
@@ -85,7 +98,7 @@ export const orderSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addOrderProduct, increaseAmount, decreaseAmount, removeOrderProduct, removeAllOrderProduct, selectedOrder, resetOrder, updateAmount } = orderSlice.actions
+export const { addOrderProduct, increaseAmount, decreaseAmount, removeOrderProduct, removeAllOrderProduct, selectedOrderItems, selectedOrderItem, resetOrder, updateAmount } = orderSlice.actions
 
 const orderReducer = orderSlice.reducer;
 export default orderReducer

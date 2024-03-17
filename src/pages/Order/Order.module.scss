@@ -1,0 +1,136 @@
+.order {
+  padding: 30px 0 50px;
+  background-color: #f5f5fa;
+}
+
+.order-title {
+  color: #464646;
+
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.order-row {
+  display: flex;
+  gap: 20px;
+}
+
+.order-col:first-child {
+  width: 65%;
+}
+
+.order-col:last-child {
+  width: 35%;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 17px;
+  background-color: white;
+  font-size: 0.875rem;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+  }
+}
+
+.order-label {
+  text-wrap: nowrap;
+}
+
+.order-info {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.order-change {
+  text-wrap: nowrap;
+  color: var(--primary-darker);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.order-price {
+  font-weight: 800;
+}
+
+.order__total-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-darker);
+  display: flex;
+  justify-content: end;
+}
+
+.order__total-info {
+  font-size: 0.625rem;
+}
+
+.order-button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px 0;
+}
+
+.order-item:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.order-item:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.order-item__title {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.order-item__content {
+  padding: 15px;
+  background-color: rgb(245 232 221);
+  border: 1px solid var(--primary-darker);
+  border-radius: 5px;
+}
+
+.confirm-price {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.btn-back {
+  margin-right: 10px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .order-row {
+    flex-direction: column;
+  }
+
+  .order-col:first-child {
+    width: 100%;
+  }
+
+  .order-col:last-child {
+    width: 100%;
+  }
+}

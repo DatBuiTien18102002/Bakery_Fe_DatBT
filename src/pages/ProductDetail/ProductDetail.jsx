@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetDetailProduct } from "@/react-query/productQuery";
 import classNames from "classnames/bind";
 import styles from "./ProductDetail.module.scss";
@@ -8,11 +8,13 @@ import currencyFormat from "@/utils/currencyFormat.js";
 import { Button } from "@/components";
 import getPriceDiscount from "@/utils/getPriceDiscount";
 import { useDispatch } from "react-redux";
-import { addOrderProduct } from "@/redux/slice/orderSlice";
+import { addOrderProduct, selectedOrderItem } from "@/redux/slice/orderSlice";
+import message from "@/utils/message.js";
 
 const cx = classNames.bind(styles);
 const ProductDetail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const { data: productDetail } = useGetDetailProduct(id);
@@ -44,6 +46,21 @@ const ProductDetail = () => {
         orderItem: { ...productDetail?.data, amount: numProduct },
       })
     );
+    message("success", "Thêm vào giỏ hàng thành công");
+  };
+
+  const handleOrder = () => {
+    dispatch(
+      addOrderProduct({
+        orderItem: { ...productDetail?.data, amount: numProduct },
+      })
+    );
+    dispatch(
+      selectedOrderItem({
+        orderItem: { ...productDetail?.data, amount: numProduct },
+      })
+    );
+    navigate("/Cart");
   };
 
   return (
@@ -127,15 +144,25 @@ const ProductDetail = () => {
                 {productDetail?.data.countInStock} sản phẩm có sẵn
               </div>
             </div>
+            <div className={cx("product-detail__action")}>
+              <Button
+                className={cx("product-detail__btn")}
+                outline
+                onClick={handleAddToCart}
+                disable={productDetail?.data.countInStock === 0}
+              >
+                Thêm vào giỏ hàng
+              </Button>
 
-            <Button
-              className={cx("product-detail__btn")}
-              primary
-              onClick={handleAddToCart}
-              disable={productDetail?.data.countInStock === 0}
-            >
-              Thêm vào giỏ hàng
-            </Button>
+              <Button
+                className={cx("product-detail__btn")}
+                primary
+                onClick={handleOrder}
+                disable={productDetail?.data.countInStock === 0}
+              >
+                Mua ngay
+              </Button>
+            </div>
           </div>
         </div>
       </div>

@@ -114,6 +114,11 @@
   border-left: 1px solid #bababa;
 }
 
+.product-detail__action {
+  display: flex;
+  gap: 20px;
+}
+
 .product-detail__btn {
   padding: 10px;
   border-radius: 999px;
