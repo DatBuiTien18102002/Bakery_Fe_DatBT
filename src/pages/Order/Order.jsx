@@ -57,7 +57,7 @@ const Order = (props) => {
 
   useEffect(() => {
     if (!state?.totalPrice && orderItemsSelected.length === 0) {
-      navigate("/Cart");
+      navigate("/cart");
     }
   }, []);
 
@@ -125,7 +125,7 @@ const Order = (props) => {
       orderItemsSelected.map((item) => {
         dispatch(removeOrderProduct({ idProduct: item._id }));
       });
-      navigate("/Product");
+      navigate("/product");
     }
   };
 

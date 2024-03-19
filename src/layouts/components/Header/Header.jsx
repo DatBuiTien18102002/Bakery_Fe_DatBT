@@ -100,11 +100,15 @@ const Header = ({ noCart = false }) => {
   const USER_MENU = [
     currentUser.isAdmin && {
       tittle: "Manage System",
-      to: "/Admin",
+      to: "/admin",
     },
     currentUser.email && {
       tittle: "View profile",
-      to: "/Profile",
+      to: "/profile",
+    },
+    currentUser.email && {
+      tittle: "My orders",
+      to: "/my-orders",
     },
     {
       tittle: "Settings",

@@ -60,7 +60,7 @@ const ProductDetail = () => {
         orderItem: { ...productDetail?.data, amount: numProduct },
       })
     );
-    navigate("/Cart");
+    navigate("/cart");
   };
 
   return (

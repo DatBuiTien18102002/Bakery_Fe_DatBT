@@ -9,7 +9,7 @@ import config from '@/config';
 // import Product from '@/pages/Product';
 // import ProductDetail from '@/pages/ProductDetail';
 // import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout';
-import { HomePage, ContactPage, AboutUsPage, ProductPage, ProductDetailPage, CartPage, OrderPage } from '@/pages';
+import { HomePage, ContactPage, AboutUsPage, ProductPage, ProductDetailPage, CartPage, OrderPage, MyOrdersPage } from '@/pages';
 import ProfileForm from '@/forms/ProfileForm/ProfileForm';
 import { NoCartIconLayout, DefaultLayout } from '@/layouts';
 
@@ -31,6 +31,7 @@ const publicRouters = [
 const privateRouters = [
     { path: config.routes.profile, page: ProfileForm, layout: DefaultLayout },
     { path: config.routes.order, page: OrderPage, layout: NoCartIconLayout },
+    { path: config.routes.myOrders, page: MyOrdersPage, layout: DefaultLayout },
 ]
 
 export { publicRouters, privateRouters };

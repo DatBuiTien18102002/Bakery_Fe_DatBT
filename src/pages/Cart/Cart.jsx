@@ -38,8 +38,6 @@ const Cart = () => {
     };
   });
 
-  console.log("OrderItemSelected", orderItemsSelected);
-
   const totalPrice = orderItemsSelected.reduce((result, prod) => {
     let priceProduct = prod.price;
     if (prod.discount) {
@@ -81,7 +79,7 @@ const Cart = () => {
       );
       return;
     }
-    navigate("/Order", { state: { totalPrice } });
+    navigate("/order", { state: { totalPrice } });
   };
 
   const columns = [

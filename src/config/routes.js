@@ -1,13 +1,14 @@
 const routes = {
-    admin: '/Admin',
+    admin: '/admin',
     home: '/',
-    profile: '/Profile',
-    aboutUs: '/About-us',
-    product: '/Product',
-    blog: '/Blog',
-    contact: '/Contact',
-    cart: '/Cart',
-    order: '/Order',
+    profile: '/profile',
+    aboutUs: '/about-us',
+    product: '/product',
+    blog: '/blog',
+    contact: '/contact',
+    cart: '/cart',
+    order: '/order',
+    myOrders: '/my-orders',
 };
 
 export default routes;

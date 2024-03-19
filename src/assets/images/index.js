@@ -29,6 +29,7 @@ import aboutIcon3 from "@/assets/images/about-icon-3.png"
 import aboutIcon4 from "@/assets/images/about-icon-4.png"
 import aboutPage from "@/assets/images/aboutus.jpg"
 import noCart from "@/assets/images/empty_cart.png"
+import noOrder from "@/assets/images/no-order.svg"
 
 
 const images = {
@@ -70,6 +71,7 @@ const images = {
     },
     aboutPage,
     noCart,
+    noOrder,
 
     // defaultImage: require('@/assets/images/avatar.jpg'),
     // bgImage: require('@/assets/images/bgcake1.jpg'),

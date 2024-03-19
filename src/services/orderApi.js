@@ -10,6 +10,14 @@ const orderApi = {
                 token: `Bearer ${token}`
             }
         })
+    },
+    getMyOrders: (data) => {
+        const { token, idUser } = data;
+        return axiosAuthClient.get(`${resourceName}/get-order-user/${idUser}`, {
+            headers: {
+                token: `Bearer ${token}`
+            }
+        })
     }
 
 }
