@@ -30,7 +30,13 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={cx("carousel-arrow", className)}
-      style={{ ...style, display: "block", left: "45px", zIndex: 1 }}
+      style={{
+        ...style,
+        display: "block",
+        left: "45px",
+        zIndex: 1,
+        color: "white",
+      }}
       onClick={onClick}
     />
   );

@@ -12,5 +12,6 @@ export const userKeys = {
 }
 
 export const orderKeys = {
-    GET_MY_ORDERS: "getMyOrders"
+    GET_MY_ORDERS: "getMyOrders",
+    GET_ALL_ORDER: "getAllOrder"
 }

@@ -1,6 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import orderApi from "@/services/orderApi"
 import { orderKeys } from "./queryKeys"
+import handleDecoded from "@/utils/jwtDecode";
+
+const { decoded, storageData } = handleDecoded();
 
 export const useCreateOrder = () => {
     return useMutation({
@@ -10,7 +13,49 @@ export const useCreateOrder = () => {
 
 export const useGetMyOrders = (data) => {
     return useQuery({
-        queryKey: [orderKeys.GET_MY_ORDERS],
+        queryKey: [orderKeys.GET_MY_ORDERS, data],
         queryFn: () => orderApi.getMyOrders(data)
+    })
+}
+
+export const useUpdateOrder = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (data) => {
+            return orderApi.updateOrder({ ...data, token: storageData });
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: [orderKeys.GET_ALL_ORDER, storageData]
+            })
+            queryClient.invalidateQueries({
+                queryKey: [orderKeys.GET_MY_ORDERS, {
+                    token: storageData,
+                    idUser: decoded?.payload.id,
+                }]
+            })
+        }
+    })
+}
+
+export const useDeleteOrder = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (data) => orderApi.deleteOrder(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: [orderKeys.GET_MY_ORDERS, {
+                    token: storageData,
+                    idUser: decoded?.payload.id,
+                }]
+            });
+        }
+    })
+}
+
+export const useGetAllOrder = (token) => {
+    return useQuery({
+        queryKey: [orderKeys.GET_ALL_ORDER, token],
+        queryFn: () => orderApi.getAllOrder(token)
     })
 }

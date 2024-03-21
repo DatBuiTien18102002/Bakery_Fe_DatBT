@@ -6,11 +6,13 @@ import styles from "./Admin.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import AdminProduct from "./components/AdminProduct/AdminProduct";
 import AdminUser from "./components/AdminUser/AdminUser";
+import AdminOrder from "./components/AdminOrder/AdminOrder";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import AppsIcon from "@mui/icons-material/Apps";
 import MenuIcon from "@mui/icons-material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { backInLeft, fadeIn } from "@/utils/animation";
 
 const cx = classNames.bind(styles);
@@ -30,6 +32,11 @@ const Admin = () => {
       key: "product",
       icon: AppsIcon,
     },
+    {
+      title: "Đơn hàng",
+      key: "order",
+      icon: ShoppingCartIcon,
+    },
   ];
 
   const handleShowPage = (key) => {
@@ -44,6 +51,8 @@ const Admin = () => {
         return <AdminUser />;
       case "product":
         return <AdminProduct />;
+      case "order":
+        return <AdminOrder />;
       default:
         return <></>;
     }

@@ -125,7 +125,7 @@ const Order = (props) => {
       orderItemsSelected.map((item) => {
         dispatch(removeOrderProduct({ idProduct: item._id }));
       });
-      navigate("/product");
+      navigate("/my-orders");
     }
   };
 
@@ -267,7 +267,12 @@ const Order = (props) => {
           <Button className={cx("btn-back")} onClick={handleCloseForm}>
             Hủy
           </Button>
-          <Button primary onClick={async () => await handleOrder()} autoFocus>
+          <Button
+            primary
+            onClick={async () => await handleOrder()}
+            autoFocus
+            disable={loadingCreate ? true : false}
+          >
             {loadingCreate ? "...Loading" : "Đồng ý"}
           </Button>
         </DialogActions>

@@ -157,7 +157,10 @@
 
 .my-order__order-total-price {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: end;
 }
 
 .my-order__order-price {

@@ -8,16 +8,72 @@ import { useSelector } from "react-redux";
 import currencyFormat from "@/utils/currencyFormat";
 import getPriceDiscount from "@/utils/getPriceDiscount";
 import { format } from "date-fns";
+import { Button } from "@/components";
+import { useDeleteOrder, useUpdateOrder } from "@/react-query/orderQuery";
+import message from "@/utils/message.js";
 
 const cx = classNames.bind(styles);
 const MyOrderList = () => {
   const { storageData } = handleDecoded();
   const currentUser = useSelector((state) => state.user);
+  const { mutateAsync: deleteOrder } = useDeleteOrder();
+  const { mutateAsync: updateOrder } = useUpdateOrder();
 
   const { data: myOrders, isLoading } = useGetMyOrders({
     token: storageData,
     idUser: currentUser._id,
   });
+
+  const handleDeleteOrder = async (items, idOrder) => {
+    const { storageData } = handleDecoded();
+    const data = await deleteOrder({
+      token: storageData,
+      orderId: idOrder,
+      orderItems: items,
+    });
+
+    if (data.status === "200") {
+      message("success", "Xóa đơn hàng thành công");
+    } else {
+      message("error", data.message);
+    }
+  };
+
+  const handleUpdateStatus = async (orderId) => {
+    await updateOrder({
+      id: orderId,
+      infoUpdate: {
+        status: "evaluate_product",
+      },
+    });
+  };
+
+  const renderStatus = (status, orderItems, idOrder) => {
+    switch (status) {
+      case "waiting_confirm":
+        return (
+          <Button
+            primary
+            onClick={async () => await handleDeleteOrder(orderItems, idOrder)}
+          >
+            Hủy đơn hàng
+          </Button>
+        );
+      case "confirm_order":
+        return (
+          <Button
+            primary
+            onClick={async () => await handleUpdateStatus(idOrder)}
+          >
+            Đã nhận được hàng
+          </Button>
+        );
+      case "evaluate_product":
+        return <Button primary>Đánh giá</Button>;
+      default:
+        return <></>;
+    }
+  };
 
   return (
     <div className={cx("my-order")}>
@@ -136,6 +192,10 @@ const MyOrderList = () => {
                           <span className={cx("my-order__order-price")}>
                             {currencyFormat(item.price)}
                           </span>
+                        </div>
+
+                        <div>
+                          {renderStatus(item.status, item.orderItems, item._id)}
                         </div>
                       </div>
                     </div>
