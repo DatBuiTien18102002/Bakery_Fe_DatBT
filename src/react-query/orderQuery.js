@@ -3,7 +3,6 @@ import orderApi from "@/services/orderApi"
 import { orderKeys } from "./queryKeys"
 import handleDecoded from "@/utils/jwtDecode";
 
-const { decoded, storageData } = handleDecoded();
 
 export const useCreateOrder = () => {
     return useMutation({
@@ -20,18 +19,20 @@ export const useGetMyOrders = (data) => {
 
 export const useUpdateOrder = () => {
     const queryClient = useQueryClient();
+    const { storageData } = handleDecoded();
     return useMutation({
         mutationFn: (data) => {
             return orderApi.updateOrder({ ...data, token: storageData });
         },
         onSuccess: () => {
+            const { decoded, storageData } = handleDecoded();
             queryClient.invalidateQueries({
                 queryKey: [orderKeys.GET_ALL_ORDER, storageData]
             })
             queryClient.invalidateQueries({
                 queryKey: [orderKeys.GET_MY_ORDERS, {
                     token: storageData,
-                    idUser: decoded?.payload.id,
+                    idUser: decoded?.payload?.id,
                 }]
             })
         }
@@ -43,10 +44,11 @@ export const useDeleteOrder = () => {
     return useMutation({
         mutationFn: (data) => orderApi.deleteOrder(data),
         onSuccess: () => {
+            const { decoded, storageData } = handleDecoded();
             queryClient.invalidateQueries({
                 queryKey: [orderKeys.GET_MY_ORDERS, {
                     token: storageData,
-                    idUser: decoded?.payload.id,
+                    idUser: decoded?.payload?.id,
                 }]
             });
         }

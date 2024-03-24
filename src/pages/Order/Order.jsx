@@ -100,11 +100,15 @@ const Order = (props) => {
 
   const handleOrder = async () => {
     const { storageData } = handleDecoded();
+    const newOrderItemsSelected = orderItemsSelected.map((item) => ({
+      ...item,
+      isRating: false,
+    }));
 
     const res = await createOrder({
       token: storageData,
       detailOrder: {
-        orderItems: orderItemsSelected,
+        orderItems: newOrderItemsSelected,
         shippingAddress: {
           email: currentUser.email,
           address: currentUser.address,

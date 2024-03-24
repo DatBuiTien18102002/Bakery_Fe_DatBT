@@ -13,6 +13,9 @@ const orderApi = {
     },
     updateOrder: (data) => {
         const { id, token, infoUpdate } = data;
+        console.log("id", id);
+        console.log("token", token);
+        console.log("infoUpdate", infoUpdate);
         return axiosAuthClient.put(`${resourceName}/update-order/${id}`, infoUpdate, {
             headers: {
                 token: `Bearer ${token}`

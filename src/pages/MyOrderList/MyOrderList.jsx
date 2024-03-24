@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import styles from "./MyOrderList.module.scss";
 import classNames from "classnames/bind";
 import images from "@/assets/images";
@@ -11,6 +11,7 @@ import { format } from "date-fns";
 import { Button } from "@/components";
 import { useDeleteOrder, useUpdateOrder } from "@/react-query/orderQuery";
 import message from "@/utils/message.js";
+import { RatingCakesForm } from "@/forms";
 
 const cx = classNames.bind(styles);
 const MyOrderList = () => {
@@ -23,6 +24,10 @@ const MyOrderList = () => {
     token: storageData,
     idUser: currentUser._id,
   });
+
+  const [itemsRating, setItemsRating] = useState([{}]);
+  const [idOrder, setIdOrder] = useState("");
+  const [isOpenRatingForm, setIsOpenRatingForm] = useState(false);
 
   const handleDeleteOrder = async (items, idOrder) => {
     const { storageData } = handleDecoded();
@@ -48,13 +53,19 @@ const MyOrderList = () => {
     });
   };
 
-  const renderStatus = (status, orderItems, idOrder) => {
+  const handleRating = (itemsRating, idOrder) => {
+    setItemsRating(itemsRating);
+    setIdOrder(idOrder);
+    setIsOpenRatingForm(true);
+  };
+
+  const renderStatus = (status, itemsOrder, idOrder) => {
     switch (status) {
       case "waiting_confirm":
         return (
           <Button
             primary
-            onClick={async () => await handleDeleteOrder(orderItems, idOrder)}
+            onClick={async () => await handleDeleteOrder(itemsOrder, idOrder)}
           >
             Hủy đơn hàng
           </Button>
@@ -69,7 +80,17 @@ const MyOrderList = () => {
           </Button>
         );
       case "evaluate_product":
-        return <Button primary>Đánh giá</Button>;
+        const newItemsRating = itemsOrder.filter(
+          (item) => item.isRating === false
+        );
+        if (newItemsRating.length > 0) {
+          return (
+            <Button primary onClick={() => handleRating(itemsOrder, idOrder)}>
+              Đánh giá
+            </Button>
+          );
+        }
+        return <></>;
       default:
         return <></>;
     }
@@ -206,6 +227,14 @@ const MyOrderList = () => {
           )}
         </div>
       </div>
+
+      {isOpenRatingForm && (
+        <RatingCakesForm
+          itemsOrder={itemsRating}
+          idOrder={idOrder}
+          openForm={setIsOpenRatingForm}
+        />
+      )}
     </div>
   );
 };

@@ -13,7 +13,7 @@ const AdminOrder = () => {
   const { storageData } = handleDecoded();
   const { data: allOrder } = useGetAllOrder(storageData);
   const { mutateAsync: updateOrder } = useUpdateOrder();
-  console.log(allOrder?.data);
+  // console.log(allOrder?.data);
 
   const newAllOrder = allOrder?.data.map((item, index) => {
     index += 1;

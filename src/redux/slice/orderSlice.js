@@ -35,8 +35,8 @@ export const orderSlice = createSlice({
                     // state.isErrorOrder = false
                 }
             } else {
-                const { name, amount, image, price, rating, _id, type, discount, countInStock } = orderItem;
-                state.orderItems.push({ name, amount, image, price, rating, _id, type, discount, countInStock })
+                const { name, amount, image, price, rating, _id, type, discount, countInStock, amountRate } = orderItem;
+                state.orderItems.push({ name, amount, image, price, rating, _id, type, discount, countInStock, amountRate })
             }
         },
         updateAmount: (state, action) => {
