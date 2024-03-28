@@ -327,7 +327,7 @@ const Header = ({ noCart = false }) => {
             <></>
           )}
 
-          <Menu arrow items={currentUser.email ? USER_MENU : MENU_ITEMS}>
+          <Menu items={currentUser.email ? USER_MENU : MENU_ITEMS}>
             {currentUser.email ? (
               <div className={cx("user-avatar")}>
                 <img

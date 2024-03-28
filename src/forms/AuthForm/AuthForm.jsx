@@ -13,8 +13,8 @@ const AuthForm = (props) => {
   const dispatch = useDispatch();
   const { form, showSignInForm, showSignUpForm } = props;
 
-  const { mutateAsync: loginUser, isLoading: loadingSignIn } = useLoginUser();
-  const { mutateAsync: createUser, isLoading: loadingSignUp } = useCreateUser();
+  const { mutateAsync: loginUser, isPending: loadingSignIn } = useLoginUser();
+  const { mutateAsync: createUser, isPending: loadingSignUp } = useCreateUser();
 
   const handleSignIn = async (values) => {
     try {

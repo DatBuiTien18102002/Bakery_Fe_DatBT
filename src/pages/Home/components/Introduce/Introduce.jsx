@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./Introduce.module.scss";
 import images from "@/assets/images";
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
+import ImageCustom from "@/components/ImageCustom/ImageCustom";
 
 const cx = classNames.bind(styles);
 const Introduce = () => {
@@ -12,16 +13,16 @@ const Introduce = () => {
           <div className={cx("introduce-bg")}>
             <div className={cx("bg-image")}>
               <div className={cx("bg-front")}>
-                <img
+                <ImageCustom
                   src={images.introduceFont}
-                  alt=""
+                  hash={"LCMsZWu6#jVr?GR.MwxC_Nx_EQXU"}
                   className={cx("introduce-img")}
                 />
               </div>
               <div className={cx("bg-back")}>
-                <img
+                <ImageCustom
                   src={images.introduceBehind}
-                  alt=""
+                  hash={"LAG*WV^*0NEl019b~9NH00IV0hM{"}
                   className={cx("introduce-img")}
                 />
               </div>

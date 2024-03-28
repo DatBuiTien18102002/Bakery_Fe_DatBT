@@ -29,14 +29,17 @@
   width: 35%;
 }
 
-.about-img {
-  width: 100%;
-  height: 100%;
+.about__img-wrapper {
   display: flex;
   align-items: center;
-  img {
-    border-radius: 15px;
-  }
+
+  width: 100%;
+  height: 100%;
+}
+
+.about-img {
+  overflow: hidden;
+  border-radius: 15px;
 }
 
 .about-wrapper {
@@ -119,4 +122,20 @@
 
 .about-choice-text {
   color: #959393;
+}
+
+@media screen and (max-width: 991px) {
+  .about-desc-row {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 50px;
+  }
+
+  .about-desc-col:first-child {
+    width: 100%;
+  }
+
+  .about-desc-col:last-child {
+    width: 100%;
+  }
 }

@@ -12,7 +12,6 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import SearchIcon from "@mui/icons-material/Search";
 import CircularProgress from "@mui/material/CircularProgress";
 import CakeItem from "@/components/CakeItem/CakeItem";
-import { useGetDetailUser } from "../../../react-query/userQuery";
 
 const cx = classNames.bind(styles);
 

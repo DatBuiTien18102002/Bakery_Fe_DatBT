@@ -1,0 +1,22 @@
+.breadcrumb-wrapper {
+  padding-top: 20px;
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    padding: 8px 20px;
+    border-radius: 10px;
+    background-color: #f4f2ed;
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+
+  .breadcrumb-hover:hover {
+    text-decoration: underline;
+  }
+
+  .breadcrumb-active {
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+}

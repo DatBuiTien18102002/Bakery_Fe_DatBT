@@ -10,6 +10,7 @@ import getPriceDiscount from "@/utils/getPriceDiscount";
 import { useDispatch } from "react-redux";
 import { addOrderProduct, selectedOrderItem } from "@/redux/slice/orderSlice";
 import message from "@/utils/message.js";
+import { Skeleton } from "@/components";
 
 const cx = classNames.bind(styles);
 const ProductDetail = () => {
@@ -17,7 +18,8 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { data: productDetail } = useGetDetailProduct(id);
+  const { data: productDetail, isLoading: loadingProduct } =
+    useGetDetailProduct(id);
 
   const [numProduct, setNumProduct] = useState(1);
 
@@ -63,108 +65,190 @@ const ProductDetail = () => {
     navigate("/cart");
   };
 
+  console.log("loading", loadingProduct);
+
   return (
     <section className={cx("product-detail")}>
       <div className="container">
-        <div className={cx("product-detail-row")}>
-          <div className={cx("product-detail-col")}>
-            <img
-              className={cx("product-detail__img")}
-              src={productDetail?.data.image}
-              alt=""
-            />
-
-            {productDetail?.data.countInStock === 0 && (
-              <div className={cx("product-sold-out")}>Hết Hàng</div>
-            )}
-          </div>
-          <div className={cx("product-detail-col")}>
-            <div className={cx("product-detail__tittle")}>
-              {productDetail?.data.name}
-            </div>
-
-            <div className={cx("product-detail__rate")}>
-              <Rating
-                name="read-only"
-                value={
-                  productDetail?.data.rating ? productDetail?.data.rating : 0
-                }
-                readOnly
-                precision={0.1}
+        {!loadingProduct ? (
+          <div className={cx("product-detail-row")}>
+            <div className={cx("product-detail-col")}>
+              <img
+                className={cx("product-detail__img")}
+                src={productDetail?.data.image}
+                alt=""
               />
-              <p className={cx("product-detail__rate-num")}>
-                {productDetail?.data.amountRate} đánh giá
-              </p>
-            </div>
 
-            <div className={cx("product-detail__desc")}>
-              {productDetail?.data.description}
+              {productDetail?.data.countInStock === 0 && (
+                <div className={cx("product-sold-out")}>Hết Hàng</div>
+              )}
             </div>
-            <div className={cx("product-detail__price")}>
-              <span className={cx("product-detail__label")}>Giá bán: </span>
-              <span className={cx("product-detail__price-num")}>
-                {currencyFormat(
-                  productDetail?.data.discount
-                    ? getPriceDiscount(
-                        productDetail?.data.price,
-                        productDetail?.data.discount
-                      )
-                    : productDetail?.data.price
-                )}
-              </span>
-            </div>
+            <div className={cx("product-detail-col")}>
+              <div className={cx("product-detail__tittle")}>
+                {productDetail?.data.name}
+              </div>
 
-            <div className={cx("product-detail__num-wrapper")}>
-              <div className={cx("product-detail__label")}>Số lượng: </div>
-              <div className={cx("product-detail__quantity")}>
-                <div
-                  className={cx("product-detail__control", "control-minus", {
-                    disabled: numProduct === 1,
-                  })}
-                  onClick={minusNumProduct}
-                >
-                  -
-                </div>
-                <input
-                  className={cx("product-detail__num")}
-                  type="number"
-                  value={numProduct}
-                  onChange={handleInput}
+              <div className={cx("product-detail__rate")}>
+                <Rating
+                  name="read-only"
+                  value={
+                    productDetail?.data.rating ? productDetail?.data.rating : 0
+                  }
+                  readOnly
+                  precision={0.1}
                 />
-                <div
-                  className={cx("product-detail__control", "control-plus", {
-                    disabled: numProduct === productDetail?.data.countInStock,
-                  })}
-                  onClick={plusNumProduct}
-                >
-                  +
+                <p className={cx("product-detail__rate-num")}>
+                  {productDetail?.data.amountRate} đánh giá
+                </p>
+              </div>
+
+              <div className={cx("product-detail__desc")}>
+                {productDetail?.data.description}
+              </div>
+              <div className={cx("product-detail__price")}>
+                <span className={cx("product-detail__label")}>Giá bán: </span>
+                <span className={cx("product-detail__price-num")}>
+                  {currencyFormat(
+                    productDetail?.data.discount
+                      ? getPriceDiscount(
+                          productDetail?.data.price,
+                          productDetail?.data.discount
+                        )
+                      : productDetail?.data.price
+                  )}
+                </span>
+              </div>
+
+              <div className={cx("product-detail__num-wrapper")}>
+                <div className={cx("product-detail__label")}>Số lượng: </div>
+                <div className={cx("product-detail__quantity")}>
+                  <div
+                    className={cx("product-detail__control", "control-minus", {
+                      disabled: numProduct === 1,
+                    })}
+                    onClick={minusNumProduct}
+                  >
+                    -
+                  </div>
+                  <input
+                    className={cx("product-detail__num")}
+                    type="number"
+                    value={numProduct}
+                    onChange={handleInput}
+                  />
+                  <div
+                    className={cx("product-detail__control", "control-plus", {
+                      disabled: numProduct === productDetail?.data.countInStock,
+                    })}
+                    onClick={plusNumProduct}
+                  >
+                    +
+                  </div>
+                </div>
+                <div className={cx("product-detail__inStock")}>
+                  {productDetail?.data.countInStock} sản phẩm có sẵn
                 </div>
               </div>
-              <div className={cx("product-detail__inStock")}>
-                {productDetail?.data.countInStock} sản phẩm có sẵn
-              </div>
-            </div>
-            <div className={cx("product-detail__action")}>
-              <Button
-                className={cx("product-detail__btn")}
-                outline
-                onClick={handleAddToCart}
-                disable={productDetail?.data.countInStock === 0}
-              >
-                Thêm vào giỏ hàng
-              </Button>
+              <div className={cx("product-detail__action")}>
+                <Button
+                  className={cx("product-detail__btn")}
+                  outline
+                  onClick={handleAddToCart}
+                  disable={productDetail?.data.countInStock === 0}
+                >
+                  Thêm vào giỏ hàng
+                </Button>
 
-              <Button
-                className={cx("product-detail__btn")}
-                primary
-                onClick={handleOrder}
-                disable={productDetail?.data.countInStock === 0}
-              >
-                Mua ngay
-              </Button>
+                <Button
+                  className={cx("product-detail__btn")}
+                  primary
+                  onClick={handleOrder}
+                  disable={productDetail?.data.countInStock === 0}
+                >
+                  Mua ngay
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className={cx("product-detail-row")}>
+            <div className={cx("product-detail-col")}>
+              <Skeleton className={cx("product-detail__img")} />
+            </div>
+            <div className={cx("product-detail-col")}>
+              <div className={cx("product-detail__tittle")}>
+                <Skeleton width="260px" height="42px" />
+              </div>
+
+              <div className={cx("product-detail__rate")}>
+                <Rating name="read-only" value={0} readOnly precision={0.1} />
+                <p className={cx("product-detail__rate-num")}>
+                  <Skeleton width="73px" height="20px" />
+                </p>
+              </div>
+
+              <div className={cx("product-detail__desc")}>
+                <Skeleton height="70px" />
+              </div>
+              <div className={cx("product-detail__price")}>
+                <span className={cx("product-detail__label")}>Giá bán: </span>
+                <Skeleton width="72px" height="22px" />
+              </div>
+
+              <div className={cx("product-detail__num-wrapper")}>
+                <div className={cx("product-detail__label")}>Số lượng: </div>
+                <div className={cx("product-detail__quantity")}>
+                  <div
+                    className={cx(
+                      "product-detail__control",
+                      "control-minus",
+                      "disable"
+                    )}
+                  >
+                    -
+                  </div>
+                  <input
+                    className={cx("product-detail__num")}
+                    type="number"
+                    value={numProduct}
+                    onChange={handleInput}
+                  />
+                  <div
+                    className={cx(
+                      "product-detail__control",
+                      "control-plus",
+                      "disable"
+                    )}
+                  >
+                    +
+                  </div>
+                </div>
+                <div className={cx("product-detail__inStock")}>
+                  <Skeleton width="143px" height="24px" />
+                </div>
+              </div>
+              <div className={cx("product-detail__action")}>
+                <Button
+                  className={cx("product-detail__btn")}
+                  outline
+                  onClick={handleAddToCart}
+                  disable={true}
+                >
+                  Thêm vào giỏ hàng
+                </Button>
+
+                <Button
+                  className={cx("product-detail__btn")}
+                  primary
+                  onClick={handleOrder}
+                  disable={true}
+                >
+                  Mua ngay
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

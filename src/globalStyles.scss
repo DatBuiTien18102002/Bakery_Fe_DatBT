@@ -39,6 +39,7 @@ body {
 .container {
   padding: 0 var(--default-spacing);
   max-width: var(--header-container-width);
+  width: 100%;
   height: 100%;
   margin: 0 auto;
 }

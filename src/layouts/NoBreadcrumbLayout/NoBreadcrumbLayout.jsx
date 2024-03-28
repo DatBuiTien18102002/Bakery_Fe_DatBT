@@ -1,19 +1,18 @@
 import PropTypes from "prop-types";
 import { Header, Footer } from "@/layouts/components";
-import { Breadcrumb } from "../../components";
 
-const NoCartIconLayout = ({ children }) => {
+const HomeLayout = ({ children }) => {
   return (
     <>
-      <Header noCart isHomePage />
+      <Header isHomePage />
       <div style={{ marginTop: "var(--header-height)" }}>{children}</div>
       <Footer />
     </>
   );
 };
 
-NoCartIconLayout.propTypes = {
+HomeLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default NoCartIconLayout;
+export default HomeLayout;

@@ -4,6 +4,8 @@ import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
 import images from "@/assets/images";
 import React, { useEffect, useRef } from "react";
 
+import { ImageCustom } from "@/components";
+
 const cx = classNames.bind(styles);
 const AboutUs = () => {
   const aboutNumRefs = useRef([]);
@@ -67,8 +69,13 @@ const AboutUs = () => {
 
         <div className={cx("about-desc-row")}>
           <div className={cx("about-desc-col")}>
-            <div className={cx("about-img")}>
-              <img src={images.aboutPage} alt="" />
+            <div className={cx("about__img-wrapper")}>
+              <ImageCustom
+                src={images.aboutPage}
+                hash={"LkKmb5=w9uEg_NJ8NJs-%fSgxafi"}
+                height="450px"
+                className={cx("about-img")}
+              />
             </div>
           </div>
           <div className={cx("about-desc-col")}>

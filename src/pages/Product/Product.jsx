@@ -29,7 +29,7 @@ const Product = () => {
 
   const {
     data: productList,
-    isPending,
+    isPending: loadingProduct,
     refetch,
   } = useGetProducts({
     limit: searchParams.get("limit") || 7,
@@ -37,6 +37,8 @@ const Product = () => {
     _sort: sortBy.nameSort,
     _order: sortBy.type,
   });
+
+  console.log("LoadingProduct", loadingProduct);
 
   useEffect(() => {
     refetch();
@@ -149,6 +151,8 @@ const Product = () => {
             <ProductContent
               urlPage={+searchParams.get("page")}
               productList={productList}
+              loadingProduct={loadingProduct}
+              limitProduct={+searchParams.get("limit")}
             />
 
             <div className={cx("pagination")}>

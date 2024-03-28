@@ -22,6 +22,7 @@ import { useCreateOrder } from "@/react-query/orderQuery";
 import handleDecoded from "@/utils/jwtDecode";
 import message from "@/utils/message.js";
 import { removeOrderProduct } from "@/redux/slice/orderSlice";
+import { Breadcrumb } from "@/components";
 
 const cx = classNames.bind(styles);
 const Order = (props) => {
@@ -137,119 +138,125 @@ const Order = (props) => {
 
   return (
     <div className={cx("order")}>
-      <div className="container">
-        <div className={cx("order-title")}>Thanh toán</div>
-        <div className={cx("order-row")}>
-          <div className={cx("order-col")}>
-            <div className={cx("order-list")}>
-              {orderOption.map((item, index) => (
-                <div key={index} className={cx("order-item")}>
-                  <div className={cx("order-item__title")}>{item.title}</div>
+      <Breadcrumb bgColor="white" />
 
-                  <div className={cx("order-item__content")}>
-                    <FormControl>
-                      <RadioGroup
-                        name="controlled-radio-buttons-group"
-                        value={item.value}
-                        onChange={item.onChange}
-                      >
-                        {item.option.map((optionItem, index) => (
-                          <FormControlLabel
-                            key={index}
-                            value={optionItem.value}
-                            control={<Radio />}
-                            label={optionItem.title}
-                          />
-                        ))}
-                      </RadioGroup>
-                    </FormControl>
+      <div className={cx("order-wrapper")}>
+        <div className="container">
+          <div className={cx("order-title")}>Thanh toán</div>
+          <div className={cx("order-row")}>
+            <div className={cx("order-col")}>
+              <div className={cx("order-list")}>
+                {orderOption.map((item, index) => (
+                  <div key={index} className={cx("order-item")}>
+                    <div className={cx("order-item__title")}>{item.title}</div>
+
+                    <div className={cx("order-item__content")}>
+                      <FormControl>
+                        <RadioGroup
+                          name="controlled-radio-buttons-group"
+                          value={item.value}
+                          onChange={item.onChange}
+                        >
+                          {item.option.map((optionItem, index) => (
+                            <FormControlLabel
+                              key={index}
+                              value={optionItem.value}
+                              control={<Radio />}
+                              label={optionItem.title}
+                            />
+                          ))}
+                        </RadioGroup>
+                      </FormControl>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={cx("order-col")}>
+              <div className={cx("order-list")}>
+                <div className={cx("order-item")}>
+                  <div>
+                    <span className={cx("order-label")}>Địa Chỉ:</span>
+                    <span className={cx("order-info")}>
+                      {currentUser.address}
+                    </span>
+                    <span
+                      className={cx("order-change")}
+                      onClick={() => setIsOpenUpdateAddress(true)}
+                    >
+                      Thay đổi
+                    </span>
+                  </div>
+                  <div>
+                    <span className={cx("order-label")}>Số điện thoại:</span>
+                    <span className={cx("order-info")}>
+                      {currentUser.phone}
+                    </span>
+                    <span
+                      className={cx("order-change")}
+                      onClick={() => setIsOpenUpdatePhone(true)}
+                    >
+                      Thay đổi
+                    </span>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className={cx("order-col")}>
-            <div className={cx("order-list")}>
-              <div className={cx("order-item")}>
-                <div>
-                  <span className={cx("order-label")}>Địa Chỉ:</span>
-                  <span className={cx("order-info")}>
-                    {currentUser.address}
-                  </span>
-                  <span
-                    className={cx("order-change")}
-                    onClick={() => setIsOpenUpdateAddress(true)}
-                  >
-                    Thay đổi
-                  </span>
+                <div className={cx("order-item")}>
+                  <div>
+                    <span>Tạm tính:</span>
+                    <span className={cx("order-price")}>
+                      {currencyFormat(state?.totalPrice)}
+                    </span>
+                  </div>
+                  <div>
+                    <span>Phí giao hàng:</span>
+                    <span className={cx("order-price")}>
+                      {currencyFormat(priceDelivery)}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <span className={cx("order-label")}>Số điện thoại:</span>
-                  <span className={cx("order-info")}>{currentUser.phone}</span>
-                  <span
-                    className={cx("order-change")}
-                    onClick={() => setIsOpenUpdatePhone(true)}
-                  >
-                    Thay đổi
-                  </span>
-                </div>
-              </div>
-              <div className={cx("order-item")}>
-                <div>
-                  <span>Tạm tính:</span>
-                  <span className={cx("order-price")}>
-                    {currencyFormat(state?.totalPrice)}
-                  </span>
-                </div>
-                <div>
-                  <span>Phí giao hàng:</span>
-                  <span className={cx("order-price")}>
-                    {currencyFormat(priceDelivery)}
-                  </span>
+                <div className={cx("order-item")}>
+                  <div>
+                    <span>Tổng tiền:</span>
+                    <span>
+                      <p className={cx("order__total-price")}>
+                        {currencyFormat(state?.totalPrice + priceDelivery)}
+                      </p>
+                      <p className={cx("order__total-info")}>
+                        (đã bao gồm VAT nếu có)
+                      </p>
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className={cx("order-item")}>
-                <div>
-                  <span>Tổng tiền:</span>
-                  <span>
-                    <p className={cx("order__total-price")}>
-                      {currencyFormat(state?.totalPrice + priceDelivery)}
-                    </p>
-                    <p className={cx("order__total-info")}>
-                      (đã bao gồm VAT nếu có)
-                    </p>
-                  </span>
-                </div>
-              </div>
-            </div>
 
-            <Button
-              primary
-              className={cx("order-button")}
-              onClick={handleOpenForm}
-            >
-              Đặt hàng
-            </Button>
+              <Button
+                primary
+                className={cx("order-button")}
+                onClick={handleOpenForm}
+              >
+                Đặt hàng
+              </Button>
+            </div>
           </div>
+
+          {isOpenUpdatePhone && (
+            <UpdateUserForm
+              userKey="phone"
+              currentValue={currentUser.phone}
+              idUser={currentUser._id}
+              setOpenForm={setIsOpenUpdatePhone}
+            />
+          )}
+
+          {isOpenUpdateAddress && (
+            <UpdateUserForm
+              userKey="address"
+              currentValue={currentUser.address}
+              idUser={currentUser._id}
+              setOpenForm={setIsOpenUpdateAddress}
+            />
+          )}
         </div>
-
-        {isOpenUpdatePhone && (
-          <UpdateUserForm
-            userKey="phone"
-            currentValue={currentUser.phone}
-            idUser={currentUser._id}
-            setOpenForm={setIsOpenUpdatePhone}
-          />
-        )}
-
-        {isOpenUpdateAddress && (
-          <UpdateUserForm
-            userKey="address"
-            currentValue={currentUser.address}
-            idUser={currentUser._id}
-            setOpenForm={setIsOpenUpdateAddress}
-          />
-        )}
       </div>
 
       <Dialog

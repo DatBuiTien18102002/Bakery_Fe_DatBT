@@ -7,8 +7,9 @@ import currencyFormat from "@/utils/currencyFormat";
 
 const cx = classNames.bind(styles);
 function CakeItem({ data }) {
+  console.log("CakeItem", data);
   return (
-    <Link to={`/Product/${data.id}`} className={cx("wrapper")}>
+    <Link to={`/product/${data._id}`} className={cx("wrapper")}>
       <img
         className={cx("avatar")}
         src={data?.image ? data.image : images.productImgDefault}

@@ -30,12 +30,16 @@ import aboutIcon4 from "@/assets/images/about-icon-4.png"
 import aboutPage from "@/assets/images/aboutus.jpg"
 import noCart from "@/assets/images/empty_cart.png"
 import noOrder from "@/assets/images/no-order.svg"
+import gifLoad from "@/assets/images/load.gif"
+import pageProductNotFound from "@/assets/images/pageProductNotFound.png"
+
 
 
 const images = {
     productImgDefault: productImg,
     avatarDefault: avatar,
-    carousel: [carousel2, carousel3],
+    // carousel: [carousel2, carousel3],
+    carousel: [{ src: carousel2, hash: "L29%O|~XF*LMd;MJD%I:0NNF?uZ$" }, { src: carousel3, hash: "L04n-|-;004.00Nb~q-VTdW;a0%1" }],
     iconCarousel: iconBakery,
     introduceFont: imgBakeryFront,
     introduceBehind: imgBakeryBehind,
@@ -72,6 +76,8 @@ const images = {
     aboutPage,
     noCart,
     noOrder,
+    gifLoad,
+    pageProductNotFound,
 
     // defaultImage: require('@/assets/images/avatar.jpg'),
     // bgImage: require('@/assets/images/bgcake1.jpg'),

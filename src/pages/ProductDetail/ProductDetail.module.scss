@@ -29,16 +29,15 @@
     font-weight: bold;
     color: white;
   }
+
+  .product-detail__img {
+    border-radius: 10px;
+    height: 450px;
+  }
 }
 
 .product-detail-col:last-child {
   width: 55%;
-}
-
-.product-detail__img {
-  border-radius: 10px;
-  // max-width: 450px;
-  height: 450px;
 }
 
 .product-detail__tittle {
@@ -50,6 +49,7 @@
 .product-detail__rate-num {
   margin: 10px 0;
   font-size: 0.875rem;
+  width: fit-content;
 }
 
 .product-detail__desc {
@@ -57,6 +57,8 @@
 }
 
 .product-detail__price {
+  display: flex;
+  gap: 10px;
   margin-bottom: 5px;
 }
 

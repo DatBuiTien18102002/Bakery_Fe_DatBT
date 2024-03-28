@@ -7,6 +7,7 @@ import images from "@/assets/images";
 import PhoneIcon from "@mui/icons-material/Phone";
 import PlaceIcon from "@mui/icons-material/Place";
 import MailIcon from "@mui/icons-material/Mail";
+import ImageCustom from "@/components/ImageCustom/ImageCustom";
 
 const cx = classNames.bind(styles);
 const Contact = () => {
@@ -21,8 +22,13 @@ const Contact = () => {
 
         <div className={cx("contact-row")}>
           <div className={cx("contact-col")}>
-            <div className={cx("contact-img")}>
-              <img src={images.contactImg} alt="" />
+            <div className={cx("contact__img-wrapper")}>
+              <ImageCustom
+                src={images.contactImg}
+                hash={"LHP6KmD4,,IVu6R3ivE18_RjtSWW"}
+                height="450px"
+                className={cx("contact-img")}
+              />
             </div>
           </div>
           <div className={cx("contact-col")}>

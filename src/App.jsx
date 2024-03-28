@@ -10,6 +10,9 @@ import { updateUser } from "@/redux/slice/userSlice";
 import Admin from "@/pages/Admin/Admin";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop.jsx";
 import config from "./config";
+import LoadingPage from "@/components/Loading/LoadingPage/LoadingPage";
+import { AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +20,7 @@ function App() {
 
   const { storageData, decoded } = handleDecoded();
 
-  const { data: detailUser } = useGetDetailUser({
+  const { data: detailUser, isLoading: loadingUser } = useGetDetailUser({
     id: decoded.payload?.id,
     token: storageData,
   });
@@ -45,6 +48,10 @@ function App() {
           element={
             <Layout>
               <ScrollToTop />
+
+              <Helmet>
+                <title>{route.title}</title>
+              </Helmet>
               <Page />
             </Layout>
           }
@@ -68,12 +75,17 @@ function App() {
             element={
               <DefaultLayout>
                 <ScrollToTop />
+                <Helmet>
+                  <title>{config.titles.admin}</title>
+                </Helmet>
                 <Admin />
               </DefaultLayout>
             }
           />
         )}
       </Routes>
+
+      <AnimatePresence>{loadingUser && <LoadingPage />}</AnimatePresence>
     </div>
   );
 }

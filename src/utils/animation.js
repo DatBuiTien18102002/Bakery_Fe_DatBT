@@ -1,4 +1,4 @@
-export const backInLeft = (duration) => {
+export const backInLeft = (duration = 0) => {
     return {
         hidden: {
             x: "-100%",
@@ -13,7 +13,7 @@ export const backInLeft = (duration) => {
 
     }
 }
-export const fadeIn = (duration) => {
+export const fadeIn = (duration = 0) => {
     return {
         hidden: {
             opacity: 0

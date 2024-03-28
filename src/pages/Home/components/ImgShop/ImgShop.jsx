@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./ImgShop.module.scss";
 import images from "@/assets/images";
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
+import ImageCustom from "@/components/ImageCustom/ImageCustom";
 
 const cx = classNames.bind(styles);
 const ImgShop = () => {
@@ -15,16 +16,32 @@ const ImgShop = () => {
 
         <div className={cx("image-list")}>
           <div className={cx("image-item")}>
-            <img src={images.imgShop.imgShop1} alt="" />
+            <ImageCustom
+              src={images.imgShop.imgShop1}
+              hash={"LEHBrL~qEQ.8xG?bRjozMwIUWCoe"}
+              className={cx("image-pic")}
+            />
           </div>
           <div className={cx("image-item")}>
-            <img src={images.imgShop.imgShop2} alt="" />
+            <ImageCustom
+              src={images.imgShop.imgShop2}
+              hash={"LJI=b~?dks%$Y4rrIoI=^+NHNF?a"}
+              className={cx("image-pic")}
+            />
           </div>
           <div className={cx("image-item")}>
-            <img src={images.imgShop.imgShop3} alt="" />
+            <ImageCustom
+              src={images.imgShop.imgShop3}
+              hash={"LTK1,l8_DiIo?wadITM{sCj=kWxb"}
+              className={cx("image-pic")}
+            />
           </div>
           <div className={cx("image-item")}>
-            <img src={images.imgShop.imgShop4} alt="" />
+            <ImageCustom
+              src={images.imgShop.imgShop4}
+              hash={"LCIN~pJH$xM_B?o|4p%1}#b1r;%2"}
+              className={cx("image-pic")}
+            />
           </div>
         </div>
       </div>

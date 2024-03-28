@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./CarouselBg.module.scss";
 import Slider from "react-slick";
 import images from "@/assets/images";
+import ImageCustom from "@/components/ImageCustom/ImageCustom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -71,7 +72,11 @@ const CarouselBg = ({ imgList }) => {
         <Slider {...settings} style={{ width: "100%" }}>
           {imgList.map((image, index) => (
             <div key={index} className={cx("carousel-wrapper")}>
-              <img src={image} alt="" className={cx("carousel-img")} />
+              <ImageCustom
+                src={image.src}
+                hash={image.hash}
+                className={cx("carousel-img")}
+              />
               <h1 className={cx("carousel-tittle")}>
                 <span className={cx("icon-wrapper")}>
                   <img
