@@ -1,14 +1,4 @@
 import config from '@/config';
-
-// import AboutUs from '@/pages/AboutUs';
-// import Blog from '@/pages/Blog';
-// import Cart from '@/pages/Cart';
-// import Contact from '@/pages/Contact';
-
-// import PageNotFound from '@/pages/PageNotFound/PageNotFound';
-// import Product from '@/pages/Product';
-// import ProductDetail from '@/pages/ProductDetail';
-// import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout';
 import { HomePage, ContactPage, AboutUsPage, ProductPage, ProductDetailPage, CartPage, OrderPage, MyOrdersPage } from '@/pages';
 import ProfileForm from '@/forms/ProfileForm/ProfileForm';
 import { NoCartIconLayout, DefaultLayout, NoBreadcrumbLayout } from '@/layouts';

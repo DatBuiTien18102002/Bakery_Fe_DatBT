@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 
-import AuthFormView from "./components/AuthFormView/AuthFormView";
 import { useLoginUser, useCreateUser } from "@/react-query/userQuery";
 import { useDispatch } from "react-redux";
-import message from "@/utils/message";
 import { jwtDecode } from "jwt-decode";
 
+import AuthFormView from "./components/AuthFormView/AuthFormView";
+import message from "@/utils/message";
 import { updateUser } from "@/redux/slice/userSlice";
-import userApi from "../../services/userApi";
+import userApi from "@/services/userApi";
 
 const AuthForm = (props) => {
   const dispatch = useDispatch();

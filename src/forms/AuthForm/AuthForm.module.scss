@@ -1,6 +1,6 @@
 .auth-form__container {
-  width: 500px;
   padding: 10px 32px;
+  width: 500px;
 }
 
 .auth-form__header {
@@ -101,15 +101,15 @@
 
 .auth-form__socials--fb {
   display: inline-block;
+  border-radius: 5px;
   color: white;
   background-color: #3a5a98;
-  border-radius: 5px;
 }
 
 .auth-form__socials--gg {
   display: inline-block;
-  color: #666;
   border-radius: 5px;
+  color: #666;
   background-color: white;
 }
 

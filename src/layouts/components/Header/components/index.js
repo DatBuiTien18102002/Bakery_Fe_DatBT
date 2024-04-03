@@ -1,1 +1,5 @@
 export { default as CardItem } from "./CardItem/CardItem.jsx"
+export { default as HeaderLogo } from "./HeaderLogo/HeaderLogo.jsx"
+export { default as HeaderNav } from "./HeaderNav/HeaderNav.jsx"
+export { default as HeaderCart } from "./HeaderCart/HeaderCart.jsx"
+export { default as HeaderUser } from "./HeaderUser/HeaderUser.jsx"

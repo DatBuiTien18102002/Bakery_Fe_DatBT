@@ -8,11 +8,11 @@
 }
 
 .order-title {
-  color: #464646;
+  margin-bottom: 15px;
 
+  color: #464646;
   font-weight: 700;
   font-size: 1.5rem;
-  margin-bottom: 15px;
   text-transform: uppercase;
 }
 
@@ -40,6 +40,7 @@
   flex-direction: column;
   gap: 5px;
   padding: 17px;
+
   background-color: white;
   font-size: 0.875rem;
 
@@ -56,8 +57,8 @@
 
 .order-info {
   flex: 1;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
   font-weight: bold;
 }
@@ -74,11 +75,12 @@
 }
 
 .order__total-price {
+  display: flex;
+  justify-content: end;
+
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--primary-darker);
-  display: flex;
-  justify-content: end;
 }
 
 .order__total-info {
@@ -86,8 +88,8 @@
 }
 
 .order-button {
-  width: 100%;
   margin-top: 20px;
+  width: 100%;
   padding: 15px 0;
 }
 
@@ -108,9 +110,9 @@
 
 .order-item__content {
   padding: 15px;
-  background-color: rgb(245 232 221);
   border: 1px solid var(--primary-darker);
   border-radius: 5px;
+  background-color: rgb(245 232 221);
 }
 
 .confirm-price {

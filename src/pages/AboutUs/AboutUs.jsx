@@ -1,9 +1,10 @@
-import classNames from "classnames/bind";
-import styles from "./AboutUs.module.scss";
-import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
-import images from "@/assets/images";
 import React, { useEffect, useRef } from "react";
 
+import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
+
+import images from "@/assets/images";
+import styles from "./AboutUs.module.scss";
+import classNames from "classnames/bind";
 import { ImageCustom } from "@/components";
 
 const cx = classNames.bind(styles);

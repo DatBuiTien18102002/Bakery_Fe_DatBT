@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
-import styles from "./TimeService.module.scss";
 
+import styles from "./TimeService.module.scss";
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
 
 const cx = classNames.bind(styles);

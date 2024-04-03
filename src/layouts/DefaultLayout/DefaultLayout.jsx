@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
+
 import { Header, Footer } from "@/layouts/components";
-import { Breadcrumb } from "../../components";
-import { useLocation } from "react-router-dom";
-import { useGetDetailProduct } from "@/react-query/productQuery";
+import { Breadcrumb } from "@/components";
 
 const DefaultLayout = ({ children }) => {
   return (

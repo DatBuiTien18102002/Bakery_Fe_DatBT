@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+
 import styles from "./RatingCakesForm.module.scss";
 import classNames from "classnames/bind";
-
 import CancelIcon from "@mui/icons-material/Cancel";
 import Rating from "@mui/material/Rating";
+import { TextField } from "@mui/material";
 
 import { Modal, Button } from "@/components";
-import { useUpdateProduct } from "../../react-query/productQuery";
-import { useUpdateOrder } from "../../react-query/orderQuery";
+import { useUpdateProduct } from "@/react-query/productQuery";
+import { useUpdateOrder } from "@/react-query/orderQuery";
 import message from "@/utils/message.js";
+import { useSelector } from "react-redux";
+import productApi from "@/services/productApi";
 
 const cx = classNames.bind(styles);
 const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
+  const currentUser = useSelector((state) => state.user);
+
   const { mutateAsync: updateProduct } = useUpdateProduct();
   const { mutateAsync: updateOrder, isPending: loadingUpdate } =
     useUpdateOrder();
@@ -20,9 +25,11 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
   const [ratingOrders, setRatingOrders] = useState(
     itemsOrder.map((item) => ({ id: item._id, rate: 0 }))
   );
-
   const [itemsRating, setItemsRating] = useState(
     itemsOrder.filter((item) => item.isRating === false)
+  );
+  const [commentOrders, setCommentOrders] = useState(
+    itemsOrder.map((item) => ({ id: item._id, comment: "" }))
   );
 
   useEffect(() => {
@@ -30,6 +37,11 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
       openForm(false);
     }
   }, [itemsRating]);
+
+  const getCommentById = (id) => {
+    const commentOrder = commentOrders.find((item) => item.id === id);
+    return commentOrder.comment;
+  };
 
   const handleEvaluate = async (item) => {
     const newOrder = itemsOrder.map((itemOrder) => {
@@ -45,6 +57,37 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
     const ratingUpdate = ratingOrders.find(
       (itemOrder) => itemOrder.id === item._id
     );
+    const commentUpdate = commentOrders.find(
+      (itemOrder) => itemOrder.id === item._id
+    );
+    const productRating = await productApi.getDetailProduct(item._id);
+
+    let newComments;
+
+    if (productRating.data?.comments) {
+      newComments = [
+        ...productRating.data.comments,
+        {
+          userId: currentUser._id,
+          userAvatar: currentUser.avatar,
+          userName: currentUser?.name || currentUser?.email,
+          rating: ratingUpdate.rate,
+          comment: commentUpdate.comment,
+          dateComment: new Date(),
+        },
+      ];
+    } else {
+      newComments = [
+        {
+          userId: currentUser._id,
+          userAvatar: currentUser.avatar,
+          userName: currentUser?.name || currentUser?.email,
+          rating: ratingUpdate.rate,
+          comment: commentUpdate.comment,
+          dateComment: new Date(),
+        },
+      ];
+    }
 
     const newRating =
       (cakeUpdate.rating * cakeUpdate.amountRate + ratingUpdate.rate) /
@@ -54,6 +97,7 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
       id: cakeUpdate._id,
       rating: newRating.toFixed(1),
       amountRate: cakeUpdate.amountRate + 1,
+      comments: newComments,
     });
 
     const resUpdateOrder = await updateOrder({
@@ -90,6 +134,7 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
             onClick={() => openForm(false)}
           />
         </div>
+
         <div className={cx("rating-cake__header")}>Đánh giá sản phẩm</div>
 
         <div className={cx("rating-cake__list")}>
@@ -99,34 +144,61 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
                 <div className={cx("rating-cake__img")}>
                   <img src={item.image} alt="" />
                 </div>
-                <div className={cx("rating-cake__content")}>
-                  <div className={cx("rating-cake__name")}>{item.name}</div>
-                  <div className={cx("rating-cake__rate")}>
-                    <Rating
-                      name="simple-controlled"
-                      defaultValue={0}
-                      onChange={(_, newValue) => {
-                        const newRating = ratingOrders.filter(
-                          (itemRating) => itemRating.id !== item._id
-                        );
 
-                        setRatingOrders([
-                          ...newRating,
-                          { id: item._id, rate: newValue },
+                <div className={cx("rating-cake__content")}>
+                  <div className={cx("rating-cake__wrapper")}>
+                    <div>
+                      <div className={cx("rating-cake__name")}>{item.name}</div>
+
+                      <div className={cx("rating-cake__rate")}>
+                        <Rating
+                          name="simple-controlled"
+                          defaultValue={0}
+                          onChange={(_, newValue) => {
+                            const newRatings = ratingOrders.filter(
+                              (itemRating) => itemRating.id !== item._id
+                            );
+                            setRatingOrders([
+                              ...newRatings,
+                              { id: item._id, rate: newValue },
+                            ]);
+                          }}
+                          size="small"
+                        />
+                      </div>
+                    </div>
+
+                    <div className={cx("rating-cake__btn-update")}>
+                      <Button
+                        primary
+                        onClick={async () => await handleEvaluate(item)}
+                        disable={loadingUpdate}
+                      >
+                        Đánh giá
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className={cx("rating-cake__comment")}>
+                    <TextField
+                      id="commentCake"
+                      label="Bình luận về sản phẩm"
+                      fullWidth
+                      // color="primary"
+                      multiline={true}
+                      rows={2}
+                      value={getCommentById(item._id)}
+                      onChange={(e) => {
+                        const newComments = commentOrders.filter(
+                          (itemComment) => itemComment.id !== item._id
+                        );
+                        setCommentOrders([
+                          ...newComments,
+                          { id: item._id, comment: e.target.value },
                         ]);
                       }}
-                      size="small"
                     />
                   </div>
-                </div>
-                <div className={cx("rating-cake__btn-update")}>
-                  <Button
-                    primary
-                    onClick={async () => await handleEvaluate(item)}
-                    disable={loadingUpdate}
-                  >
-                    Đánh giá
-                  </Button>
                 </div>
               </div>
             );

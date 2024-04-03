@@ -1,4 +1,4 @@
-import { axiosClient, axiosAuthClient } from "@/utils/httpRequest";
+import { axiosAuthClient } from "@/utils/httpRequest";
 
 const resourceName = '/order';
 

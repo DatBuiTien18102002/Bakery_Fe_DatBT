@@ -1,11 +1,11 @@
-import classNames from "classnames/bind";
-import styles from "./Product.module.scss";
-
 import { useEffect, useState } from "react";
 
+import classNames from "classnames/bind";
 import { Pagination } from "@mui/material";
-import { useGetProducts } from "@/react-query/productQuery";
 import { useSearchParams } from "react-router-dom";
+
+import styles from "./Product.module.scss";
+import { useGetProducts } from "@/react-query/productQuery";
 import { ProductContent, ProductHeading, ProductSideBar } from "./components";
 
 const cx = classNames.bind(styles);

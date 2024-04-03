@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
+
 import classNames from "classnames/bind";
-import styles from "./ProductSideBar.module.scss";
 import { Fragment } from "react";
 
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import styles from "./ProductSideBar.module.scss";
 
 const cx = classNames.bind(styles);
 const ProductSideBar = ({

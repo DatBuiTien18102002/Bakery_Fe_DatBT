@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import productImg from '@/assets/images/product_img_default.jpg'
 import avatar from '@/assets/images/avatar.jpg'
-import carousel1 from "@/assets/images/bgcake1.jpg"
 import carousel2 from "@/assets/images/bgcake2.jpg"
 import carousel3 from "@/assets/images/bgcake3.jpg"
 import iconBakery from "@/assets/images/icon_bakery.png"
@@ -32,13 +31,13 @@ import noCart from "@/assets/images/empty_cart.png"
 import noOrder from "@/assets/images/no-order.svg"
 import gifLoad from "@/assets/images/load.gif"
 import pageProductNotFound from "@/assets/images/pageProductNotFound.png"
+import noComment from "@/assets/images/noComment.jpg"
 
 
 
 const images = {
     productImgDefault: productImg,
     avatarDefault: avatar,
-    // carousel: [carousel2, carousel3],
     carousel: [{ src: carousel2, hash: "L29%O|~XF*LMd;MJD%I:0NNF?uZ$" }, { src: carousel3, hash: "L04n-|-;004.00Nb~q-VTdW;a0%1" }],
     iconCarousel: iconBakery,
     introduceFont: imgBakeryFront,
@@ -78,30 +77,7 @@ const images = {
     noOrder,
     gifLoad,
     pageProductNotFound,
-
-    // defaultImage: require('@/assets/images/avatar.jpg'),
-    // bgImage: require('@/assets/images/bgcake1.jpg'),
-    // bgImage2: require('@/assets/images/bgcake2.jpg'),
-    // bgImage3: require('@/assets/images/bgcake3.jpg'),
-
-    // noCart: require('@/assets/images/empty_cart.png'),
-    // productImgDefault: require("@/assets/images/product_img_default"),
-    // notFound: require('@/assets/images/PageNotFound.jpg'),
-
-    // cake: {
-    //     cupcake: require('@/assets/images/Cake/cupcake.jpg'),
-    //     strawberryCake: require('@/assets/images/Cake/strawberrycake.jpg'),
-    //     donut: require('@/assets/images/Cake/donut.jpg'),
-    //     creamCake: require('@/assets/images/Cake/creamcake.jpg'),
-    //     mousse: require('@/assets/images/Cake/mousse.jpg'),
-    //     pancake: require('@/assets/images/Cake/pancake.jpg'),
-    //     fritter: require('@/assets/images/Cake/fritter.jpg'),
-    // },
-
-    // iconBakery: require('@/assets/images/icon_bakery.png'),
-    // imgBakeryFront: require('@/assets/images/image_bakery_front.png'),
-    // imgBakeryBehind: require('@/assets/images/image_bakery_behind.jpg'),
-    // menu: require('@/assets/images/menu.jpg'),
+    noComment,
 
 };
 

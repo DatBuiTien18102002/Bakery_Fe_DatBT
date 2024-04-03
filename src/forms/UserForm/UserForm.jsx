@@ -1,17 +1,19 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 import classNames from "classnames/bind";
-import styles from "./UserForm.module.scss";
-import * as Yup from "yup";
 import { FastField, Form, Formik } from "formik";
-import { Button } from "@/components";
-import { InputField, PassField, FileField } from "@/forms/components";
-import { useState } from "react";
+
+import styles from "./UserForm.module.scss";
 import images from "@/assets/images";
-import { useCreateUser, useUpdateUser } from "@/react-query/userQuery";
 import message from "@/utils/message.js";
 import handleDecoded from "@/utils/jwtDecode";
+import { Button } from "@/components";
+import { InputField, PassField, FileField } from "@/forms/components";
+import { useCreateUser, useUpdateUser } from "@/react-query/userQuery";
 import { Modal } from "@/components";
+import { validateCreateUser } from "@/forms/validateSchema";
+import { validateEditUser } from "@/forms/validateSchema";
 
 const cx = classNames.bind(styles);
 const UserForm = ({
@@ -46,26 +48,6 @@ const UserForm = ({
     address: userEdit?.address ? userEdit?.address : "",
     avatar: userEdit?.avatar ? userEdit?.avatar : "",
   };
-
-  const validateCreateSchema = Yup.object({
-    email: Yup.string()
-      .email("Email không hợp lệ")
-      .required("Email không được để trống ! "),
-    password: Yup.string()
-      .min(6, "Mật khẩu phải tối thiểu 6 chữ số !")
-      .required("Mật khẩu không được để trống !"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Mật khẩu không trùng khớp! ")
-      .required("Nhập lại mật khẩu !"),
-    phone: Yup.number().min(10, "Số điện thoại tối thiểu 10 chữ số!"),
-  });
-
-  const validateEditSchema = Yup.object({
-    email: Yup.string()
-      .email("Email không hợp lệ")
-      .required("Email không được để trống ! "),
-    phone: Yup.number().min(10, "Số điện thoại tối thiểu 10 chữ số!"),
-  });
 
   const handleUserForm = async (values) => {
     const { storageData } = handleDecoded();
@@ -102,7 +84,7 @@ const UserForm = ({
     <Formik
       initialValues={action === "Create" ? initialCreateUser : initialEditUser}
       validationSchema={
-        action === "Create" ? validateCreateSchema : validateEditSchema
+        action === "Create" ? validateCreateUser : validateEditUser
       }
       onSubmit={async (values) => await handleUserForm(values)}
     >

@@ -1,0 +1,20 @@
+.no-comment__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+  height: 400px;
+}
+
+.no-comment__img {
+  width: unset;
+  height: 300px;
+}
+
+.no-comment__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  opacity: 0.7;
+}

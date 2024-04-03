@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import PropTypes from "prop-types";
-import classNames from "classnames/bind";
-import styles from "./SelectField.module.scss";
+import { useEffect } from "react";
 
+import classNames from "classnames/bind";
 import {
   FormControl,
   FormHelperText,
@@ -10,7 +10,8 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { useEffect } from "react";
+
+import styles from "./SelectField.module.scss";
 
 SelectField.defaultProps = {
   type: "text",

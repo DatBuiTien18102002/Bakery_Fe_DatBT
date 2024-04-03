@@ -1,11 +1,11 @@
-import React from "react";
-import styles from "./AdminOrder.module.scss";
 import classNames from "classnames/bind";
-import { useGetAllOrder, useUpdateOrder } from "@/react-query/orderQuery";
-import handleDecoded from "@/utils/jwtDecode";
 import { DataGrid } from "@mui/x-data-grid";
-import currencyFormat from "@/utils/currencyFormat.js";
 import { format } from "date-fns";
+
+import styles from "./AdminOrder.module.scss";
+import handleDecoded from "@/utils/jwtDecode";
+import { useGetAllOrder, useUpdateOrder } from "@/react-query/orderQuery";
+import currencyFormat from "@/utils/currencyFormat.js";
 import Button from "@/components/Button/Button";
 
 const cx = classNames.bind(styles);
@@ -13,7 +13,6 @@ const AdminOrder = () => {
   const { storageData } = handleDecoded();
   const { data: allOrder } = useGetAllOrder(storageData);
   const { mutateAsync: updateOrder } = useUpdateOrder();
-  // console.log(allOrder?.data);
 
   const newAllOrder = allOrder?.data.map((item, index) => {
     index += 1;
@@ -24,13 +23,13 @@ const AdminOrder = () => {
   });
 
   const handleUpdateStatus = async (id) => {
-    const data = await updateOrder({
+    await updateOrder({
       id: id,
       infoUpdate: {
         status: "confirm_order",
+        deliveredAt: new Date(),
       },
     });
-    console.log("Update", data);
   };
 
   const renderStatus = (status, id) => {

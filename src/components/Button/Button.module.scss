@@ -2,14 +2,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
-  font-weight: 700;
-  min-width: 100px;
+
   padding: 7px 16px;
+  min-width: 100px;
   border-radius: 4px;
-  cursor: pointer;
   border: 1px solid transparent;
   background-color: var(--white);
+
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  cursor: pointer;
   user-select: none;
 
   &.disable {

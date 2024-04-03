@@ -1,11 +1,12 @@
-import classNames from "classnames/bind";
-import styles from "./ProductHeading.module.scss";
 import PropTypes from "prop-types";
-import { Button } from "@/components";
 
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import classNames from "classnames/bind";
+
+import styles from "./ProductHeading.module.scss";
+import { Button } from "@/components";
 
 const cx = classNames.bind(styles);
 const ProductHeading = ({

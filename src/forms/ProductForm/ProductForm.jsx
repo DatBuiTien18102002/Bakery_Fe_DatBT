@@ -1,16 +1,18 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 import classNames from "classnames/bind";
-import styles from "./ProductForm.module.scss";
 import * as Yup from "yup";
 import { FastField, Form, Formik } from "formik";
+
+import styles from "./ProductForm.module.scss";
+import images from "@/assets/images";
 import { Button } from "@/components";
 import { InputField, FileField, SelectField } from "@/forms/components";
-import { useState } from "react";
-import images from "@/assets/images";
 import { useCreateProduct, useUpdateProduct } from "@/react-query/productQuery";
 import message from "@/utils/message.js";
 import { Modal } from "@/components";
+import { validateProduct } from "@/forms/validateSchema";
 
 const cx = classNames.bind(styles);
 const ProductForm = ({
@@ -50,22 +52,13 @@ const ProductForm = ({
     discount: productEdit?.data?.discount ? productEdit.data?.discount : "",
   };
 
-  const validateSchema = Yup.object({
-    name: Yup.string().required("Name không được để trống ! "),
-    price: Yup.number().required("Price không được để trống ! "),
-    countInStock: Yup.number().required(
-      "Count In Stock không được để trống ! "
-    ),
-    type: Yup.string().required("type không được để trống ! "),
-  });
-
   if (isMoreType === true) {
-    validateSchema.fields.newType = Yup.string().required(
+    validateProduct.fields.newType = Yup.string().required(
       "New Type không được để trống ! "
     );
-    validateSchema._nodes.push("newType");
+    validateProduct._nodes.push("newType");
   } else {
-    delete validateSchema.fields.newType;
+    delete validateProduct.fields.newType;
   }
 
   const handleProductForm = async (values) => {
@@ -98,7 +91,7 @@ const ProductForm = ({
   return (
     <Formik
       initialValues={initialProduct}
-      validationSchema={validateSchema}
+      validationSchema={validateProduct}
       onSubmit={async (values) => await handleProductForm(values)}
     >
       {() => {

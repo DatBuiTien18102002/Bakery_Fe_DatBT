@@ -1,20 +1,24 @@
+import { useState } from "react";
+
 import classNames from "classnames/bind";
-import styles from "./Cart.module.scss";
+import DeleteIcon from "@mui/icons-material/Delete";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { DataGrid } from "@mui/x-data-grid";
+
+import styles from "./Cart.module.scss";
 import images from "@/assets/images";
 import currencyFormat from "@/utils/currencyFormat.js";
 import getPriceDiscount from "@/utils/getPriceDiscount";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { removeOrderProduct } from "@/redux/slice/orderSlice";
-import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@/components";
 import config from "@/config";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { selectedOrderItems } from "@/redux/slice/orderSlice";
-import { useState } from "react";
-import { updateAmount } from "../../redux/slice/orderSlice";
+import {
+  selectedOrderItems,
+  updateAmount,
+  removeOrderProduct,
+} from "@/redux/slice/orderSlice";
 import message from "@/utils/message.js";
-import { useNavigate } from "react-router-dom";
 import { UserForm } from "@/forms";
 
 const cx = classNames.bind(styles);

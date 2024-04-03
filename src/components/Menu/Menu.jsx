@@ -1,9 +1,10 @@
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+
 import classNames from "classnames/bind";
-import styles from "./Menu.module.scss";
 import HeadlessTippy from "@tippyjs/react/headless";
 
-import { useEffect, useState } from "react";
+import styles from "./Menu.module.scss";
 import Wrapper from "./Wrapper/Wrapper";
 import HeaderMenu from "./HeaderMenu/HeaderMenu";
 import MenuItem from "./MenuItem/MenuItem";
@@ -54,6 +55,7 @@ function UserMenu({
         {history.length > 1 && (
           <HeaderMenu tittle={current.tittle} onBack={handleBack} />
         )}
+
         <div className={cx("body-menu")}>{renderItems()}</div>
       </Wrapper>
     </div>
@@ -68,9 +70,8 @@ function UserMenu({
       <HeadlessTippy
         interactive
         hideOnClick={hideOnClick}
-        // delay={[0, 700]}
         placement="bottom-end"
-        offset={[17, 17]} //Chỉnh vị trí headlesstippy
+        offset={[17, 17]}
         render={renderResult}
         onHide={handleResultOnHide}
       >

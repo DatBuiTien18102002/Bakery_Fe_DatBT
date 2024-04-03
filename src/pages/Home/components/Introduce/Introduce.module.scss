@@ -2,6 +2,7 @@
   --introduce-height: 500px;
   display: flex;
   justify-content: center;
+
   width: 100%;
   min-height: var(--introduce-height);
   padding: 25px 0;
@@ -30,6 +31,7 @@
 
   width: 100%;
   height: 100%;
+
   transition: 2s;
   backface-visibility: hidden;
 }
@@ -77,9 +79,10 @@
 }
 
 .introduce-separate {
-  margin-bottom: 8px;
   display: flex;
   align-items: center;
+
+  margin-bottom: 8px;
   color: var(--primary);
 }
 .introduce-icon {

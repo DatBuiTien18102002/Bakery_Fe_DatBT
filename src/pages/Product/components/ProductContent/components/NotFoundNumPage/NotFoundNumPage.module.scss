@@ -1,0 +1,12 @@
+.product__notFound-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 270px;
+}
+
+.product__notFound-img {
+  width: 250px;
+  height: 250px;
+}

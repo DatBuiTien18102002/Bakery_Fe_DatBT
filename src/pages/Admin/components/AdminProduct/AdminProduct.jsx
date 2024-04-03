@@ -1,16 +1,14 @@
-import classNames from "classnames/bind";
-import styles from "./AdminProduct.module.scss";
-
-import AddIcon from "@mui/icons-material/Add";
-import images from "@/assets/images";
-
-import { DataGrid } from "@mui/x-data-grid";
-
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { ProductForm } from "@/forms";
 import { useEffect, useState } from "react";
 
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import classNames from "classnames/bind";
+import { DataGrid } from "@mui/x-data-grid";
+
+import styles from "./AdminProduct.module.scss";
+import images from "@/assets/images";
+import { ProductForm } from "@/forms";
 import message from "@/utils/message.js";
 import {
   useGetAllProduct,
@@ -18,7 +16,6 @@ import {
   useDeleteProduct,
   useGetAllType,
 } from "@/react-query/productQuery";
-
 import currencyFormat from "@/utils/currencyFormat.js";
 
 const cx = classNames.bind(styles);

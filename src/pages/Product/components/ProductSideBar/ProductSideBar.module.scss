@@ -1,9 +1,9 @@
 //               Filter
 .product-filter {
-  padding-bottom: 1px;
-  background-color: #f4f2ed;
-  border-radius: 10px;
   padding: 16px;
+  padding-bottom: 1px;
+  border-radius: 10px;
+  background-color: #f4f2ed;
 }
 
 .product-filter__tittle {
@@ -35,6 +35,7 @@
   position: relative;
   margin: 10px 0;
   padding-left: 0;
+
   transition: padding-left 0.1s linear;
   cursor: pointer;
 
@@ -56,13 +57,14 @@
 }
 
 .product-filter__item::before {
-  position: absolute;
   content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+
   display: none;
   border: 6px solid;
   border-color: transparent transparent transparent var(--primary);
-  left: 0;
-  top: 50%;
   transform: translateY(-50%);
 }
 

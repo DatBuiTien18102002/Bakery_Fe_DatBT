@@ -1,13 +1,12 @@
-import classNames from "classnames/bind";
-import styles from "./Contact.module.scss";
-
-import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
-import images from "@/assets/images";
-
 import PhoneIcon from "@mui/icons-material/Phone";
 import PlaceIcon from "@mui/icons-material/Place";
 import MailIcon from "@mui/icons-material/Mail";
+import classNames from "classnames/bind";
+import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
+import images from "@/assets/images";
+
 import ImageCustom from "@/components/ImageCustom/ImageCustom";
+import styles from "./Contact.module.scss";
 
 const cx = classNames.bind(styles);
 const Contact = () => {

@@ -1,17 +1,15 @@
+import "react-toastify/dist/ReactToastify.css";
 import ReactDOM from "react-dom/client";
-import App from "@/App.jsx";
-import "@/globalStyles.scss";
-
-import { persistor, store } from "./redux/store.js";
-
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { QueryProvider } from "@/react-query/QueryProvider.jsx";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import React from "react";
+
+import "@/globalStyles.scss";
+import App from "@/App.jsx";
+import { persistor, store } from "./redux/store.js";
+import { QueryProvider } from "@/react-query/QueryProvider.jsx";
 
 const theme = createTheme({
   palette: {

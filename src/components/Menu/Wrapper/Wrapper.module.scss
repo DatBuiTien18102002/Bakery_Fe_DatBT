@@ -1,15 +1,17 @@
 .wrapper {
   --background-color: rgba(255, 255, 255);
-  //   width: 100%;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
   min-height: 100px;
+
   background-color: var(--background-color);
   box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
   border-radius: 8px;
-  padding-top: 8px;
   overflow-y: auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
 
   &.arrow {
     overflow-y: unset;
@@ -17,8 +19,9 @@
 
   &.arrow::before {
     content: "";
-    display: block;
     position: absolute;
+    display: block;
+
     border-width: 14px;
     border-style: solid;
     border-color: transparent transparent var(--background-color) transparent;

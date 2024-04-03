@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
-import classNames from "classnames/bind";
-import styles from "../../AuthForm.module.scss";
 
+import classNames from "classnames/bind";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 
+import styles from "../../AuthForm.module.scss";
 import SignInForm from "../SignInForm/SignInForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import { Modal } from "@/components";

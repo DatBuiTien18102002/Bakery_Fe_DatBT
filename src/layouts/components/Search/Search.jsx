@@ -1,16 +1,15 @@
 import { useRef, useState } from "react";
 
 import classNames from "classnames/bind";
-import styles from "./Search.module.scss";
-
 import HeadlessTippy from "@tippyjs/react/headless";
-import { Wrapper } from "@/components/Menu";
-import useDebounce from "@/hooks/useDebounce";
-import { useGetProductByName } from "@/react-query/productQuery";
-
 import CancelIcon from "@mui/icons-material/Cancel";
 import SearchIcon from "@mui/icons-material/Search";
 import CircularProgress from "@mui/material/CircularProgress";
+
+import styles from "./Search.module.scss";
+import { Wrapper } from "@/components/Menu";
+import useDebounce from "@/hooks/useDebounce";
+import { useGetProductByName } from "@/react-query/productQuery";
 import CakeItem from "@/components/CakeItem/CakeItem";
 
 const cx = classNames.bind(styles);

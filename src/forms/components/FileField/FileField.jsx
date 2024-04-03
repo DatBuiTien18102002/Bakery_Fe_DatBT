@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 import PropTypes from "prop-types";
+
 import classNames from "classnames/bind";
-import styles from "./FileFiled.module.scss";
 import FileBase from "react-file-base64";
-
 import { Button, FormControl, FormHelperText } from "@mui/material";
-
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+
+import styles from "./FileFiled.module.scss";
 
 FileField.defaultProps = {
   type: "text",

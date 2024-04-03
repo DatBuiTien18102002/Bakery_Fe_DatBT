@@ -37,10 +37,11 @@
       #07b39b,
       #6fba82
     );
+    background-size: 300% 300%;
     border-radius: calc(2 * var(--borderWidth));
+
     z-index: -1;
     animation: animatedGradient 3s ease alternate infinite;
-    background-size: 300% 300%;
   }
 }
 

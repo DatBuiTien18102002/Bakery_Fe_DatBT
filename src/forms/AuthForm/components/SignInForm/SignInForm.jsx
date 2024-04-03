@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
+
 import classNames from "classnames/bind";
-import styles from "../../AuthForm.module.scss";
-
 import { Formik, Form, FastField } from "formik";
-import * as Yup from "yup";
-
 import { Link } from "react-router-dom";
-
 import { InputField, PassField } from "@/forms/components";
 import { Button } from "@/components";
+
+import styles from "../../AuthForm.module.scss";
+import { validateSignIn } from "@/forms/validateSchema";
 
 const cx = classNames.bind(styles);
 const SignInForm = ({ authProp }) => {
@@ -20,19 +19,10 @@ const SignInForm = ({ authProp }) => {
     password: "",
   };
 
-  const validateSchema = Yup.object({
-    email: Yup.string()
-      .email("Email không hợp lệ")
-      .required("Email không được để trống ! "),
-    password: Yup.string()
-      .min(6, "Mật khẩu phải tối thiểu 6 chữ số !")
-      .required("Mật khẩu không được để trống !"),
-  });
-
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validateSchema}
+      validationSchema={validateSignIn}
       onSubmit={async (values) => await handleSubmitAuth(values)}
     >
       {() => {

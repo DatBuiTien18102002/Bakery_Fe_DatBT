@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import classNames from "classnames/bind";
-import styles from "./UpdateUserForm.module.scss";
-import * as Yup from "yup";
 import { FastField, Form, Formik } from "formik";
+
+import styles from "./UpdateUserForm.module.scss";
+import message from "@/utils/message.js";
+import handleDecoded from "@/utils/jwtDecode";
 import { Button } from "@/components";
 import { InputField } from "@/forms/components";
-import message from "@/utils/message.js";
 import { Modal } from "@/components";
 import { useUpdateUser } from "@/react-query/userQuery";
-import handleDecoded from "@/utils/jwtDecode";
+import { validateUpdateUser } from "@/forms/validateSchema";
 
 const cx = classNames.bind(styles);
 const UpdateUserForm = ({ userKey, currentValue, idUser, setOpenForm }) => {
@@ -19,22 +21,11 @@ const UpdateUserForm = ({ userKey, currentValue, idUser, setOpenForm }) => {
     [userKey]: currentValue,
   };
 
-  let validateSchema = Yup.object({});
   let label = "";
 
   if (userKey === "phone") {
-    validateSchema = Yup.object({
-      phone: Yup.number()
-        .min(10, "Số điện thoại tối thiểu 10 chữ số!")
-        .required("Số điện thoại không được để trống ! "),
-    });
-
     label = "Số điện thoại";
   } else if (userKey === "address") {
-    validateSchema = Yup.object({
-      address: Yup.string().required("Địa chỉ không được để trống ! "),
-    });
-
     label = "Địa chỉ";
   }
 
@@ -57,10 +48,10 @@ const UpdateUserForm = ({ userKey, currentValue, idUser, setOpenForm }) => {
   return (
     <Formik
       initialValues={initialUser}
-      validationSchema={validateSchema}
+      validationSchema={validateUpdateUser(userKey)}
       onSubmit={async (values) => await handleForm(values)}
     >
-      {({ resetForm, setValues }) => {
+      {({ setValues }) => {
         return (
           <Form>
             <Modal>
@@ -116,6 +107,11 @@ const UpdateUserForm = ({ userKey, currentValue, idUser, setOpenForm }) => {
   );
 };
 
-UpdateUserForm.propTypes = {};
+UpdateUserForm.propTypes = {
+  userKey: PropTypes.string,
+  currentValue: PropTypes.any,
+  idUser: PropTypes.string,
+  setOpenForm: PropTypes.func,
+};
 
 export default UpdateUserForm;

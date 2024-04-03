@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { Header, Footer } from "@/layouts/components";
-import { Breadcrumb } from "../../components";
 
 const NoCartIconLayout = ({ children }) => {
   return (

@@ -1,8 +1,9 @@
-import React from "react";
 import PropTypes from "prop-types";
+
 import classNames from "classnames/bind";
-import styles from "./Skeleton.module.scss";
 import { Skeleton } from "@mui/material";
+
+import styles from "./Skeleton.module.scss";
 
 const cx = classNames.bind(styles);
 const SkeletonComponent = ({
@@ -32,6 +33,8 @@ SkeletonComponent.propTypes = {
   animation: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
+  bgcolor: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default SkeletonComponent;

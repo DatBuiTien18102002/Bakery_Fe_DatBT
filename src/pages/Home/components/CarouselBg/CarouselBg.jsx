@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
-import classNames from "classnames/bind";
-import styles from "./CarouselBg.module.scss";
-import Slider from "react-slick";
-import images from "@/assets/images";
-import ImageCustom from "@/components/ImageCustom/ImageCustom";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import classNames from "classnames/bind";
+import Slider from "react-slick";
+
+import images from "@/assets/images";
+import styles from "./CarouselBg.module.scss";
+import ImageCustom from "@/components/ImageCustom/ImageCustom";
 
 import "./customSlickDotActive.scss";
 const cx = classNames.bind(styles);

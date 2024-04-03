@@ -1,17 +1,15 @@
-import React from "react";
 import classNames from "classnames/bind";
-import styles from "./Footer.module.scss";
-import images from "@/assets/images";
-
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
-
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import TikTokIcon from "@/assets/images/TikTokIcon/TikTokIcon.jsx";
 import PhoneIcon from "@mui/icons-material/Phone";
 import PlaceIcon from "@mui/icons-material/Place";
 import MailIcon from "@mui/icons-material/Mail";
+
+import styles from "./Footer.module.scss";
+import images from "@/assets/images";
 
 const cx = classNames.bind(styles);
 const Footer = () => {

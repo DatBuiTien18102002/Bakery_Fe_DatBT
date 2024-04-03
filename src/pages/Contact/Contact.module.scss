@@ -4,6 +4,7 @@
 
 .contact-bakery {
   margin-top: 50px;
+
   color: var(--primary);
   font-size: 1.875rem;
   text-align: center;
@@ -13,6 +14,7 @@
 .contact-row {
   display: flex;
   gap: 50px;
+
   margin-top: 70px;
   margin-bottom: 30px;
 }
@@ -49,13 +51,14 @@
 }
 
 .contact-tittle {
+  margin-bottom: 10px;
+  padding-top: 10px;
+
   color: var(--primary);
   font-size: 1.75rem;
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.561;
-  margin-bottom: 10px;
-  padding-top: 10px;
 }
 
 .contact-address {
@@ -65,8 +68,8 @@
 }
 
 .contact-icon {
-  color: var(--primary);
   margin-right: 10px;
+  color: var(--primary);
 }
 
 .contact-text {

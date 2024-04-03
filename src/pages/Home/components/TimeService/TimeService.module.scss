@@ -4,9 +4,11 @@
   background-size: cover;
   background-attachment: fixed;
   padding: 125px 0;
+
   .service-tittle {
     color: white;
     margin-bottom: 50px;
+
     &::after {
       border-bottom-color: white;
     }

@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./ImageCustom.module.scss";
+
 import classNames from "classnames/bind";
+
+import styles from "./ImageCustom.module.scss";
 import { Blurhash } from "react-blurhash";
 
 const cx = classNames.bind(styles);
@@ -16,9 +18,11 @@ const ImageCustom = ({
 
   useEffect(() => {
     const img = new Image();
+
     img.onload = () => {
       setImageLoaded(true);
     };
+
     img.src = src;
   }, [src]);
 

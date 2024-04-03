@@ -85,15 +85,6 @@ export const orderSlice = createSlice({
             }
 
         },
-        removeAllOrderProduct: (state, action) => {
-            // const { listChecked } = action.payload
-
-            // const itemOrders = state?.orderItems?.filter((item) => !listChecked.includes(item._id))
-            // const itemOrdersSelected = state?.orderItems?.filter((item) => !listChecked.includes(item.Id))
-            // state.orderItems = itemOrders
-            // state.orderItemsSelected = itemOrdersSelected
-
-        },
     },
 })
 

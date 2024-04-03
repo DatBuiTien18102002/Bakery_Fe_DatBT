@@ -1,12 +1,12 @@
-import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames/bind";
-import styles from "./Comment.module.scss";
-import "./CustomSlick.scss";
 
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
+import classNames from "classnames/bind";
 import Slider from "react-slick";
 import Rating from "@mui/material/Rating";
+
+import "./CustomSlick.scss";
+import styles from "./Comment.module.scss";
 
 const cx = classNames.bind(styles);
 const Comment = ({ comments }) => {

@@ -1,16 +1,18 @@
+import { useState } from "react";
+
 import classNames from "classnames/bind";
-import styles from "./ProfileForm.module.scss";
-import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import images from "@/assets/images";
 import { FastField, Formik, Form } from "formik";
+
+import images from "@/assets/images";
+import styles from "./ProfileForm.module.scss";
 import { InputField, FileField } from "@/forms/components";
 import { useUpdateUser } from "@/react-query/userQuery";
 import message from "@/utils/message.js";
 import handleDecoded from "@/utils/jwtDecode";
 import { Button } from "@/components";
-import { useState } from "react";
 import { updateUser } from "@/redux/slice/userSlice";
+import { validateProfile } from "@/forms/validateSchema";
 
 const cx = classNames.bind(styles);
 
@@ -34,13 +36,6 @@ const ProfileForm = () => {
     avatar: currentUser?.avatar ? currentUser?.avatar : images.avatarDefault,
   };
 
-  const validateSchema = Yup.object({
-    email: Yup.string()
-      .email("Email không hợp lệ")
-      .required("Email không được để trống ! "),
-    phone: Yup.number().min(10, "Số điện thoại tối thiểu 10 chữ số!"),
-  });
-
   const handleUserForm = async (values) => {
     const { storageData } = handleDecoded();
     const newValue = { ...values, avatar: avatar };
@@ -59,12 +54,10 @@ const ProfileForm = () => {
     }
   };
 
-  // console.log("--------current User", currentUser);
-
   return (
     <Formik
       initialValues={initialUser}
-      validationSchema={validateSchema}
+      validationSchema={validateProfile}
       onSubmit={async (values) => await handleUserForm(values)}
     >
       {() => {
@@ -82,6 +75,7 @@ const ProfileForm = () => {
                           alt="avatar"
                         />
                       </div>
+
                       <div className={cx("auth-form__wrapper-form")}>
                         <FastField
                           name="name"

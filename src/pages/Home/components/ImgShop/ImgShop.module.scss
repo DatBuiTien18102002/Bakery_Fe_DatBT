@@ -33,18 +33,15 @@
 }
 
 @media screen and (max-width: 767px) {
-  // .image-list {
-  //   column-gap: 20px;
-  //   row-gap: 10px;
-  //   grid-template-areas: "p1 p1 p1 p2 " "p3 p4 p4 p4";
-  // }
-
   .image-list {
     display: grid;
     justify-content: flex-start;
     grid-auto-columns: 90%;
     grid-auto-flow: column;
     grid-gap: 0 20px;
+    grid-template-columns: unset;
+    grid-template-areas: unset;
+
     overflow: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -52,8 +49,6 @@
     -ms-touch-action: manipulation;
     touch-action: manipulation;
     -webkit-overflow-scrolling: touch;
-    grid-template-columns: unset;
-    grid-template-areas: unset;
   }
   .image-list::-webkit-scrollbar {
     display: none;

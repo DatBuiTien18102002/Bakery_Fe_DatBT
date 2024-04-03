@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import classNames from "classnames/bind";
-import styles from "./Breadcrumb.module.scss";
-import { Breadcrumbs, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Breadcrumbs, Typography } from "@mui/material";
+
+import styles from "./Breadcrumb.module.scss";
 import { useGetDetailProduct } from "@/react-query/productQuery";
 
 const cx = classNames.bind(styles);
@@ -18,8 +20,7 @@ const Breadcrumb = ({ bgColor }) => {
     idProduct = pathList[pathList.length - 1];
   }
 
-  const { data: productDetail, isLoading: loadingProduct } =
-    useGetDetailProduct(idProduct);
+  const { data: productDetail } = useGetDetailProduct(idProduct);
 
   if (productDetail?.status === "200") {
     pathList.pop();
@@ -34,7 +35,7 @@ const Breadcrumb = ({ bgColor }) => {
     const word = upperFirstLetter.split("-");
     return word.join(" ");
   }
-  console.log("pathActive", pathActive);
+
   return (
     <div className="container">
       <div className={cx("breadcrumb-wrapper")}>
@@ -46,6 +47,7 @@ const Breadcrumb = ({ bgColor }) => {
           <Link color="inherit" to="/" className={cx("breadcrumb-hover")}>
             Home
           </Link>
+
           {pathList?.map((pathItem, index) => (
             <Link
               key={index}
@@ -56,6 +58,7 @@ const Breadcrumb = ({ bgColor }) => {
               {convertToTitleCase(pathItem)}
             </Link>
           ))}
+
           <Typography color="primary" className={cx("breadcrumb-active")}>
             {convertToTitleCase(pathActive)}
           </Typography>

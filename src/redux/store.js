@@ -1,8 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import userReducer from '@/redux/slice/userSlice'
-import productReducer from '@/redux/slice/productSlice'
-import orderReducer from '@/redux/slice/orderSlice'
-
 import {
     persistStore,
     persistReducer,
@@ -13,8 +9,13 @@ import {
     PURGE,
     REGISTER,
 } from 'redux-persist'
-
 import storage from 'redux-persist/lib/storage'
+
+import userReducer from '@/redux/slice/userSlice'
+import productReducer from '@/redux/slice/productSlice'
+import orderReducer from '@/redux/slice/orderSlice'
+
+
 
 
 const persistConfig = {

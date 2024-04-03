@@ -1,0 +1,33 @@
+.product-detail__comment {
+  margin-top: 30px;
+}
+
+.product-comment__title {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.product-comment__wrapper {
+  max-width: 650px;
+}
+
+.product-comment__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.product-comment__more {
+  color: var(--primary);
+  text-decoration: underline;
+  text-align: center;
+  cursor: pointer;
+}

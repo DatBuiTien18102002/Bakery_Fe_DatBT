@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
+
 import classNames from "classnames/bind";
-import styles from "./CakeItem.module.scss";
 import { Link } from "react-router-dom";
+
+import styles from "./CakeItem.module.scss";
 import images from "@/assets/images";
 import currencyFormat from "@/utils/currencyFormat";
 
 const cx = classNames.bind(styles);
 function CakeItem({ data }) {
-  console.log("CakeItem", data);
   return (
     <Link to={`/product/${data._id}`} className={cx("wrapper")}>
       <img
@@ -15,6 +16,7 @@ function CakeItem({ data }) {
         src={data?.image ? data.image : images.productImgDefault}
         alt={data?.name}
       />
+
       <div className={cx("info")}>
         <h4 className={cx("name")}>
           <span>{data?.name}</span>

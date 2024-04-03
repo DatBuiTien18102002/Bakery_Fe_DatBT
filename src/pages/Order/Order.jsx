@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+
 import classNames from "classnames/bind";
-import styles from "./Order.module.scss";
-import currencyFormat from "@/utils/currencyFormat.js";
 import {
   Dialog,
   DialogActions,
@@ -16,16 +14,19 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import styles from "./Order.module.scss";
+import currencyFormat from "@/utils/currencyFormat.js";
 import { Button } from "@/components";
+import message from "@/utils/message.js";
 import { UpdateUserForm } from "@/forms";
 import { useCreateOrder } from "@/react-query/orderQuery";
-import handleDecoded from "@/utils/jwtDecode";
-import message from "@/utils/message.js";
 import { removeOrderProduct } from "@/redux/slice/orderSlice";
+import handleDecoded from "@/utils/jwtDecode";
 import { Breadcrumb } from "@/components";
 
 const cx = classNames.bind(styles);
-const Order = (props) => {
+const Order = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user);

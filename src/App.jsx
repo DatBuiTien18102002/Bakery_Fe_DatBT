@@ -1,18 +1,18 @@
 import { Fragment, useEffect } from "react";
-import "./App.css";
+
 import { Routes, Route, Navigate } from "react-router-dom";
-import { publicRouters, privateRouters } from "@/routers";
-import DefaultLayout from "@/layouts/DefaultLayout/DefaultLayout";
-import handleDecoded from "@/utils/jwtDecode";
-import { useGetDetailUser } from "./react-query/userQuery";
-import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "@/redux/slice/userSlice";
-import Admin from "@/pages/Admin/Admin";
-import ScrollToTop from "@/components/ScrollToTop/ScrollToTop.jsx";
-import config from "./config";
-import LoadingPage from "@/components/Loading/LoadingPage/LoadingPage";
+import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
+
+import config from "./config";
+import handleDecoded from "@/utils/jwtDecode";
+import { publicRouters, privateRouters } from "@/routers";
+import { useGetDetailUser } from "./react-query/userQuery";
+import Admin from "@/pages/Admin/Admin";
+import { DefaultLayout } from "@/layouts";
+import { ScrollToTop, LoadingPage } from "@/components";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +40,7 @@ function App() {
       } else if (route.layout === null) {
         Layout = Fragment;
       }
+
       const Page = route.page;
       return (
         <Route
