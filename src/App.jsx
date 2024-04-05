@@ -13,6 +13,7 @@ import { useGetDetailUser } from "./react-query/userQuery";
 import Admin from "@/pages/Admin/Admin";
 import { DefaultLayout } from "@/layouts";
 import { ScrollToTop, LoadingPage } from "@/components";
+import { NotFoundPage } from "./pages";
 
 function App() {
   const dispatch = useDispatch();
@@ -84,6 +85,8 @@ function App() {
             }
           />
         )}
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       <AnimatePresence>{loadingUser && <LoadingPage />}</AnimatePresence>

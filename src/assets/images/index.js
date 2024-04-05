@@ -32,6 +32,7 @@ import noOrder from "@/assets/images/no-order.svg"
 import gifLoad from "@/assets/images/load.gif"
 import pageProductNotFound from "@/assets/images/pageProductNotFound.png"
 import noComment from "@/assets/images/noComment.jpg"
+import notFound from "@/assets/images/PageNotFound.jpg"
 
 
 
@@ -78,6 +79,7 @@ const images = {
     gifLoad,
     pageProductNotFound,
     noComment,
+    notFound
 
 };
 

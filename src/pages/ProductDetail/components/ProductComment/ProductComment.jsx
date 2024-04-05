@@ -41,7 +41,7 @@ const ProductComment = ({ item, isLoading }) => {
       <div className={cx("product-comment__title")}>ĐÁNH GIÁ SẢN PHẨM</div>
 
       {!isLoading ? (
-        <div className={cx("product-comment__wrapper")}>
+        <>
           <div className={cx("product-comment__list")}>
             {item?.comments && item?.comments.length > 0 ? (
               currentCommentList().map((productComment, index) => (
@@ -70,7 +70,7 @@ const ProductComment = ({ item, isLoading }) => {
               Xem thêm
             </div>
           )}
-        </div>
+        </>
       ) : (
         Array.from(Array(limit)).map((_, index) => (
           <ProductCommentItem key={index} />

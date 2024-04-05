@@ -74,18 +74,20 @@
 }
 
 .icon {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 24px;
-  text-align: center;
 }
 
 // btn size
 .small {
-  min-width: 88px;
   padding: 4px 16px;
+  min-width: 88px;
 }
 
 .large {
-  min-width: 140px;
   padding: 14px 16px;
+  min-width: 140px;
 }

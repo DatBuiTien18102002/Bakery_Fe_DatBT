@@ -6,6 +6,9 @@
   gap: 10px;
 
   height: 400px;
+  width: 100vw;
+  position: relative;
+  left: calc(-50vw + 50%);
 }
 
 .no-comment__img {

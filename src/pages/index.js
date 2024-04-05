@@ -7,3 +7,4 @@ export { default as ProductDetailPage } from '@/pages/ProductDetail/ProductDetai
 export { default as CartPage } from '@/pages/Cart/Cart.jsx'
 export { default as OrderPage } from '@/pages/Order/Order.jsx'
 export { default as MyOrdersPage } from '@/pages/MyOrderList/MyOrderList.jsx'
+export { default as NotFoundPage } from '@/pages/NotFound/NotFound.jsx'
