@@ -15,5 +15,9 @@
 .user-icon {
   display: flex;
   align-items: center;
+  color: var(--text-color);
+}
+
+.user-icon:hover {
   color: var(--primary);
 }

@@ -142,4 +142,18 @@
   .about-desc-col:last-child {
     width: 100%;
   }
+
+  .about-adv-row {
+    flex-wrap: wrap;
+  }
+
+  .about-adv-col {
+    flex: calc(50% - 20px);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .about-adv-col {
+    flex: 100%;
+  }
 }

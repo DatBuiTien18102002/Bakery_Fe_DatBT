@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 
 const DiscoverCakeItem = ({ item }) => {
   return (
-    <Link to={item ? `/Product/${item._id}` : `#`} className={cx("menu-item")}>
+    <Link to={item ? `/product/${item._id}` : `#`} className={cx("menu-item")}>
       <div className={cx(item ? "menu__img-wrap" : "menu-loading__img-wrap")}>
         {item ? (
           <img src={item.image} alt="" className={cx("menu-img")} />

@@ -25,11 +25,13 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
   const [ratingOrders, setRatingOrders] = useState(
     itemsOrder.map((item) => ({ id: item._id, rate: 0 }))
   );
-  const [itemsRating, setItemsRating] = useState(
-    itemsOrder.filter((item) => item.isRating === false)
-  );
   const [commentOrders, setCommentOrders] = useState(
     itemsOrder.map((item) => ({ id: item._id, comment: "" }))
+  );
+
+  const [itemsOrderUpdate, setItemsOrderUpdate] = useState(itemsOrder);
+  const [itemsRating, setItemsRating] = useState(
+    itemsOrder.filter((item) => item.isRating === false)
   );
 
   useEffect(() => {
@@ -44,12 +46,15 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
   };
 
   const handleEvaluate = async (item) => {
-    const newOrder = itemsOrder.map((itemOrder) => {
+    console.log("itemsOrder", itemsOrder);
+    const newOrder = itemsOrderUpdate.map((itemOrder) => {
       if (itemOrder._id === item._id) {
         itemOrder = { ...itemOrder, isRating: true };
       }
       return itemOrder;
     });
+
+    console.log("orderRating", newOrder);
 
     const cakeUpdate = itemsOrder.find(
       (itemOrder) => itemOrder._id === item._id
@@ -102,6 +107,7 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
 
     const resUpdateOrder = await updateOrder({
       id: idOrder,
+      userId: currentUser._id,
       infoUpdate: {
         orderItems: newOrder,
       },
@@ -111,6 +117,7 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
       const newItemsRating = resUpdateOrder.data.orderItems.filter(
         (item) => item.isRating === false
       );
+      setItemsOrderUpdate(resUpdateOrder?.data?.orderItems);
       setItemsRating([...newItemsRating]);
     }
 
@@ -153,7 +160,11 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
                       <div className={cx("rating-cake__rate")}>
                         <Rating
                           name="simple-controlled"
-                          defaultValue={0}
+                          value={
+                            ratingOrders.find(
+                              (itemRating) => itemRating.id === item._id
+                            ).rate
+                          }
                           onChange={(_, newValue) => {
                             const newRatings = ratingOrders.filter(
                               (itemRating) => itemRating.id !== item._id

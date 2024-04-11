@@ -5,31 +5,29 @@ const resourceName = '/order';
 const orderApi = {
     createOrder: (data) => {
         const { token, detailOrder } = data;
-        return axiosAuthClient.post(`${resourceName}/create`, detailOrder, {
+        return axiosAuthClient.post(`${resourceName}/create/${detailOrder.userId}`, detailOrder, {
             headers: {
                 token: `Bearer ${token}`
             }
         })
     },
     updateOrder: (data) => {
-        const { id, token, infoUpdate } = data;
-        console.log("id", id);
-        console.log("token", token);
-        console.log("infoUpdate", infoUpdate);
-        return axiosAuthClient.put(`${resourceName}/update-order/${id}`, infoUpdate, {
+        const { id, token, infoUpdate, userId } = data;
+        return axiosAuthClient.put(`${resourceName}/update-order/${id}`, { userId, infoUpdate }, {
             headers: {
                 token: `Bearer ${token}`
-            }
+            },
         })
     },
     deleteOrder: (data) => {
-        const { token, orderId, orderItems } = data;
+        const { token, orderId, orderItems, userId } = data;
         return axiosAuthClient.delete(`${resourceName}/cancel-order/${orderId}`, {
             headers: {
                 token: `Bearer ${token}`
             },
             data: {
-                orderItems
+                orderItems,
+                userId
             }
         })
     },

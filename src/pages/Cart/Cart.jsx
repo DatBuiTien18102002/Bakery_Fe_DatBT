@@ -20,6 +20,7 @@ import {
 } from "@/redux/slice/orderSlice";
 import message from "@/utils/message.js";
 import { UserForm } from "@/forms";
+import { AuthForm } from "@/forms";
 
 const cx = classNames.bind(styles);
 const Cart = () => {
@@ -27,7 +28,8 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { orderItemsSelected } = useSelector((state) => state.order);
   const currentUser = useSelector((state) => state.user);
-
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
   const { orderItems } = useSelector((state) => state.order);
   const [selected, setSelected] = useState(
     orderItemsSelected.map((item) => item._id)
@@ -74,6 +76,13 @@ const Cart = () => {
       return;
     }
 
+    if (!currentUser._id) {
+      message("error", "Bạn cần đăng nhập trước khi đặt hàng");
+      showSignInForm();
+
+      return;
+    }
+
     if (!currentUser.address || !currentUser.phone) {
       setIsOpenEditForm(true);
 
@@ -85,6 +94,14 @@ const Cart = () => {
     }
     navigate("/order", { state: { totalPrice } });
   };
+
+  function showSignInForm(value = true) {
+    setShowSignIn(value);
+  }
+
+  function showSignUpForm(value = true) {
+    setShowSignUp(value);
+  }
 
   const columns = [
     {
@@ -213,75 +230,95 @@ const Cart = () => {
   ];
 
   return (
-    <div className={cx("cart")}>
-      <div className="container">
-        <div className={cx("cart-title")}>Giỏ hàng</div>
+    <>
+      {showSignIn ? (
+        <AuthForm
+          form="signIn"
+          showSignInForm={showSignInForm}
+          showSignUpForm={showSignUpForm}
+        />
+      ) : (
+        <></>
+      )}
+      {showSignUp ? (
+        <AuthForm
+          form="signUp"
+          showSignInForm={showSignInForm}
+          showSignUpForm={showSignUpForm}
+        />
+      ) : (
+        <></>
+      )}
+      <div className={cx("cart")}>
+        <div className="container">
+          <div className={cx("cart-title")}>Giỏ hàng</div>
 
-        <div className={cx("table-wrapper")}>
-          <DataGrid
-            rows={newOrderItem}
-            columns={columns}
-            pageSizeOptions={[]}
-            getRowId={(row) => row._id}
-            rowHeight={70}
-            sx={{
-              "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                outline: "none !important",
-              },
-              ".css-1e7c2qr-MuiToolbar-root-MuiTablePagination-toolbar": {
-                display: "none",
-              },
-            }}
-            checkboxSelection
-            rowSelectionModel={selected}
-            disableRowSelectionOnClick
-            onRowSelectionModelChange={handleSelected}
-          />
-        </div>
-
-        <div className={cx("cart-option")}>
-          <div>
-            <Button
-              className={cx("cart-back")}
-              to={config.routes.product}
-              leftIcon={
-                <KeyboardArrowLeftIcon
-                  style={{ display: "flex", alignItems: "center" }}
-                />
-              }
-              primary
-            >
-              Tiếp tục mua hàng
-            </Button>
+          <div className={cx("table-wrapper")}>
+            <DataGrid
+              rows={newOrderItem}
+              columns={columns}
+              pageSizeOptions={[]}
+              getRowId={(row) => row._id}
+              rowHeight={70}
+              sx={{
+                "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+                  outline: "none !important",
+                },
+                ".css-1e7c2qr-MuiToolbar-root-MuiTablePagination-toolbar": {
+                  display: "none",
+                },
+              }}
+              checkboxSelection
+              rowSelectionModel={selected}
+              disableRowSelectionOnClick
+              onRowSelectionModelChange={handleSelected}
+            />
           </div>
 
-          <div>
-            <div className={cx("cart-total__wrapper")}>
-              <div className={cx("cart-total__label")}>Tổng tiền hàng</div>
-              <div className={cx("cart-total__price")}>
-                {currencyFormat(totalPrice)}
-              </div>
+          <div className={cx("cart-option")}>
+            <div>
+              <Button
+                className={cx("cart-back")}
+                to={config.routes.product}
+                leftIcon={
+                  <KeyboardArrowLeftIcon
+                    style={{ display: "flex", alignItems: "center" }}
+                  />
+                }
+                primary
+              >
+                Tiếp tục mua hàng
+              </Button>
             </div>
 
-            <Button
-              primary
-              className={cx("cart-checkout")}
-              onClick={handleOrder}
-            >
-              Tiến hành thanh toán
-            </Button>
+            <div>
+              <div className={cx("cart-total__wrapper")}>
+                <div className={cx("cart-total__label")}>Tổng tiền hàng</div>
+                <div className={cx("cart-total__price")}>
+                  {currencyFormat(totalPrice)}
+                </div>
+              </div>
+
+              <Button
+                primary
+                className={cx("cart-checkout")}
+                onClick={handleOrder}
+              >
+                Tiến hành thanh toán
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {isOpenEditForm && (
-        <UserForm
-          action="Edit"
-          setOpenEdit={setIsOpenEditForm}
-          userEdit={currentUser}
-        />
-      )}
-    </div>
+        {isOpenEditForm && (
+          <UserForm
+            action="Edit"
+            setOpenEdit={setIsOpenEditForm}
+            userEdit={currentUser}
+          />
+        )}
+      </div>
+    </>
   );
 };
 

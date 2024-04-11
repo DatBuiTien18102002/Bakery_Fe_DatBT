@@ -20,7 +20,7 @@ import currencyFormat from "@/utils/currencyFormat.js";
 
 const cx = classNames.bind(styles);
 const AdminProduct = () => {
-  const { data: allProduct, isLoading: loadingProducts } = useGetAllProduct();
+  const { data: allProduct } = useGetAllProduct();
 
   const [isOpenCreateForm, setIsOpenCreateForm] = useState(false);
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
@@ -135,6 +135,9 @@ const AdminProduct = () => {
       headerName: "Sold",
       type: "number",
       width: 70,
+      renderCell: (params) => {
+        return params.row?.sell ? params.row?.sell : 0;
+      },
     },
     {
       field: "edit",

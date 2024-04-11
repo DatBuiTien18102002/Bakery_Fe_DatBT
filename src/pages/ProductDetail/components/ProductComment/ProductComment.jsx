@@ -34,40 +34,42 @@ const ProductComment = ({ item, isLoading }) => {
     setCurrentLimit(newLimit);
   };
 
-  console.log("currentProduct", currentCommentList());
-
   return (
     <div className={cx("product-detail__comment")}>
       <div className={cx("product-comment__title")}>ĐÁNH GIÁ SẢN PHẨM</div>
 
       {!isLoading ? (
         <>
-          <div className={cx("product-comment__list")}>
-            {item?.comments && item?.comments.length > 0 ? (
-              currentCommentList().map((productComment, index) => (
-                <ProductCommentItem key={index} item={productComment} />
-              ))
-            ) : (
-              <ProductNoComment />
-            )}
-          </div>
-
-          {currentLimit === limit || currentLimit >= item?.comments.length ? (
-            <div className={cx("pagination")}>
-              <Pagination
-                count={totalPage}
-                color="primary"
-                page={currentPage}
-                size="large"
-                onChange={handleChangePaginate}
-              />
+          {item?.comments && item?.comments.length > 0 ? (
+            <div className={cx("product-comment__wrapper")}>
+              <div className={cx("product-comment__list")}>
+                {currentCommentList().map((productComment, index) => (
+                  <ProductCommentItem key={index} item={productComment} />
+                ))}
+              </div>
+              {currentLimit === limit ||
+              currentLimit >= item?.comments.length ? (
+                <div className={cx("pagination")}>
+                  <Pagination
+                    count={totalPage}
+                    color="primary"
+                    page={currentPage}
+                    size="large"
+                    onChange={handleChangePaginate}
+                  />
+                </div>
+              ) : (
+                <div
+                  className={cx("product-comment__more")}
+                  onClick={handleMoreComment}
+                >
+                  Xem thêm
+                </div>
+              )}
             </div>
           ) : (
-            <div
-              className={cx("product-comment__more")}
-              onClick={handleMoreComment}
-            >
-              Xem thêm
+            <div className={cx("product-comment__no-comment")}>
+              <ProductNoComment />
             </div>
           )}
         </>

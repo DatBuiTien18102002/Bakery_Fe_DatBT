@@ -19,7 +19,7 @@ import message from "@/utils/message.js";
 
 const cx = classNames.bind(styles);
 const AdminUser = () => {
-  const { data: AllUser, isLoading } = useGetAllUser();
+  const { data: AllUser } = useGetAllUser();
   const { storageData } = handleDecoded();
 
   const [isOpenCreateForm, setIsOpenCreateForm] = useState(false);
@@ -91,6 +91,9 @@ const AdminUser = () => {
       renderCell: (params) => {
         return (
           <img
+            onError={(event) => {
+              event.target.src = images.avatarDefault;
+            }}
             className={cx("user-avatar")}
             src={params.row?.avatar ? params.row?.avatar : images.avatarDefault}
           />

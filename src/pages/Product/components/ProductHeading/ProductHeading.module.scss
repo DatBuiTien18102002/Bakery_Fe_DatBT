@@ -55,3 +55,12 @@
     display: block;
   }
 }
+
+@media screen and (max-width: 575px) {
+  .product-page {
+    display: none;
+  }
+  .select-input {
+    width: 100%;
+  }
+}

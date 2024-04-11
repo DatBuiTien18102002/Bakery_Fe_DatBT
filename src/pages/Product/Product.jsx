@@ -38,8 +38,6 @@ const Product = () => {
     _order: sortBy.type,
   });
 
-  console.log("LoadingProduct", loadingProduct);
-
   useEffect(() => {
     refetch();
   }, [currentPage, sortBy.nameSort, sortBy.type]);

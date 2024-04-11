@@ -80,7 +80,7 @@ const ProductItem = ({ item, newPrice }) => {
             <div className={cx("product-rate")}>
               <Rating
                 name="read-only"
-                defaultValue={item ? item.rating : 0}
+                value={item ? item.rating : 0}
                 readOnly
                 size="small"
                 precision={0.1}

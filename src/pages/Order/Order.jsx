@@ -135,8 +135,6 @@ const Order = () => {
     }
   };
 
-  console.log("Loading", loadingCreate);
-
   return (
     <div className={cx("order")}>
       <Breadcrumb bgColor="white" />

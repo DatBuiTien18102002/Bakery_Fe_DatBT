@@ -10,6 +10,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   padding-bottom: 10px;
 }
 
@@ -51,6 +53,7 @@
 .my-order__product-content {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
 }
 

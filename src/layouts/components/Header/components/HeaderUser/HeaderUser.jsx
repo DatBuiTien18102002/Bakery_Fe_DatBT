@@ -3,10 +3,10 @@ import { useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import classNames from "classnames/bind";
 import { useDispatch, useSelector } from "react-redux";
-import { useLogout } from "@/react-query/userQuery";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./HeaderUser.module.scss";
+import { useLogout, useSocialLogOut } from "@/react-query/userQuery";
 import images from "@/assets/images";
 import { Menu } from "@/components";
 import { AuthForm } from "@/forms";
@@ -23,31 +23,32 @@ const HeaderUser = () => {
   const [showSignUp, setShowSignUp] = useState(false);
 
   const { mutate: logoutUser } = useLogout();
+  const { mutate: logoutSocialMedia } = useSocialLogOut();
 
   const MENU_ITEMS = [
-    {
-      tittle: "English",
-      children: {
-        tittle: "Language",
-        data: [
-          {
-            code: "en",
-            tittle: "Engligh",
-          },
-          {
-            code: "vi",
-            tittle: "Tiếng việt",
-          },
-        ],
-      },
-    },
-    {
-      tittle: "Feedback and Help",
-      to: "/feedback",
-    },
+    // {
+    //   tittle: "English",
+    //   children: {
+    //     tittle: "Language",
+    //     data: [
+    //       {
+    //         code: "en",
+    //         tittle: "Engligh",
+    //       },
+    //       {
+    //         code: "vi",
+    //         tittle: "Tiếng việt",
+    //       },
+    //     ],
+    //   },
+    // },
+    // {
+    //   tittle: "Feedback and Help",
+    //   to: "/feedback",
+    // },
     {
       tittle: "Đăng nhập",
-      separate: true,
+      // separate: true,
       // eslint-disable-next-line no-undef
       onClick: showSignInForm,
       noIcon: true,
@@ -66,11 +67,11 @@ const HeaderUser = () => {
       tittle: "Manage System",
       to: "/admin",
     },
-    currentUser.email && {
+    currentUser._id && {
       tittle: "View profile",
       to: "/profile",
     },
-    currentUser.email && {
+    currentUser._id && {
       tittle: "My orders",
       to: "/my-orders",
     },
@@ -111,6 +112,9 @@ const HeaderUser = () => {
 
   function handleLogOut() {
     logoutUser();
+    if (currentUser?.provider) {
+      logoutSocialMedia();
+    }
     dispatch(resetUser());
     localStorage.removeItem("access_token");
     navigate("/");
@@ -137,14 +141,16 @@ const HeaderUser = () => {
         <></>
       )}
 
-      <Menu items={currentUser.email ? USER_MENU : MENU_ITEMS}>
-        {currentUser.email ? (
+      <Menu items={currentUser._id ? USER_MENU : MENU_ITEMS}>
+        {currentUser._id ? (
           <div className={cx("user-avatar")}>
             <img
+              onError={(event) => {
+                event.target.src = images.avatarDefault;
+              }}
               src={
                 currentUser.avatar ? currentUser.avatar : images.avatarDefault
               }
-              alt="avatar user"
               className={cx("user-img")}
             />
           </div>

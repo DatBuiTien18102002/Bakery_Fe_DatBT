@@ -26,7 +26,7 @@ const ProductSideBar = ({
         })}
         onClick={() => handleSortClick({ nameSort: "", type: "" }, "")}
       >
-        Tất cả
+        Mặc định
       </div>
 
       <div className={cx("product-filter__list")}>

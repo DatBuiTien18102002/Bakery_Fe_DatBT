@@ -17,7 +17,8 @@
   margin: 0 20px;
   padding-left: 16px;
 
-  background-color: rgba(22, 24, 35, 0.06);
+  // background-color: rgba(22, 24, 35, 0.06);
+  background-color: rgb(226, 226, 226);
   border-radius: var(--search-border-radius);
   border: 1.5px solid transparent;
 
@@ -71,6 +72,7 @@
   justify-content: center;
   align-items: center;
   color: rgba(22, 24, 35, 0.34);
+  background-color: transparent;
 }
 
 .loading-icon {
@@ -94,6 +96,7 @@
   border-top-right-radius: var(--search-border-radius);
   border-bottom-right-radius: var(--search-border-radius);
   color: rgba(22, 24, 35, 0.34);
+  background-color: transparent;
 
   &:hover {
     background-color: rgba(22, 24, 35, 0.03);

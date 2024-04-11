@@ -21,7 +21,6 @@ export const useUpdateUser = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (data) => {
-            console.log("query", data);
             return userApi.updateUser(data)
         },
         onSuccess: () => {
@@ -61,6 +60,12 @@ export const useLoginUser = () => {
 export const useLogout = () => {
     return useMutation({
         mutationFn: () => userApi.logoutUser()
+    })
+}
+
+export const useSocialLogOut = () => {
+    return useMutation({
+        mutationFn: () => userApi.logoutSocialMedia()
     })
 }
 

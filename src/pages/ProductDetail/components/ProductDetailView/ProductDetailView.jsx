@@ -19,7 +19,6 @@ const ProductDetailView = ({
   handleAddToCart,
   handleOrder,
 }) => {
-  console.log("itemDetail", item);
   return (
     <div className={cx("product-detail-row")}>
       <div className={cx("product-detail-col")}>

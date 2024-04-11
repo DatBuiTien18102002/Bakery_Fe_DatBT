@@ -24,7 +24,6 @@ const productApi = {
         return axiosClient.post(`${resourceName}/create-product`, data)
     },
     updateProduct: (data) => {
-        console.log("productApi", data);
         return axiosClient.put(`${resourceName}/update-product/${data.id}`, data)
     },
     deleteProduct: (id) => {

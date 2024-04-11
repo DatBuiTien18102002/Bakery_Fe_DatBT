@@ -25,8 +25,14 @@ const userApi = {
     loginUser: (data) => {
         return axiosClient.post(`${resourceName}/sign-in`, data)
     },
+    loginBySocialMedia: () => {
+        return axiosClient.get(`${resourceName}/social-auth`)
+    },
     logoutUser: () => {
         return axiosClient.get(`${resourceName}/log-out`)
+    },
+    logoutSocialMedia: () => {
+        return axiosClient.get(`${resourceName}/social-out`);
     },
     getDetailUser: (id, access_token) => {
         return axiosAuthClient.get(`${resourceName}/get-details/${id}`, {

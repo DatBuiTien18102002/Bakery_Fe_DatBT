@@ -14,8 +14,6 @@ const Discover = ({ menuDiscover }) => {
   const { data: allProduct, isPending: loadingProduct } = useGetAllProduct();
   const allNameCakeMenu = menuDiscover.map((menuItem) => menuItem.name);
 
-  console.log("loading", loadingProduct);
-
   const allProductMenuDiscover = allProduct?.data.filter((menuItem) =>
     allNameCakeMenu.includes(menuItem?.name)
   );

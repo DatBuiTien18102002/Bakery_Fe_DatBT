@@ -33,8 +33,10 @@ const MyOrderList = () => {
 
   const handleDeleteOrder = async (items, idOrder) => {
     const { storageData } = handleDecoded();
+
     const data = await deleteOrder({
       token: storageData,
+      userId: currentUser._id,
       orderId: idOrder,
       orderItems: items,
     });
@@ -49,6 +51,7 @@ const MyOrderList = () => {
   const handleUpdateStatus = async (orderId) => {
     await updateOrder({
       id: orderId,
+      userId: currentUser._id,
       infoUpdate: {
         status: "evaluate_product",
         paidAt: new Date(),
@@ -124,7 +127,7 @@ const MyOrderList = () => {
                 )}
               </>
             ) : (
-              <Skeleton width="614px" height="408px" />
+              <Skeleton height="408px" />
             )}
           </div>
         </div>
