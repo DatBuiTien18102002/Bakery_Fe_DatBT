@@ -51,9 +51,9 @@ export const orderSlice = createSlice({
                 orderSelectedUpdate.amount = amountUpdate;
             }
         },
-        resetOrder: (state) => {
-            // state.isSuccessOrder = false
-        },
+        // resetOrder: (state) => {
+        //     state.isSuccessOrder = false
+        // },
         selectedOrderItems: (state, action) => {
             const { listChecked } = action.payload;
             const orderItemsSelected = state.orderItems.filter((orderItem) => listChecked.includes(orderItem._id));

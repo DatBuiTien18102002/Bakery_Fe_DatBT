@@ -15,9 +15,6 @@ import userReducer from '@/redux/slice/userSlice'
 import productReducer from '@/redux/slice/productSlice'
 import orderReducer from '@/redux/slice/orderSlice'
 
-
-
-
 const persistConfig = {
     key: 'root',
     version: 1,

@@ -1,5 +1,3 @@
-import React from "react";
-
 import classNames from "classnames/bind";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/animation";

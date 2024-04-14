@@ -55,6 +55,7 @@ ImageCustom.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   hash: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default ImageCustom;

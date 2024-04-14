@@ -1,5 +1,3 @@
-import classNames from "classnames/bind";
-import styles from "./Home.module.scss";
 import {
   CarouselBg,
   Comment,
@@ -9,8 +7,6 @@ import {
   TimeService,
 } from "./components";
 import images from "@/assets/images";
-
-const cx = classNames.bind(styles);
 
 const MENU_DISCOVER = [
   {

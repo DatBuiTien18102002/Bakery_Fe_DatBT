@@ -46,15 +46,12 @@ const RatingCakesForm = ({ itemsOrder, openForm, idOrder }) => {
   };
 
   const handleEvaluate = async (item) => {
-    console.log("itemsOrder", itemsOrder);
     const newOrder = itemsOrderUpdate.map((itemOrder) => {
       if (itemOrder._id === item._id) {
         itemOrder = { ...itemOrder, isRating: true };
       }
       return itemOrder;
     });
-
-    console.log("orderRating", newOrder);
 
     const cakeUpdate = itemsOrder.find(
       (itemOrder) => itemOrder._id === item._id

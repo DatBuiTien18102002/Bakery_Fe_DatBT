@@ -41,15 +41,17 @@ let validateUpdateUser = (userKey) => {
     let validateSchema = Yup.object({});
 
     if (userKey === "phone") {
-        return validateSchema = Yup.object({
+        validateSchema = Yup.object({
             phone: Yup.number()
                 .min(10, "Số điện thoại tối thiểu 10 chữ số!")
                 .required("Số điện thoại không được để trống ! "),
         });
+        return validateSchema
     } else if (userKey === "address") {
-        return validateSchema = Yup.object({
+        validateSchema = Yup.object({
             address: Yup.string().required("Địa chỉ không được để trống ! "),
         });
+        return validateSchema
     }
 }
 
