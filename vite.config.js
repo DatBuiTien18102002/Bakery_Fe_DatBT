@@ -8,7 +8,8 @@ import path from 'path';
 export default defineConfig({
   server: {
     proxy: {
-      '/api': 'http://localhost:3005'
+      '/api': 'https://bakery-be-datbt.onrender.com'
+      // '/api': 'http://localhost:3005'
     }
   },
   resolve: {
