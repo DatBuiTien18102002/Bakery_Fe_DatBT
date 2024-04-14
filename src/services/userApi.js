@@ -50,9 +50,19 @@ const userApi = {
         })
     },
 
-    refreshToken: () => {
+    //refreshToken with cookie
+    // refreshToken: () => {
+    //     return axiosClient.get(`${resourceName}/refresh-token`, {
+    //         withCredentials: true
+    //     })
+    // }
+
+    //refreshToken with localStorage
+    refreshToken: (refreshToken) => {
         return axiosClient.get(`${resourceName}/refresh-token`, {
-            withCredentials: true
+            headers: {
+                token: `Bearer ${refreshToken}`
+            }
         })
     }
 };

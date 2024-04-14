@@ -35,12 +35,19 @@ const AuthForm = (props) => {
             dispatch(
               updateUser({
                 access_token: res?.access_token,
+                refresh_token: res?.refresh_token,
                 ...userDetail.data,
               })
             );
             localStorage.setItem(
               "access_token",
               JSON.stringify(res?.access_token)
+            );
+
+            //Thêm refresh token vào local storage thay vì cookie
+            localStorage.setItem(
+              "refresh_token",
+              JSON.stringify(res?.refresh_token)
             );
           }
           showSignInForm(false);

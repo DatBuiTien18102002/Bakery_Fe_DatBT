@@ -117,6 +117,7 @@ const HeaderUser = () => {
     }
     dispatch(resetUser());
     localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     navigate("/");
   }
 

@@ -66,7 +66,16 @@ function App() {
 
   useEffect(() => {
     if (decoded.payload?.id && detailUser?.data) {
-      dispatch(updateUser({ access_token: storageData, ...detailUser.data }));
+      let storageRefreshToken = localStorage.getItem("refresh_token");
+      const refreshToken = JSON.parse(storageRefreshToken);
+
+      dispatch(
+        updateUser({
+          access_token: storageData,
+          ...detailUser.data,
+          refresh_token: refreshToken,
+        })
+      );
     }
   }, [storageData, decoded]);
 
