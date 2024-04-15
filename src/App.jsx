@@ -12,7 +12,7 @@ import handleDecoded from "@/utils/jwtDecode";
 import { publicRouters, privateRouters } from "@/routers";
 import { useGetDetailUser } from "./react-query/userQuery";
 import Admin from "@/pages/Admin/Admin";
-import { DefaultLayout } from "@/layouts";
+import { DefaultLayout, NoBreadcrumbLayout } from "@/layouts";
 import { ScrollToTop, LoadingPage } from "@/components";
 import { NotFoundPage } from "./pages";
 
@@ -122,13 +122,13 @@ function App() {
           <Route
             path={config.routes.admin}
             element={
-              <DefaultLayout>
+              <NoBreadcrumbLayout>
                 <ScrollToTop />
                 <Helmet>
                   <title>{config.titles.admin}</title>
                 </Helmet>
                 <Admin />
-              </DefaultLayout>
+              </NoBreadcrumbLayout>
             }
           />
         )}
