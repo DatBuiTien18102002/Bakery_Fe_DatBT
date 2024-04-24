@@ -10,17 +10,46 @@ import { Button } from "@/components";
 
 const cx = classNames.bind(styles);
 const ProductHeading = ({
+  headingTitle,
   totalPage,
+  typeProductList,
   filterList,
   activeSort,
-  handleSelect,
+  activeFindType,
+  handleSelectSort,
+  handleSelectFindByType,
   currentPage,
   handleNextPage,
   handlePrevPage,
 }) => {
   return (
     <div className={cx("product-heading")}>
-      <p className={cx("product-tittle")}>Tất cả sản phẩm</p>
+      <p className={cx("product-tittle")}>
+        {headingTitle ? headingTitle : "Tất cả sản phẩm"}
+      </p>
+
+      <div className={cx("select-input")}>
+        <FormControl
+          sx={{ minWidth: 200, background: "white" }}
+          size="small"
+          className={cx("select-input")}
+        >
+          <InputLabel id="select-filter">Phân loại</InputLabel>
+          <Select
+            labelId="select-findByType"
+            id="findByType"
+            value={activeFindType}
+            onChange={handleSelectFindByType}
+            label="Phân loại"
+          >
+            {typeProductList?.map((item, index) => (
+              <MenuItem key={index} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
 
       <div className={cx("select-input")}>
         <FormControl
@@ -33,7 +62,7 @@ const ProductHeading = ({
             labelId="select-filter"
             id="filter"
             value={activeSort}
-            onChange={handleSelect}
+            onChange={handleSelectSort}
             label="Sắp xếp"
           >
             {filterList?.map((item, index) => (
@@ -73,10 +102,14 @@ const ProductHeading = ({
 };
 
 ProductHeading.propTypes = {
+  headingTitle: PropTypes.string,
   totalPage: PropTypes.number,
   filterList: PropTypes.array,
+  typeProductList: PropTypes.array,
+  activeFindType: PropTypes.string,
   activeSort: PropTypes.string,
-  handleSelect: PropTypes.func,
+  handleSelectSort: PropTypes.func,
+  handleSelectFindByType: PropTypes.func,
   currentPage: PropTypes.number,
   handleNextPage: PropTypes.func,
   handlePrevPage: PropTypes.func,

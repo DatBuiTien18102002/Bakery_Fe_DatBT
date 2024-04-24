@@ -5,14 +5,16 @@ import { Pagination } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 
 import styles from "./Product.module.scss";
-import { useGetProducts } from "@/react-query/productQuery";
+import { useGetProducts, useGetAllType } from "@/react-query/productQuery";
 import { ProductContent, ProductHeading, ProductSideBar } from "./components";
 
 const cx = classNames.bind(styles);
 const Product = () => {
   const [sortBy, setSortBy] = useState({ nameSort: "", type: "" });
+  const [findByType, setFindByType] = useState("");
 
   const [activeSort, setActiveSort] = useState("");
+  const [activeFindType, setActiveFindType] = useState("");
   let [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -27,20 +29,33 @@ const Product = () => {
     }
   }, [searchParams.get("page")]);
 
-  const {
-    data: productList,
-    isPending: loadingProduct,
-    refetch,
-  } = useGetProducts({
+  const { data: typeProductList } = useGetAllType();
+
+  const queryFilter = {
     limit: searchParams.get("limit") || 7,
     page: currentPage,
     _sort: sortBy.nameSort,
     _order: sortBy.type,
-  });
+    type: findByType,
+  };
+
+  if (!findByType) {
+    delete queryFilter.type;
+  }
+
+  const {
+    data: productList,
+    isPending: loadingProduct,
+    refetch,
+  } = useGetProducts(queryFilter);
+
+  useEffect(() => {
+    setSearchParams({ limit: searchParams.get("limit") || 7, page: 1 });
+  }, [findByType]);
 
   useEffect(() => {
     refetch();
-  }, [currentPage, sortBy.nameSort, sortBy.type]);
+  }, [currentPage, sortBy.nameSort, sortBy.type, findByType]);
 
   // sort product
 
@@ -49,7 +64,12 @@ const Product = () => {
     setSortBy(objectQuery);
   };
 
-  const handleSelect = (event) => {
+  const handleFindByTypeClick = (type) => {
+    setActiveFindType(type);
+    setFindByType(type);
+  };
+
+  const handleSelectSort = (event) => {
     const selectedFilter = filterList.find(
       (item) => item.tittle === event.target.value
     );
@@ -61,6 +81,10 @@ const Product = () => {
       },
       selectedFilter.tittle
     );
+  };
+
+  const handleSelectFindByType = (event) => {
+    handleFindByTypeClick(event.target.value);
   };
 
   // List sort
@@ -130,17 +154,24 @@ const Product = () => {
           <div className={cx("product-col")}>
             <ProductSideBar
               activeSort={activeSort}
+              activeFindType={activeFindType}
+              handleFindByTypeClick={handleFindByTypeClick}
               handleSortClick={handleSortClick}
               filterList={filterList}
+              typeProductList={typeProductList?.allType}
               headingFilter={headingFilter}
             />
           </div>
           <div className={cx("product-col")}>
             <ProductHeading
+              headingTitle={activeFindType}
               totalPage={productList?.totalPage}
               filterList={filterList}
+              typeProductList={typeProductList?.allType}
               activeSort={activeSort}
-              handleSelect={handleSelect}
+              activeFindType={activeFindType}
+              handleSelectSort={handleSelectSort}
+              handleSelectFindByType={handleSelectFindByType}
               currentPage={currentPage}
               handleNextPage={handleNextPage}
               handlePrevPage={handlePrevPage}

@@ -47,6 +47,11 @@
 }
 
 @media screen and (max-width: 767px) {
+  .product-heading {
+    justify-content: unset;
+    gap: 20px;
+  }
+
   .product-tittle {
     display: none;
   }
@@ -54,12 +59,22 @@
   .select-input {
     display: block;
   }
-}
 
-@media screen and (max-width: 575px) {
   .product-page {
     display: none;
   }
+}
+
+@media screen and (max-width: 575px) {
+  .product-heading {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .product-page {
+    display: none;
+  }
+
   .select-input {
     width: 100%;
   }

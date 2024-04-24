@@ -1,12 +1,12 @@
 //               Filter
-.product-filter {
+.product-sidebar {
   padding: 16px;
   padding-bottom: 1px;
   border-radius: 10px;
   background-color: #f4f2ed;
 }
 
-.product-filter__tittle {
+.product-sidebar__tittle {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -20,18 +20,18 @@
   font-weight: 700;
 }
 
-.product-filter__list {
+.product-sidebar__list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.product-filter__heading {
+.product-sidebar__heading {
   margin-bottom: 10px;
   font-weight: 700;
 }
 
-.product-filter__item {
+.product-sidebar__item {
   position: relative;
   margin: 10px 0;
   padding-left: 0;
@@ -56,7 +56,7 @@
   }
 }
 
-.product-filter__item::before {
+.product-sidebar__item::before {
   content: "";
   position: absolute;
   top: 50%;
