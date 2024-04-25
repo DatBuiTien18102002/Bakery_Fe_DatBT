@@ -75,6 +75,7 @@ const ProductHeading = ({
       </div>
 
       <div className={cx("product-page")}>
+        <div className={cx("product-page__label")}>Trang: </div>
         <div className={cx("product-page__number")}>
           <span className={cx("product-page__current")}>{currentPage}</span>/
           <span className={cx("product-page__num-page")}>{totalPage}</span>
