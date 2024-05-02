@@ -12,7 +12,7 @@
 - Bình luận, đánh giá sản phẩm đã mua
 - Hiển thị hình ảnh thông tin dựa theo dữ liệu lấy từ database Mongodb
 
-# Tài khoản đăng nhập:
+# Tài khoản admin đăng nhập:
 
 - username: test@gmail.com
 - password: 123456
