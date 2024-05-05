@@ -71,30 +71,39 @@ const ProductDetailView = ({
           </span>
         </div>
 
-        <div className={cx("product-detail__num-wrapper")}>
-          <div className={cx("product-detail__label")}>Số lượng: </div>
-          <div className={cx("product-detail__quantity")}>
-            <div
-              className={cx("product-detail__control", "control-minus", {
-                disabled: numProduct === 1 || !item,
-              })}
-              onClick={minusNumProduct}
-            >
-              -
-            </div>
-            <input
-              className={cx("product-detail__num")}
-              type="number"
-              value={item ? numProduct : 1}
-              onChange={item ? handleInput : () => {}}
-            />
-            <div
-              className={cx("product-detail__control", "control-plus", {
-                disabled: numProduct === item?.countInStock || !item,
-              })}
-              onClick={plusNumProduct}
-            >
-              +
+        <div className={cx("product-detail_num-wrapper")}>
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              alignItems: "center",
+              margin: "10px 0",
+            }}
+          >
+            <div className={cx("product-detail__label")}>Số lượng: </div>
+            <div className={cx("product-detail__quantity")}>
+              <div
+                className={cx("product-detail__control", "control-minus", {
+                  disabled: numProduct === 1 || !item,
+                })}
+                onClick={minusNumProduct}
+              >
+                -
+              </div>
+              <input
+                className={cx("product-detail__num")}
+                type="number"
+                value={item ? numProduct : 1}
+                onChange={item ? handleInput : () => {}}
+              />
+              <div
+                className={cx("product-detail__control", "control-plus", {
+                  disabled: numProduct === item?.countInStock || !item,
+                })}
+                onClick={plusNumProduct}
+              >
+                +
+              </div>
             </div>
           </div>
           <div className={cx("product-detail__inStock")}>
