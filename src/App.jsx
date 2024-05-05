@@ -15,7 +15,6 @@ import Admin from "@/pages/Admin/Admin";
 import { DefaultLayout, NoBreadcrumbLayout } from "@/layouts";
 import { ScrollToTop, LoadingPage } from "@/components";
 import { NotFoundPage } from "./pages";
-import images from "@/assets/images";
 import userApi from "./services/userApi";
 import message from "@/utils/message";
 
@@ -100,26 +99,6 @@ function App() {
 
               <Helmet>
                 <title>{route.title}</title>
-                <meta property="og:title" content="Trang chủ" />
-                <meta
-                  property="og:description"
-                  content="Web được xây dựng bởi Bùi Tiến Đạt bằng thư viện ReactJs"
-                />
-                <meta
-                  property="og:url"
-                  content="https://bakery-web-dat-bt.vercel.app/"
-                />
-                <meta
-                  property="og:site_name"
-                  content="DatTien Bakery eCommerce Website"
-                />
-                <meta property="og:locale" content="vi_VN" />
-                <meta
-                  property="og:image:url"
-                  content="https://images.pexels.com/photos/205961/pexels-photo-205961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                />
-                <meta property="og:image:alt" content="Introduce Cake Web" />
-                <meta property="og:type" content="website" />
               </Helmet>
               <Page />
             </Layout>
