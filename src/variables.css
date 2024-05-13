@@ -1,5 +1,6 @@
 :root {
-  --header-height: 80px;
+  --header-height: 70px;
+  --padding-top-carousel: 10px;
   --header-container-width: 1250px;
   --default-spacing: 24px;
   --section-height: 568px;
