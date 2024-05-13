@@ -75,3 +75,33 @@
   font-family: var(--font-signature);
   line-height: 1;
 }
+
+@media screen and (max-width: 767px) {
+  .icon-wrapper {
+    font-size: 1.5rem;
+  }
+
+  .icon-bakery {
+    width: 30px;
+    height: 30px;
+  }
+
+  .carousel-name {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .icon-wrapper {
+    font-size: 1rem;
+  }
+
+  .icon-bakery {
+    width: 20px;
+    height: 20px;
+  }
+
+  .carousel-name {
+    font-size: 2.3rem;
+  }
+}
