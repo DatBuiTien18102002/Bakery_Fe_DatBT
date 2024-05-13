@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import productImg from '@/assets/images/product_img_default.jpg'
 import avatar from '@/assets/images/avatar.jpg'
+import carousel1 from "@/assets/images/bgcake1.jpg"
 import carousel2 from "@/assets/images/bgcake2.jpg"
 import carousel3 from "@/assets/images/bgcake3.jpg"
 import iconBakery from "@/assets/images/icon_bakery.png"
@@ -39,7 +40,7 @@ import notFound from "@/assets/images/PageNotFound.jpg"
 const images = {
     productImgDefault: productImg,
     avatarDefault: avatar,
-    carousel: [{ src: carousel2, hash: "L29%O|~XF*LMd;MJD%I:0NNF?uZ$" }, { src: carousel3, hash: "L04n-|-;004.00Nb~q-VTdW;a0%1" }],
+    carousel: [{ src: carousel2, hash: "L29%O|~XF*LMd;MJD%I:0NNF?uZ$" }, { src: carousel3, hash: "L04n-|-;004.00Nb~q-VTdW;a0%1" }, { src: carousel1, hash: "L04n-|-;004.00Nb~q-VTdW;a0%1" }],
     iconCarousel: iconBakery,
     introduceFont: imgBakeryFront,
     introduceBehind: imgBakeryBehind,
