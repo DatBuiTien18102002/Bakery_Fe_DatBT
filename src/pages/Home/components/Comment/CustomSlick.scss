@@ -2,10 +2,13 @@
   height: auto;
 }
 
+.slick-list {
+  max-height: calc(100vh - var(--header-height) - 10px);
+}
+
 .slick-track {
   display: flex;
-  margin-top: 10px;
-  margin-bottom: 30px;
+  max-height: calc(100vh - var(--header-height) - 10px);
 }
 
 .slick-slide {

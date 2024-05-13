@@ -59,7 +59,7 @@ const CarouselBg = ({ imgList }) => {
     appendDots: (dots) => (
       <div
         style={{
-          bottom: "50px",
+          bottom: "10px",
         }}
       >
         <ul className={cx("custom-wrapper")}> {dots} </ul>
@@ -70,8 +70,8 @@ const CarouselBg = ({ imgList }) => {
 
   return (
     <section>
-      <div className="slider-container" style={{ overflow: "hidden" }}>
-        <Slider {...settings} style={{ width: "100%" }}>
+      <div className={cx("slider-container")} style={{ overflow: "hidden" }}>
+        <Slider {...settings} className={cx("slider-wrapper")}>
           {imgList.map((image, index) => (
             <div key={index} className={cx("carousel-wrapper")}>
               <ImageCustom
