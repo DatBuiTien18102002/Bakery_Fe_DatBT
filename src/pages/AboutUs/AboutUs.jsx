@@ -101,11 +101,14 @@ const AboutUs = () => {
         </div>
 
         <div ref={aboutCountRef} className={cx("about-count-row")}>
-          {statsAboutUs.map((statItem) => (
+          {statsAboutUs.map((statItem, index) => (
             <div key={statItem.label} className={cx("about-count-col")}>
               <div className={cx("about-count")}>
                 <div className={cx("about-count-num")}>
-                  <span ref={aboutNumRefs.current[1]}>{statItem.count}</span>+
+                  <span ref={aboutNumRefs.current[index]}>
+                    {statItem.count}
+                  </span>
+                  +
                 </div>
                 <div className={cx("about-count-text")}>{statItem.label}</div>
               </div>
