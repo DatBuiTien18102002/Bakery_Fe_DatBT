@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 
@@ -8,9 +6,10 @@ import { useGetAllProduct } from "@/react-query/productQuery";
 import Button from "@/components/Button/Button";
 import config from "@/config";
 import DiscoverCakeItem from "./components/DiscoverCakeItem/DiscoverCakeItem";
+import { menuDiscover } from "@/constants";
 
 const cx = classNames.bind(styles);
-const Discover = ({ menuDiscover }) => {
+const Discover = () => {
   const { data: allProduct, isPending: loadingProduct } = useGetAllProduct();
   const allNameCakeMenu = menuDiscover.map((menuItem) => menuItem.name);
 
@@ -64,10 +63,6 @@ const Discover = ({ menuDiscover }) => {
       {/* <AnimatePresence>{loadingProduct && <LoadingPage />}</AnimatePresence> */}
     </section>
   );
-};
-
-Discover.propTypes = {
-  menuDiscover: PropTypes.array,
 };
 
 export default Discover;

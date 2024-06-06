@@ -6,6 +6,7 @@ import images from "@/assets/images";
 import styles from "./AboutUs.module.scss";
 import classNames from "classnames/bind";
 import { ImageCustom } from "@/components";
+import { statsAboutUs, advAboutUs } from "@/constants";
 
 const cx = classNames.bind(styles);
 const AboutUs = () => {
@@ -100,102 +101,28 @@ const AboutUs = () => {
         </div>
 
         <div ref={aboutCountRef} className={cx("about-count-row")}>
-          <div className={cx("about-count-col")}>
-            <div className={cx("about-count")}>
-              <div className={cx("about-count-num")}>
-                <span ref={aboutNumRefs.current[0]}>50</span>+
-              </div>
-              <div className={cx("about-count-text")}>Nhân viên tiệm bánh</div>
-            </div>
-          </div>
-
-          <div className={cx("about-count-col")}>
-            <div className={cx("about-count")}>
-              <div className={cx("about-count-num")}>
-                <span ref={aboutNumRefs.current[1]}>3200</span>+
-              </div>
-              <div className={cx("about-count-text")}>
-                Khách hàng thân thiết
+          {statsAboutUs.map((statItem) => (
+            <div key={statItem.label} className={cx("about-count-col")}>
+              <div className={cx("about-count")}>
+                <div className={cx("about-count-num")}>
+                  <span ref={aboutNumRefs.current[1]}>{statItem.count}</span>+
+                </div>
+                <div className={cx("about-count-text")}>{statItem.label}</div>
               </div>
             </div>
-          </div>
-
-          <div className={cx("about-count-col")}>
-            <div className={cx("about-count")}>
-              <div className={cx("about-count-num")}>
-                <span ref={aboutNumRefs.current[2]}>70</span>+
-              </div>
-              <div className={cx("about-count-text")}>Bánh ngọt các loại</div>
-            </div>
-          </div>
+          ))}
         </div>
 
         <div className={cx("about-adv-row")}>
-          <div className={cx("about-adv-col")}>
-            <div className={cx("about-adv")}>
-              <img
-                className={cx("about-icon")}
-                src={images.aboutIcon.aboutIcon1}
-                alt=""
-              />
-              <div className={cx("about-adv-tittle")}>Giao Hàng Nhanh</div>
-              <div className={cx("about-adv-text")}>
-                Tận hưởng niềm vui đón nhận bánh tươi ngon ngay tại cửa nhà bạn.
-                Chúng tôi cam kết giao hàng nhanh chóng và đúng hẹn, để bạn có
-                thêm thời gian thảnh thơi thưởng thức món ngọt.
+          {advAboutUs.map((advItem) => (
+            <div key={advItem.title} className={cx("about-adv-col")}>
+              <div className={cx("about-adv")}>
+                <img className={cx("about-icon")} src={advItem.icon} alt="" />
+                <div className={cx("about-adv-tittle")}>{advItem.title}</div>
+                <div className={cx("about-adv-text")}>{advItem.desc}</div>
               </div>
             </div>
-          </div>
-
-          <div className={cx("about-adv-col")}>
-            <div className={cx("about-adv")}>
-              <img
-                className={cx("about-icon")}
-                src={images.aboutIcon.aboutIcon2}
-                alt=""
-              />
-              <div className={cx("about-adv-tittle")}>Chất Lượng Cao</div>
-              <div className={cx("about-adv-text")}>
-                Mỗi chiếc bánh là sản phẩm của tình yêu và tâm huyết, được chế
-                biến từ những nguyên liệu tốt nhất và quy trình nghiêm ngặt để
-                đảm bảo hương vị hoàn hảo.
-              </div>
-            </div>
-          </div>
-
-          <div className={cx("about-adv-col")}>
-            <div className={cx("about-adv")}>
-              <img
-                className={cx("about-icon")}
-                src={images.aboutIcon.aboutIcon3}
-                alt=""
-              />
-              <div className={cx("about-adv-tittle")}>Ưu Đãi Tốt Nhất</div>
-              <div className={cx("about-adv-text")}>
-                Bạn xứng đáng nhận được điều tốt nhất, và chúng tôi hiểu điều
-                đó. Chúng tôi mang đến những ưu đãi đặc biệt, giảm giá hấp dẫn
-                và quà tặng thú vị để bạn cảm nhận sự trân trọng của chúng tôi
-                đối với sự ủng hộ của bạn.
-              </div>
-            </div>
-          </div>
-
-          <div className={cx("about-adv-col")}>
-            <div className={cx("about-adv")}>
-              <img
-                className={cx("about-icon")}
-                src={images.aboutIcon.aboutIcon4}
-                alt=""
-              />
-              <div className={cx("about-adv-tittle")}>Thanh Toán An Toàn</div>
-              <div className={cx("about-adv-text")}>
-                Sự an toàn của thông tin cá nhân và giao dịch thanh toán là ưu
-                tiên hàng đầu. Với hệ thống thanh toán được bảo mật hàng đầu,
-                bạn có thể yên tâm thực hiện giao dịch một cách an toàn và tiện
-                lợi.
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

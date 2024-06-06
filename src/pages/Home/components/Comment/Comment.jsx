@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
 import classNames from "classnames/bind";
 import Slider from "react-slick";
@@ -7,9 +5,10 @@ import Rating from "@mui/material/Rating";
 
 import "./CustomSlick.scss";
 import styles from "./Comment.module.scss";
+import { featuredComments } from "../../../../constants";
 
 const cx = classNames.bind(styles);
-const Comment = ({ comments }) => {
+const Comment = () => {
   var settings = {
     dots: true,
     infinite: true,
@@ -46,7 +45,7 @@ const Comment = ({ comments }) => {
         </div>
 
         <Slider {...settings} className={cx("comment-list")}>
-          {comments.map((comment) => (
+          {featuredComments.map((comment) => (
             <div key={comment.name} className={cx("comment-item")}>
               <div className={cx("comment-info")}>
                 <img
@@ -66,10 +65,6 @@ const Comment = ({ comments }) => {
       </div>
     </section>
   );
-};
-
-Comment.propTypes = {
-  comments: PropTypes.array,
 };
 
 export default Comment;
