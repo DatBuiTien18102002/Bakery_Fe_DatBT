@@ -11,7 +11,7 @@ import { fadeIn } from "@/utils/animation";
 const cx = classNames.bind(styles);
 const Introduce = () => {
   const ref = useRef();
-  const isInView = useInView(ref, { margin: `-200px` });
+  const isInView = useInView(ref, { margin: `-500px` });
   const [addAnimate, setAddAnimate] = useState(false);
 
   useEffect(() => {

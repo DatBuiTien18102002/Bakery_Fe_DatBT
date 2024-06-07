@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
+import { motion, useInView } from "framer-motion";
+import { fadeIn, fadeInLeft } from "@/utils/animation";
 
 import images from "@/assets/images";
 import styles from "./AboutUs.module.scss";
@@ -12,6 +14,9 @@ const cx = classNames.bind(styles);
 const AboutUs = () => {
   const aboutNumRefs = useRef([]);
   const aboutCountRef = useRef();
+
+  const advRef = useRef();
+  const isInView = useInView(advRef, { margin: "-200px" });
 
   aboutNumRefs.current = Array.from(Array(3)).map(
     (_, index) => aboutNumRefs.current[index] || React.createRef()
@@ -63,9 +68,18 @@ const AboutUs = () => {
   return (
     <section className={cx("about")}>
       <div className="container">
-        <div className={cx("about-bakery")}>Baroibeo Bakery</div>
+        <motion.div
+          className={cx("about-bakery")}
+          variants={fadeIn(1, 1)}
+          initial="hidden"
+          animate="show"
+        >
+          Baroibeo Bakery
+        </motion.div>
         <div className={cx("tittle", "about-page-tittle")}>
-          <h2>Về chúng tôi</h2>
+          <h2 className={cx("animate__animated animate__backInDown ")}>
+            Về chúng tôi
+          </h2>
           <DiamondIcon className={cx("diamond-icon")} />
         </div>
 
@@ -82,10 +96,20 @@ const AboutUs = () => {
           </div>
           <div className={cx("about-desc-col")}>
             <div className={cx("about-wrapper")}>
-              <div className={cx("about-tittle")}>
+              <div
+                className={cx(
+                  "about-tittle",
+                  "animate__animated animate__bounceInRight animate__delay-1s"
+                )}
+              >
                 Một chút về Baroibeo Bakery
               </div>
-              <div className={cx("about-text")}>
+              <motion.div
+                className={cx("about-text")}
+                variants={fadeIn(1, 2)}
+                initial="hidden"
+                animate="show"
+              >
                 Baroibeo Bakery khởi đầu là một cơ sở nhỏ với quy mô gia đình
                 vào đầu những năm 2018. Trải qua gần 5 năm xây dựng và phát
                 triển, Baroibeo Bakery đã xây dựng được hai cửa hành bánh ngọt
@@ -95,7 +119,7 @@ const AboutUs = () => {
                 luôn mang đến cho khách hàng những chiếc bánh nghệ thuật đẹp
                 mắt, những chiếc bánh thơm ngon, dinh dưỡng và hợp vệ sinh với
                 giá cả phải chăng.
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -116,17 +140,23 @@ const AboutUs = () => {
           ))}
         </div>
 
-        <div className={cx("about-adv-row")}>
-          {advAboutUs.map((advItem) => (
+        <motion.div className={cx("about-adv-row")} ref={advRef}>
+          {advAboutUs.map((advItem, index) => (
             <div key={advItem.title} className={cx("about-adv-col")}>
-              <div className={cx("about-adv")}>
+              <motion.div
+                div
+                className={cx("about-adv")}
+                variants={fadeInLeft(1, index / 2, 1)}
+                initial="hidden"
+                animate={isInView && "show"}
+              >
                 <img className={cx("about-icon")} src={advItem.icon} alt="" />
                 <div className={cx("about-adv-tittle")}>{advItem.title}</div>
                 <div className={cx("about-adv-text")}>{advItem.desc}</div>
-              </div>
+              </motion.div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
