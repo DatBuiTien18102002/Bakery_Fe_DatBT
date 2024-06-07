@@ -7,9 +7,11 @@ import Slider from "react-slick";
 
 import images from "@/assets/images";
 import styles from "./CarouselBg.module.scss";
-import ImageCustom from "@/components/ImageCustom/ImageCustom";
+import { ImageCustom, LoadingText } from "@/components";
 
 import "./customSlickDotActive.scss";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 const cx = classNames.bind(styles);
 
 function SampleNextArrow(props) {
@@ -67,9 +69,22 @@ const CarouselBg = ({ imgList }) => {
     customPaging: () => <div className={cx("custom-dot")}></div>,
   };
 
+  const ref = useRef();
+  const isInView = useInView(ref, { margin: `-200px` });
+  const [addAnimate, setAddAnimate] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      setAddAnimate(true);
+    }
+  }, [isInView]);
+
   return (
-    <section>
+    <section ref={ref}>
       <div className={cx("slider-container")} style={{ overflow: "hidden" }}>
+        <p className={cx("loading-img")}>
+          <LoadingText fontSize="1.5rem" />
+        </p>
         <Slider {...settings} className={cx("slider-wrapper")}>
           {imgList.map((image, index) => (
             <div key={index} className={cx("carousel-wrapper")}>
@@ -83,13 +98,33 @@ const CarouselBg = ({ imgList }) => {
                   <img
                     src={images.iconCarousel}
                     alt="Icon Bakery"
-                    className={cx("icon-bakery")}
+                    className={cx(
+                      "icon-bakery",
+                      `animate__animated ${
+                        addAnimate && "animate__fadeInDown "
+                      } `
+                    )}
                   />
-                  <p>Baroibeo</p>
+                  <p
+                    className={cx(
+                      `animate__animated ${
+                        addAnimate && "animate__backInDown animate__delay-0.5s"
+                      } `
+                    )}
+                  >
+                    Baroibeo
+                  </p>
+                  <b
+                    className={cx(
+                      "carousel-name",
+                      `animate__animated ${
+                        addAnimate && "animate__tada"
+                      } animate__delay-1s`
+                    )}
+                  >
+                    Tiệm bánh Baroibeo
+                  </b>
                 </span>
-                <div className={cx("carousel-name")}>
-                  <b> Tiệm bánh Baroibeo </b>
-                </div>
               </h1>
             </div>
           ))}

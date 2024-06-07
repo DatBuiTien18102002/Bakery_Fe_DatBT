@@ -4,6 +4,7 @@ import { fadeIn } from "@/utils/animation";
 
 import styles from "./LoadingPage.module.scss";
 import images from "@/assets/images";
+import LoadingText from "../LoadingText/LoadingText";
 
 const cx = classNames.bind(styles);
 const LoadingPage = () => {
@@ -19,14 +20,7 @@ const LoadingPage = () => {
         <img src={images.gifLoad} alt="loading" />
       </div>
 
-      <div className={cx("loading-text")}>
-        <span>Loading</span>
-        <ul className={cx("loading-dots")}>
-          <li>.</li>
-          <li>.</li>
-          <li>.</li>
-        </ul>
-      </div>
+      <LoadingText fontSize="1.5rem" color="white" />
     </motion.div>
   );
 };

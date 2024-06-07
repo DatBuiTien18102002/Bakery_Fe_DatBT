@@ -4,14 +4,33 @@ import styles from "./ImgShop.module.scss";
 import images from "@/assets/images";
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
 import ImageCustom from "@/components/ImageCustom/ImageCustom";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 const cx = classNames.bind(styles);
 const ImgShop = () => {
+  const ref = useRef();
+  const isInView = useInView(ref, { margin: `-200px` });
+  const [addAnimate, setAddAnimate] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      setAddAnimate(true);
+    }
+  }, [isInView]);
   return (
-    <section id="ImageShop" className={cx("image-shop")}>
+    <section id="ImageShop" className={cx("image-shop")} ref={ref}>
       <div className="container">
         <div className={cx("tittle", "image-shop-tittle")}>
-          <h2>Hình ảnh Baroibeo quán</h2>
+          {addAnimate && (
+            <h2
+              className={cx(
+                "animate__animated animate__bounceIn animate__delay-0.5s"
+              )}
+            >
+              Hình ảnh Baroibeo quán
+            </h2>
+          )}
           <DiamondIcon className={"diamond-icon"} />
         </div>
 

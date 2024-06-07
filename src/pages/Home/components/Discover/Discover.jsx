@@ -7,6 +7,8 @@ import Button from "@/components/Button/Button";
 import config from "@/config";
 import DiscoverCakeItem from "./components/DiscoverCakeItem/DiscoverCakeItem";
 import { menuDiscover } from "@/constants";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 const cx = classNames.bind(styles);
 const Discover = () => {
@@ -28,13 +30,40 @@ const Discover = () => {
     };
   });
 
+  //Animate
+  const ref = useRef();
+  const isInView = useInView(ref, { margin: `-200px` });
+  const [addAnimate, setAddAnimate] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      setAddAnimate(true);
+    }
+  }, [isInView]);
+
   return (
-    <section id="DiscoverMenu" className={cx("menu")}>
+    <section id="DiscoverMenu" className={cx("menu")} ref={ref}>
       <div className="container">
         <div className={cx("menu-wrapper")}>
           <div className={cx("menu-tittle")}>
-            <h2>Khám phá menu</h2>
-            <h6>Có gì đặc biệt ở đây</h6>
+            <h2
+              className={cx(
+                `animate__animated ${
+                  addAnimate && "animate__wobble"
+                } animate__delay-0.5s`
+              )}
+            >
+              Khám phá menu
+            </h2>
+            <h6
+              className={cx(
+                `animate__animated ${
+                  addAnimate && "animate__flash"
+                } animate__delay-1s`
+              )}
+            >
+              Có gì đặc biệt ở đây
+            </h6>
           </div>
           <div className={cx("menu-list")}>
             {loadingProduct == true ? (

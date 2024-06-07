@@ -13,52 +13,57 @@ const cx = classNames.bind(styles);
 
 const DiscoverCakeItem = ({ item }) => {
   return (
-    <Link to={item ? `/product/${item._id}` : `#`} className={cx("menu-item")}>
-      <div className={cx(item ? "menu__img-wrap" : "menu-loading__img-wrap")}>
-        {item ? (
-          <img src={item.image} alt="" className={cx("menu-img")} />
-        ) : (
-          <Skeleton />
-        )}
-      </div>
-
-      <div className={cx("menu-item-info")}>
-        <div className={cx("menu-item-title")}>
-          <div className={cx("menu-item-name-wrapper")}>
-            <DiamondIcon />
-
-            {item ? (
-              <span>{item.name}</span>
-            ) : (
-              <Skeleton
-                width="100px"
-                height="20px"
-                className={cx("skeleton-title")}
-              />
-            )}
-          </div>
-          <div className={cx("menu-item-price")}>
-            {item ? (
-              currencyFormat(
-                item.discount
-                  ? getPriceDiscount(item.price, item.discount)
-                  : item.price
-              )
-            ) : (
-              <Skeleton
-                width="62px"
-                height="20px"
-                className={cx("skeleton-price")}
-              />
-            )}
-          </div>
+    <div>
+      <Link
+        to={item ? `/product/${item._id}` : `#`}
+        className={cx("menu-item")}
+      >
+        <div className={cx(item ? "menu__img-wrap" : "menu-loading__img-wrap")}>
+          {item ? (
+            <img src={item.image} alt="" className={cx("menu-img")} />
+          ) : (
+            <Skeleton />
+          )}
         </div>
 
-        <div className={cx("menu-item-desc")}>
-          {item ? item.description : <Skeleton height="48px" />}
+        <div className={cx("menu-item-info")}>
+          <div className={cx("menu-item-title")}>
+            <div className={cx("menu-item-name-wrapper")}>
+              <DiamondIcon />
+
+              {item ? (
+                <span>{item.name}</span>
+              ) : (
+                <Skeleton
+                  width="100px"
+                  height="20px"
+                  className={cx("skeleton-title")}
+                />
+              )}
+            </div>
+            <div className={cx("menu-item-price")}>
+              {item ? (
+                currencyFormat(
+                  item.discount
+                    ? getPriceDiscount(item.price, item.discount)
+                    : item.price
+                )
+              ) : (
+                <Skeleton
+                  width="62px"
+                  height="20px"
+                  className={cx("skeleton-price")}
+                />
+              )}
+            </div>
+          </div>
+
+          <div className={cx("menu-item-desc")}>
+            {item ? item.description : <Skeleton height="48px" />}
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

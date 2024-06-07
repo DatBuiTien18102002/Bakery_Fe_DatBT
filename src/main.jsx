@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer } from "react-toastify";
+import "animate.css";
 
 import "@/globalStyles.scss";
 import App from "@/App.jsx";

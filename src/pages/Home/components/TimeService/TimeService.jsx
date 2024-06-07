@@ -2,13 +2,32 @@ import classNames from "classnames/bind";
 
 import styles from "./TimeService.module.scss";
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 const cx = classNames.bind(styles);
 const TimeService = () => {
+  const ref = useRef();
+  const [addAnimate, setAddAnimate] = useState(false);
+
+  const isInView = useInView(ref, { margin: `-200px` });
+  useEffect(() => {
+    if (isInView) {
+      setAddAnimate(true);
+    }
+  }, [isInView]);
+
   return (
-    <section id="ServiceTime" className={cx("service")}>
+    <section id="ServiceTime" className={cx("service")} ref={ref}>
       <div className="container">
-        <div className={cx("service-content")}>
+        <div
+          className={cx(
+            "service-content",
+            `animate__animated ${
+              addAnimate && "animate__swing"
+            } animate__delay-1s`
+          )}
+        >
           <div className={cx("tittle", "service-tittle")}>
             <h2>Thời gian hoạt động</h2>
             <DiamondIcon className="diamond-icon" />

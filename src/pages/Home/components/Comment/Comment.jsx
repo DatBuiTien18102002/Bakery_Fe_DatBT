@@ -6,6 +6,8 @@ import Rating from "@mui/material/Rating";
 import "./CustomSlick.scss";
 import styles from "./Comment.module.scss";
 import { featuredComments } from "../../../../constants";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 const cx = classNames.bind(styles);
 const Comment = () => {
@@ -36,11 +38,29 @@ const Comment = () => {
     ],
   };
 
+  const ref = useRef();
+  const isInView = useInView(ref, { margin: `-200px` });
+  const [addAnimate, setAddAnimate] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      setAddAnimate(true);
+    }
+  }, [isInView]);
+
   return (
-    <section id="Comment" className={cx("comment")}>
+    <section id="Comment" className={cx("comment")} ref={ref}>
       <div className="container">
         <div className={cx("tittle", "comment-tittle")}>
-          <h2>Đánh giá của khách hàng</h2>
+          {addAnimate && (
+            <h2
+              className={cx(
+                "animate__animated animate__bounceInDown animate__delay-0.5s"
+              )}
+            >
+              Đánh giá của khách hàng
+            </h2>
+          )}
           <DiamondIcon className="diamond-icon" />
         </div>
 
