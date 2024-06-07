@@ -75,6 +75,14 @@ const validateEditUser = Yup.object({
     phone: Yup.number().min(10, "Số điện thoại tối thiểu 10 chữ số!"),
 });
 
+const validateContact = Yup.object({
+    name: Yup.string().required("Name không được để trống ! "),
+    email: Yup.string()
+        .email("Email không hợp lệ")
+        .required("Email không được để trống ! "),
+    message: Yup.string().required("Message không được để trống ! "),
+});
+
 export {
     validateSignIn,
     validateSignUp,
@@ -82,5 +90,6 @@ export {
     validateProfile,
     validateUpdateUser,
     validateCreateUser,
-    validateEditUser
+    validateEditUser,
+    validateContact,
 }

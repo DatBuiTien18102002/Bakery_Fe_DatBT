@@ -76,6 +76,27 @@
   color: var(--text-color);
 }
 
+.contact__form-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+
+  .contact-form {
+    flex: 1;
+  }
+
+  .contact__form-title {
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-size: 2rem;
+  }
+
+  .contact__form-map {
+    flex: 1;
+    height: 370px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .contact-row {
     flex-direction: column;
@@ -88,5 +109,20 @@
 
   .contact-col:last-child {
     width: 100%;
+  }
+
+  .contact__form-wrapper {
+    flex-direction: column;
+
+    .contact-form {
+      flex: unset;
+      width: 100%;
+    }
+
+    .contact__form-map {
+      flex: unset;
+      height: 400px;
+      width: 100%;
+    }
   }
 }

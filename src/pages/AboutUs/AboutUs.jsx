@@ -144,7 +144,6 @@ const AboutUs = () => {
           {advAboutUs.map((advItem, index) => (
             <div key={advItem.title} className={cx("about-adv-col")}>
               <motion.div
-                div
                 className={cx("about-adv")}
                 variants={fadeInLeft(1, index / 2, 1)}
                 initial="hidden"

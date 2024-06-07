@@ -82,9 +82,9 @@ const CarouselBg = ({ imgList }) => {
   return (
     <section ref={ref}>
       <div className={cx("slider-container")} style={{ overflow: "hidden" }}>
-        <p className={cx("loading-img")}>
+        <div className={cx("loading-img")}>
           <LoadingText fontSize="1.5rem" />
-        </p>
+        </div>
         <Slider {...settings} className={cx("slider-wrapper")}>
           {imgList.map((image, index) => (
             <div key={index} className={cx("carousel-wrapper")}>
