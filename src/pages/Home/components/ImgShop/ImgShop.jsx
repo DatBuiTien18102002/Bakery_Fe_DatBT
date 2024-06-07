@@ -1,11 +1,11 @@
 import classNames from "classnames/bind";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 import styles from "./ImgShop.module.scss";
 import images from "@/assets/images";
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
 import ImageCustom from "@/components/ImageCustom/ImageCustom";
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
 
 const cx = classNames.bind(styles);
 const ImgShop = () => {

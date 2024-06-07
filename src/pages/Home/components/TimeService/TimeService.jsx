@@ -1,9 +1,9 @@
 import classNames from "classnames/bind";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 import styles from "./TimeService.module.scss";
 import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
 
 const cx = classNames.bind(styles);
 const TimeService = () => {

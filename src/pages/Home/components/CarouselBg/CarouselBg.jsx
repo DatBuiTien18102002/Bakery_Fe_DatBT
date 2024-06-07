@@ -4,14 +4,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import classNames from "classnames/bind";
 import Slider from "react-slick";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 import images from "@/assets/images";
 import styles from "./CarouselBg.module.scss";
 import { ImageCustom, LoadingText } from "@/components";
-
 import "./customSlickDotActive.scss";
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+
 const cx = classNames.bind(styles);
 
 function SampleNextArrow(props) {

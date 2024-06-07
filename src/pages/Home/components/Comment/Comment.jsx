@@ -2,12 +2,12 @@ import DiamondIcon from "@/assets/images/DiamondIcon/Diamond.jsx";
 import classNames from "classnames/bind";
 import Slider from "react-slick";
 import Rating from "@mui/material/Rating";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 import "./CustomSlick.scss";
 import styles from "./Comment.module.scss";
-import { featuredComments } from "../../../../constants";
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { featuredComments } from "@/constants";
 
 const cx = classNames.bind(styles);
 const Comment = () => {

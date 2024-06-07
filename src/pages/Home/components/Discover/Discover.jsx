@@ -1,5 +1,7 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 import styles from "./Discover.module.scss";
 import { useGetAllProduct } from "@/react-query/productQuery";
@@ -7,8 +9,6 @@ import Button from "@/components/Button/Button";
 import config from "@/config";
 import DiscoverCakeItem from "./components/DiscoverCakeItem/DiscoverCakeItem";
 import { menuDiscover } from "@/constants";
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
 
 const cx = classNames.bind(styles);
 const Discover = () => {
