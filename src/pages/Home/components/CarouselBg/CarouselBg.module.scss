@@ -1,7 +1,7 @@
 .slider-container {
   position: relative;
   display: flex;
-  min-height: 40vw;
+  min-height: 35vw;
   max-height: calc(100vh - var(--header-height) - var(--padding-top-carousel));
 }
 
