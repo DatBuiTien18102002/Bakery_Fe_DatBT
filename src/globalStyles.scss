@@ -20,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -123,6 +124,7 @@ button {
 
 section {
   scroll-margin-top: var(--header-height);
+  scroll-snap-align: start;
 }
 
 img {
