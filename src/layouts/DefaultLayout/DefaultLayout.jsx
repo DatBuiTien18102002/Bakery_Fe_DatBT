@@ -8,7 +8,7 @@ const DefaultLayout = ({ children }) => {
     <>
       <Header isHomePage />
 
-      <div style={{ marginTop: "var(--header-height)" }}>
+      <div className="page" style={{ marginTop: "var(--header-height)" }}>
         <Breadcrumb />
 
         {children}
