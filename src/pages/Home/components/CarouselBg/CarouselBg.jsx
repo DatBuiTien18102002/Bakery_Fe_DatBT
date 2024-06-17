@@ -48,12 +48,14 @@ function SamplePrevArrow(props) {
 }
 
 const CarouselBg = ({ imgList }) => {
+  console.log(window.innerWidth);
   const settings = {
     dots: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    infinite: window.innerWidth > 767 ? true : false,
+    autoplay: window.innerWidth > 767 ? true : false,
     autoplaySpeed: 3000,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
