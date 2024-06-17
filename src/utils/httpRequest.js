@@ -6,6 +6,7 @@ import userApi from "@/services/userApi";
 import message from "@/utils/message";
 
 const handleCreateAxios = () => {
+    console.log("base", import.meta.env.VITE_REACT_API_URL);
     return axios.create({
         baseURL: import.meta.env.VITE_REACT_API_URL,
         headers: {

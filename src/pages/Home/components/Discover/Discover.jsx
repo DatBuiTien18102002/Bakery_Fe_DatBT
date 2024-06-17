@@ -30,6 +30,8 @@ const Discover = () => {
     };
   });
 
+  console.log("newMenu ", allProduct);
+
   //Animate
   const ref = useRef();
   const isInView = useInView(ref, { margin: `-200px` });
