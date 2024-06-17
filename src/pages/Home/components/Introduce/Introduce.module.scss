@@ -109,14 +109,11 @@
     width: 100%;
   }
 
-  // .introduce-info,
-  // .introduce-description,
-  // .introduce-tittle,
-  // .introduce-name {
-  //   opacity: 1 !important;
-  // }
-
-  .introduce-description {
+  .introduce-info,
+  .introduce-description,
+  .introduce-tittle,
+  .introduce-name {
     opacity: 1 !important;
+    animation: unset;
   }
 }
