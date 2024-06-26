@@ -114,3 +114,38 @@ export const advAboutUs = [
         desc: "Sự an toàn của thông tin cá nhân và giao dịch thanh toán là ưu tiên hàng đầu. Với hệ thống thanh toán được bảo mật hàng đầu, bạn có thể yên tâm thực hiện giao dịch một cách an toàn và tiện lợi."
     },
 ]
+
+export const headingFilter = [
+    {
+        tittle: "Tên sản phẩm",
+        name: "name",
+    },
+    {
+        tittle: "Giá sản phẩm",
+        name: "price",
+    },
+];
+
+export const filterList = [
+    {
+        tittle: `A đến Z`,
+        name: "name",
+        type: "asc",
+        heading: "",
+    },
+    {
+        tittle: "Z đến A",
+        name: "name",
+        type: "desc",
+    },
+    {
+        tittle: "Cao đến thấp",
+        name: "price",
+        type: "desc",
+    },
+    {
+        tittle: "Thấp đến cao",
+        name: "price",
+        type: "asc",
+    },
+];

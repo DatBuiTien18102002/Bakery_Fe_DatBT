@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import styles from "./Product.module.scss";
 import { useGetProducts, useGetAllType } from "@/react-query/productQuery";
 import { ProductContent, ProductHeading, ProductSideBar } from "./components";
+import { headingFilter, filterList } from "@/constants";
 
 const cx = classNames.bind(styles);
 const Product = () => {
@@ -86,42 +87,6 @@ const Product = () => {
   const handleSelectFindByType = (event) => {
     handleFindByTypeClick(event.target.value);
   };
-
-  // List sort
-  const headingFilter = [
-    {
-      tittle: "Tên sản phẩm",
-      name: "name",
-    },
-    {
-      tittle: "Giá sản phẩm",
-      name: "price",
-    },
-  ];
-
-  const filterList = [
-    {
-      tittle: `A đến Z`,
-      name: "name",
-      type: "asc",
-      heading: "",
-    },
-    {
-      tittle: "Z đến A",
-      name: "name",
-      type: "desc",
-    },
-    {
-      tittle: "Cao đến thấp",
-      name: "price",
-      type: "desc",
-    },
-    {
-      tittle: "Thấp đến cao",
-      name: "price",
-      type: "asc",
-    },
-  ];
 
   const handlePrevPage = () => {
     if (currentPage === 1) {
