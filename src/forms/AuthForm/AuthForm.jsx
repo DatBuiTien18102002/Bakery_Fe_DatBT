@@ -8,6 +8,7 @@ import AuthFormView from "./components/AuthFormView/AuthFormView";
 import message from "@/utils/message";
 import { updateUser } from "@/redux/slice/userSlice";
 import userApi from "@/services/userApi";
+import { useEffect } from "react";
 
 const AuthForm = (props) => {
   const dispatch = useDispatch();
@@ -15,6 +16,14 @@ const AuthForm = (props) => {
 
   const { mutateAsync: loginUser, isPending: loadingSignIn } = useLoginUser();
   const { mutateAsync: createUser, isPending: loadingSignUp } = useCreateUser();
+
+  useEffect(() => {
+    setTimeout(() => {
+      alert(
+        "Tài khoản với quyền truy cập admin \nEmail: test@gmail.com \nPassword: 123456"
+      );
+    }, 1000);
+  }, []);
 
   const handleSignIn = async (values) => {
     try {
